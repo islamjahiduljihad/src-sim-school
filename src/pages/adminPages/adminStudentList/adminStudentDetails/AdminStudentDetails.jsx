@@ -324,6 +324,17 @@ const AdminStudentDetails = () => {
                 </div>
             </div>
 
+            {/* Complain card */}
+            <div className="mt-4 card bg-base-100 shadow-2xl p-6 lg:p-10 rounded-xl max-w-7xl mx-auto border border-gray-200">
+                <h1 className="text-2xl font-bold text-[#249742]">
+                    শিক্ষার্থী সম্পর্কে অভিযোগ
+                </h1>
+                <div className="mt-4 text-lg text-gray-700">
+                    <p>এই শিক্ষার্থীর বিরুদ্ধে কোনো অভিযোগ নেই।</p>
+                </div>
+            </div>
+            {/* Complain card end */}
+
             {/* Phone Number Modal */}
             {isPhoneModalOpen && (
                 <dialog

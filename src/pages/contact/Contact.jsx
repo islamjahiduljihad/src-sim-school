@@ -9,7 +9,7 @@ const Contact = () => {
         email: "",
         subject: "",
         message: "",
-        mobile: "",
+        phone: "",
         contact_status: "pending",
         date: new Date().toISOString().slice(0, 10),
     });
@@ -46,7 +46,7 @@ const Contact = () => {
                     email: "",
                     subject: "",
                     message: "",
-                    mobile: "",
+                    phone: "",
                     contact_status: "pending",
                     date: new Date().toDateString(),
                 });
@@ -145,8 +145,8 @@ const Contact = () => {
                         <input
                             placeholder="আপনার মোবাইল নাম্বার লিখুন"
                             type="text"
-                            name="mobile"
-                            value={formData.mobile}
+                            name="phone"
+                            value={formData.phone}
                             onChange={handleChange}
                             required
                             className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#00b795]"

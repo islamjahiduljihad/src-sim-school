@@ -1,44 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaCheck, FaTimes, FaEye, FaPhoneVolume } from "react-icons/fa";
 import { FiMail } from "react-icons/fi";
-import { Link } from "react-router-dom";
 
 const AdminContact = () => {
     const [selectedContact, setSelectedContact] = useState(null);
     const [showPhoneModal, setShowPhoneModal] = useState(false);
+    const [contacts, setContacts] = useState([]);
 
-    const contacts = [
-        {
-            id: "C-001",
-            name: "রাশেদুল ইসলাম",
-            phone: "017xxxxxxxx",
-            email: "rashed@example.com",
-            subject: "ভর্তি সংক্রান্ত প্রশ্ন",
-            message: "আমি ৭ম শ্রেণিতে ভর্তি হতে চাই, কিভাবে আবেদন করব?",
-            date: "২০২৫-০৭-২৪",
-            status: "যোগাযোগ হয়নি",
-        },
-        {
-            id: "C-002",
-            name: "সাবিহা তাসনিম",
-            phone: "018xxxxxxxx",
-            email: "sabiha@example.com",
-            subject: "স্কুল টাইম জানার জন্য",
-            message: "স্কুল কখন খুলবে এবং বন্ধ হবে?",
-            date: "২০২৫-০৭-২৩",
-            status: "যোগাযোগ হয়নি",
-        },
-        {
-            id: "C-003",
-            name: "তানভীর হাসান",
-            phone: "019xxxxxxxx",
-            email: "tanvir@example.com",
-            subject: "স্কুল বাস সম্পর্কে জানতে চাই",
-            message: "বাস সার্ভিস আছে কিনা জানাবেন।",
-            date: "২০২৫-০৭-২২",
-            status: "যোগাযোগ হয়নি",
-        },
-    ];
+    console.log("Contact data:", contacts)
+
+    useEffect(() => {
+        fetch("http://localhost:3000/contacts")
+            .then((res) => res.json())
+            .then((data) => {
+                setContacts(data);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }, []);
 
     return (
         <div className="p-4 sm:p-8 bg-white rounded-xl shadow relative w-full">
@@ -73,10 +53,10 @@ const AdminContact = () => {
                                 <td className="py-3 px-4 text-[#249742] font-medium">
                                     {contact.name}
                                 </td>
-                                <td className="py-3 px-4">{contact.phone}</td>
-                                <td className="py-3 px-4">{contact.subject}</td>
-                                <td className="py-3 px-4">{contact.date}</td>
-                                <td className="py-3 px-4">{contact.status}</td>
+                                <td className="py-3 px-4">{contact?.phone}</td>
+                                <td className="py-3 px-4">{contact?.subject}</td>
+                                <td className="py-3 px-4">{contact?.date}</td>
+                                <td className="py-3 px-4">{contact?.status}</td>
                                 <td className="py-3 px-4">
                                     <div className="flex flex-wrap gap-2">
                                         <button className="flex items-center gap-1 bg-[#249742] hover:bg-[#1f7c38] text-white px-3 py-1 rounded text-sm transition">

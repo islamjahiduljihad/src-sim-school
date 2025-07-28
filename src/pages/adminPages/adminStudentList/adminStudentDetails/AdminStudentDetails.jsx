@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import {
     FaBirthdayCake,
@@ -23,6 +23,7 @@ import {
     MdMoodBad,
     MdDeleteForever,
     MdWork,
+    MdWarning,
 } from "react-icons/md";
 import { LiaIdCardSolid } from "react-icons/lia";
 import axios from "axios";
@@ -30,7 +31,6 @@ import Swal from "sweetalert2";
 
 const AdminStudentDetails = () => {
     const { id, classNo } = useParams();
-    console.log("Student ID from URL:", id, "classNo:", classNo);
 
     const [isPhoneModalOpen, setIsPhoneModalOpen] = useState(false);
     const [isComplaintModalOpen, setIsComplaintModalOpen] = useState(false);
@@ -38,9 +38,25 @@ const AdminStudentDetails = () => {
     const [complaintDetails, setComplaintDetails] = useState({
         subject: "",
         description: "",
+        studentId: id,
+        date: new Date().toLocaleDateString("bn-BD", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+        }),
     });
     const [studentData, setStudentData] = useState({});
     const [updatedStudentData, setUpdatedStudentData] = useState(studentData);
+    const [complains, setComplains] = useState([]);
+
+    useEffect(() => {
+        fetch(`http://localhost:3000/complains/student/${id}`)
+            .then((response) => response.json())
+            .then((data) => {
+                setComplains(data);
+                console.log("Fetched Complains:", data);
+            });
+    }, []);
 
     useEffect(() => {
         fetch(`http://localhost:3000/student/${classNo}/${id}`)
@@ -349,10 +365,37 @@ const AdminStudentDetails = () => {
             {/* Complain card */}
             <div className="mt-4 card bg-base-100 shadow-2xl p-6 lg:p-10 rounded-xl max-w-7xl mx-auto border border-gray-200">
                 <h1 className="text-2xl font-bold text-[#249742]">
-                    শিক্ষার্থী সম্পর্কে অভিযোগ
+                    শিক্ষার্থী সম্পর্কে অভিযোগ ({complains?.length})
                 </h1>
-                <div className="mt-4 text-lg text-gray-700">
-                    <p>এই শিক্ষার্থীর বিরুদ্ধে কোনো অভিযোগ নেই।</p>
+                <div className="mt-4 text-lg text-gray-700 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {complains?.map((complain) => (
+                        <div className="card w-full bg-base-100 shadow-xl border border-gray-200 rounded-lg overflow-hidden">
+                            <div className="card-body p-6">
+                                {/* Complaint Header */}
+                                <div className="mb-2">
+                                    <h3 className="card-title text-xl font-bold text-gray-800 flex items-center gap-3">
+                                        <span className="text-[#249742]">
+                                            {complain?.subject}
+                                        </span>
+                                    </h3>
+                                </div>
+
+                                {/* Complaint Description */}
+                                <div className="text-gray-700 leading-relaxed mb-4">
+                                    <p className="text-base">
+                                        {complain?.description}
+                                    </p>
+                                </div>
+
+                                {/* Optional: Add an action button or status */}
+                                <div className="card-actions justify-end mt-4">
+                                    <span className="badge badge-lg badge-warning text-gray-700 font-medium">
+                                        পর্যালোচনাধীন
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
                 </div>
             </div>
             {/* Complain card end */}

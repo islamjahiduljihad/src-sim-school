@@ -105,7 +105,7 @@ const router = createBrowserRouter([
                 element: <Class10List></Class10List>,
             },
             {
-                path: "/admin/studentList/:id",
+                path: "/admin/studentList/:classNo/:id",
                 element: <AdminStudentDetails></AdminStudentDetails>,
             },
             {

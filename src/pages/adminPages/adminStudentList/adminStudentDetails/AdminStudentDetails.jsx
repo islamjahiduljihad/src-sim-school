@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import {
     FaUser,
@@ -49,8 +49,8 @@ const student = {
 };
 
 const AdminStudentDetails = () => {
-    const { id } = useParams();
-    console.log("Student ID from URL:", id);
+    const { id, classNo } = useParams();
+    console.log("Student ID from URL:", id, "classNo:", classNo);
 
     const [isPhoneModalOpen, setIsPhoneModalOpen] = useState(false);
     const [isComplaintModalOpen, setIsComplaintModalOpen] = useState(false);
@@ -60,6 +60,16 @@ const AdminStudentDetails = () => {
         description: "",
     });
     const [updatedStudentData, setUpdatedStudentData] = useState(student);
+    const [studentData, setStudentData] = useState({});
+
+    useEffect(() => {
+        fetch(`http://localhost:3000/student/${classNo}/${id}`)
+            .then((response) => response.json())
+            .then((data) => {
+                setStudentData(data);
+                console.log("Fetched Student Data:", data);
+            });
+    }, [id]);
 
     const handleComplaintSubmit = (e) => {
         e.preventDefault();
@@ -215,10 +225,6 @@ const AdminStudentDetails = () => {
                         শিক্ষার্থী মুছে ফেলুন
                     </Link>
                 </div>
-            </div>
-
-            <div className="mt-8">
-                <DigiCard></DigiCard>
             </div>
 
             {/* Phone Number Modal */}

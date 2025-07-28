@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import { X, Bell, Calendar, Link2, FileText } from "lucide-react";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const AdminNotice = () => {
     const [notices, setNotices] = useState([]);
@@ -29,22 +31,37 @@ const AdminNotice = () => {
     };
 
     // Handle new notice form submission
-    const handleAddNoticeSubmit = (e) => {
+    const handleAddNoticeSubmit = async (e) => {
         e.preventDefault();
 
-        console.log("New Notice Data Submitted:", newNoticeData);
-        setNotices((prevNotices) => [...prevNotices, newNoticeData]);
+        const result = await axios.post(
+            "http://localhost:3000/notice",
+            newNoticeData
+        );
 
-        alert("নোটিশ সফলভাবে যুক্ত করা হয়েছে!");
-
-        setIsAddNoticeModalOpen(false);
-        setNewNoticeData({
-            // Clear the form
-            title: "",
-            shortDesc: "",
-            noticeLink: "",
-            date: "",
-        });
+        if (result.data?.insertedId) {
+            Swal.fire({
+                title: "সফল!",
+                text: "নতুন নোটিশ সফলভাবে যুক্ত হয়েছে।",
+                icon: "success",
+                confirmButtonText: "ঠিক আছে",
+            });
+            setIsAddNoticeModalOpen(false);
+            setNewNoticeData({
+                // Clear the form
+                title: "",
+                shortDesc: "",
+                noticeLink: "",
+                date: "",
+            });
+        } else {
+            Swal.fire({
+                title: "ত্রুটি!",
+                text: "নোটিশ যুক্ত করতে সমস্যা হয়েছে। দয়া করে আবার চেষ্টা করুন।",
+                icon: "error",
+                confirmButtonText: "ঠিক আছে",
+            });
+        }
     };
 
     return (

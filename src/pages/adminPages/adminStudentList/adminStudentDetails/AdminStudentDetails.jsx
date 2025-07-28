@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import {
-    FaUser,
     FaBirthdayCake,
     FaVenusMars,
     FaTint,
@@ -20,37 +19,12 @@ import {
 } from "react-icons/fa";
 import {
     MdSchool,
-    MdLocationCity,
     MdOutlineAssignmentInd,
     MdMoodBad,
     MdDeleteForever,
     MdWork,
 } from "react-icons/md";
 import { LiaIdCardSolid } from "react-icons/lia";
-import DigiCard from "../../../../components/digiCard/DigiCard";
-
-const student = {
-    student_id: "SSIM-06-005",
-    name_bn: "সাদিয়া রহমান",
-    name_en: "Sadia Rahman",
-    birth_date: "২০১১-০৬-১৭",
-    class: "৬ষ্ঠ",
-    session: "২০২৪",
-    gender: "মহিলা",
-    blood_group: "O−",
-    nationality: "বাংলাদেশী",
-    religion: "হিন্দু",
-    permanent_address: "দিনাজপুর, রংপুর বিভাগ",
-    present_address: "মিরপুর, ঢাকা",
-    father_name: "বিপ্লব কুমার",
-    father_occupation: "শিক্ষক",
-    mother_name: "সুমনা দত্ত",
-    mother_occupation: "গৃহিণী",
-    guardian_phone: "০১৬১২৩৪৫৬৭৮",
-    student_photo_url:
-        "https://i.ibb.co/8QSdzpm/463b3ad3-8d02-4eac-8d28-60f36b71cfe2.jpg",
-    birth_certificate_no: "১৯৮৭২৩৪৫৭১",
-};
 
 const AdminStudentDetails = () => {
     const { id, classNo } = useParams();
@@ -63,8 +37,8 @@ const AdminStudentDetails = () => {
         subject: "",
         description: "",
     });
-    const [updatedStudentData, setUpdatedStudentData] = useState(student);
     const [studentData, setStudentData] = useState({});
+    const [updatedStudentData, setUpdatedStudentData] = useState(studentData);
 
     useEffect(() => {
         fetch(`http://localhost:3000/student/${classNo}/${id}`)
@@ -74,6 +48,14 @@ const AdminStudentDetails = () => {
                 console.log("Fetched Student Data:", data);
             });
     }, [id]);
+
+    useEffect(() => {
+        if (studentData && Object.keys(studentData).length > 0) {
+            setUpdatedStudentData(studentData);
+        }
+    }, [studentData]);
+
+    console.log("Updated Student Data:", updatedStudentData);
 
     const handleComplaintSubmit = (e) => {
         e.preventDefault();
@@ -354,7 +336,7 @@ const AdminStudentDetails = () => {
                             অভিভাবকের মোবাইল নম্বর
                         </h3>
                         <p className="py-4 text-4xl font-extrabold text-[#249742]">
-                            {student.guardian_phone}
+                            {studentData.guardian_phone}
                         </p>
                         <div className="modal-action justify-center">
                             <form method="dialog">
@@ -474,7 +456,7 @@ const AdminStudentDetails = () => {
                                     <input
                                         type="text"
                                         name="name_bn"
-                                        value={updatedStudentData.name_bn}
+                                        value={updatedStudentData?.name_bn}
                                         onChange={handleUpdateChange}
                                         className="input input-bordered w-full"
                                     />
@@ -513,14 +495,23 @@ const AdminStudentDetails = () => {
                                             শ্রেণি
                                         </span>
                                     </label>
-                                    <input
-                                        type="text"
-                                        name="class"
-                                        value={updatedStudentData.class}
+                                    <select
+                                        name="classNo"
+                                        value={updatedStudentData.classNo}
                                         onChange={handleUpdateChange}
-                                        className="input input-bordered w-full"
-                                    />
+                                        className="select select-bordered w-full"
+                                    >
+                                        <option value="">
+                                            শ্রেণি সিলেক্ট করুন
+                                        </option>
+                                        <option value="6">৬ষ্ঠ শ্রেণি</option>
+                                        <option value="7">৭ম শ্রেণি</option>
+                                        <option value="8">৮ম শ্রেণি</option>
+                                        <option value="9">৯ম শ্রেণি</option>
+                                        <option value="10">১০ম শ্রেণি</option>
+                                    </select>
                                 </div>
+
                                 <div>
                                     <label className="label">
                                         <span className="label-text">সেশন</span>

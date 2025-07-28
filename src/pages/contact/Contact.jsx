@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import SectionHeader from "../../components/sectionHeader/SectionHeader";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -7,6 +9,9 @@ const Contact = () => {
         email: "",
         subject: "",
         message: "",
+        mobile: "",
+        contact_status: "pending",
+        date: new Date().toISOString().slice(0, 10),
     });
 
     const handleChange = (e) => {
@@ -16,12 +21,52 @@ const Contact = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Message Sent:", formData);
-        // এখানে তুমি backend বা email service এর সাথে যুক্ত করতে পারো
-        alert("আপনার বার্তা সফলভাবে পাঠানো হয়েছে!");
-        setFormData({ name: "", email: "", subject: "", message: "" });
+
+        try {
+            const res = await axios.post(
+                "http://localhost:3000/contact",
+                formData
+            );
+
+            // Console log result
+            console.log("Server response:", res.data);
+
+            if (res.data.insertedId) {
+                Swal.fire({
+                    title: "ধন্যবাদ",
+                    text: "আপনার বার্তাটি আমরা পেয়েছি। যত দ্রুত সম্ভব আপনার সাথে যোগাযোগ করা হবে।",
+                    icon: "success",
+                    confirmButtonText: "বন্ধ করুন",
+                });
+
+                setFormData({
+                    name: "",
+                    email: "",
+                    subject: "",
+                    message: "",
+                    mobile: "",
+                    contact_status: "pending",
+                    date: new Date().toDateString(),
+                });
+            } else {
+                Swal.fire({
+                    title: "দুঃখিত",
+                    text: "কোথাও সমস্যা হয়েছে, আবার চেষ্টা করুন।",
+                    icon: "error",
+                    confirmButtonText: "ঠিক আছে",
+                });
+            }
+        } catch (err) {
+            console.error("Server error:", err);
+            Swal.fire({
+                title: "সার্ভার সমস্যা",
+                text: "দয়া করে পরে আবার চেষ্টা করুন।",
+                icon: "error",
+                confirmButtonText: "ঠিক আছে",
+            });
+        }
     };
 
     return (
@@ -88,6 +133,20 @@ const Contact = () => {
                             type="email"
                             name="email"
                             value={formData.email}
+                            onChange={handleChange}
+                            required
+                            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#00b795]"
+                        />
+                    </div>
+                    <div>
+                        <label className="block mb-1 font-medium">
+                            মোবাইল নাম্বার *
+                        </label>
+                        <input
+                            placeholder="আপনার মোবাইল নাম্বার লিখুন"
+                            type="text"
+                            name="mobile"
+                            value={formData.mobile}
                             onChange={handleChange}
                             required
                             className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#00b795]"

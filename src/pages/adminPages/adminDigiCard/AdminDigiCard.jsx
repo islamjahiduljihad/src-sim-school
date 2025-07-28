@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import logoTransparent from "../../../assets/logo/logoTransparent.png";
 import {
     User,
-    Briefcase,
     CalendarDays,
     Droplet,
     Phone,

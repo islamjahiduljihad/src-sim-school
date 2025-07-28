@@ -1,49 +1,49 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa";
-import {
-    X, // For close button in modal
-    Bell, // For notice icon
-    Calendar, // For date icon
-    Link2, // For notice link icon
-    FileText, // For short description icon
-} from "lucide-react";
+import { X, Bell, Calendar, Link2, FileText } from "lucide-react";
 
 const AdminNotice = () => {
     const [notices, setNotices] = useState([
-        // Changed to useState to allow adding new notices
-        {
-            id: "N-001",
-            title: "৬ষ্ঠ শ্রেণির পরীক্ষার সময়সূচি প্রকাশ",
-            shortDesc:
-                "৬ষ্ঠ শ্রেণির ২য় সাময়িক পরীক্ষার সময়সূচি প্রকাশ করা হয়েছে।",
-            noticeLink: "https://example.com/notice-001",
-            date: "২০২৫-০৭-২৫",
-        },
-        {
-            id: "N-002",
-            title: "বিদ্যালয় বন্ধ সংক্রান্ত বিজ্ঞপ্তি",
-            shortDesc:
-                "আগামী সোমবার জাতীয় শোক দিবস উপলক্ষে বিদ্যালয় বন্ধ থাকবে।",
-            noticeLink: "https://example.com/notice-002",
-            date: "২০২৫-০৭-২০",
-        },
-        {
-            id: "N-003",
-            title: "বিদ্যালয় বন্ধ সংক্রান্ত বিজ্ঞপ্তি",
-            shortDesc:
-                "আগামী সোমবার জাতীয় শোক দিবস উপলক্ষে বিদ্যালয় বন্ধ থাকবে।",
-            noticeLink: "https://example.com/notice-002",
-            date: "২০২৫-০৭-২০",
-        },
-        {
-            id: "N-004",
-            title: "বিদ্যালয় বন্ধ সংক্রান্ত বিজ্ঞপ্তি",
-            shortDesc:
-                "আগামী সোমবার জাতীয় শোক দিবস উপলক্ষে বিদ্যালয় বন্ধ থাকবে।",
-            noticeLink: "https://example.com/notice-002",
-            date: "২০২৫-০৭-২০",
-        },
+        // // Changed to useState to allow adding new notices
+        // {
+        //     id: "N-001",
+        //     title: "৬ষ্ঠ শ্রেণির পরীক্ষার সময়সূচি প্রকাশ",
+        //     shortDesc:
+        //         "৬ষ্ঠ শ্রেণির ২য় সাময়িক পরীক্ষার সময়সূচি প্রকাশ করা হয়েছে।",
+        //     noticeLink: "https://example.com/notice-001",
+        //     date: "২০২৫-০৭-২৫",
+        // },
+        // {
+        //     id: "N-002",
+        //     title: "বিদ্যালয় বন্ধ সংক্রান্ত বিজ্ঞপ্তি",
+        //     shortDesc:
+        //         "আগামী সোমবার জাতীয় শোক দিবস উপলক্ষে বিদ্যালয় বন্ধ থাকবে।",
+        //     noticeLink: "https://example.com/notice-002",
+        //     date: "২০২৫-০৭-২০",
+        // },
+        // {
+        //     id: "N-003",
+        //     title: "বিদ্যালয় বন্ধ সংক্রান্ত বিজ্ঞপ্তি",
+        //     shortDesc:
+        //         "আগামী সোমবার জাতীয় শোক দিবস উপলক্ষে বিদ্যালয় বন্ধ থাকবে।",
+        //     noticeLink: "https://example.com/notice-002",
+        //     date: "২০২৫-০৭-২০",
+        // },
+        // {
+        //     id: "N-004",
+        //     title: "বিদ্যালয় বন্ধ সংক্রান্ত বিজ্ঞপ্তি",
+        //     shortDesc:
+        //         "আগামী সোমবার জাতীয় শোক দিবস উপলক্ষে বিদ্যালয় বন্ধ থাকবে।",
+        //     noticeLink: "https://example.com/notice-002",
+        //     date: "২০২৫-০৭-২০",
+        // },
     ]);
+
+    useEffect(() => {
+        fetch("http://localhost:3000/notices")
+            .then((res) => res.json())
+            .then((data) => setNotices(data));
+    }, []);
 
     const [isAddNoticeModalOpen, setIsAddNoticeModalOpen] = useState(false);
     const [newNoticeData, setNewNoticeData] = useState({
@@ -124,7 +124,7 @@ const AdminNotice = () => {
                             {notices.length > 0 ? (
                                 notices.map((notice, index) => (
                                     <tr
-                                        key={notice.id}
+                                        key={notice._id}
                                         className="hover border-b border-gray-100 last:border-b-0"
                                     >
                                         <td className="py-3 px-4 font-semibold text-gray-800">

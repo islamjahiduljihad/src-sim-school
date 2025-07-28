@@ -25,6 +25,8 @@ import {
     MdWork,
 } from "react-icons/md";
 import { LiaIdCardSolid } from "react-icons/lia";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const AdminStudentDetails = () => {
     const { id, classNo } = useParams();
@@ -57,12 +59,32 @@ const AdminStudentDetails = () => {
 
     console.log("Updated Student Data:", updatedStudentData);
 
-    const handleComplaintSubmit = (e) => {
+    const handleComplaintSubmit = async (e) => {
         e.preventDefault();
         console.log("Complaint Submitted:", complaintDetails);
+
+        const result = await axios.post(
+            "http://localhost:3000/complain",
+            complaintDetails
+        );
+
+        if (result.data.success) {
+            Swal.fire({
+                title: "অভিযোগ সফলভাবে জমা হয়েছে!",
+                text: "আপনার অভিযোগটি পর্যালোচনা করা হবে।",
+                icon: "success",
+                confirmButtonText: "ঠিক আছে",
+            });
+        } else {
+            Swal.fire({
+                title: "অভিযোগ জমা দিতে ব্যর্থ!",
+                text: "দয়া করে আবার চেষ্টা করুন।",
+                icon: "error",
+                confirmButtonText: "ঠিক আছে",
+            });
+        }
         // Here you would typically send this data to your backend
         setIsComplaintModalOpen(false);
-        setComplaintDetails({ subject: "", description: "" }); // Clear form
     };
 
     const handleUpdateSubmit = (e) => {

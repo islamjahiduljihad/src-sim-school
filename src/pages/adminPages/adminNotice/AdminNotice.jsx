@@ -127,9 +127,7 @@ const AdminNotice = () => {
                                                 >
                                                     দেখুন
                                                 </a>
-                                                <button className="btn btn-sm border border-[#249742] text-[#249742] hover:bg-[#249742] hover:text-white transition-colors duration-200">
-                                                    আপডেট
-                                                </button>
+
                                                 <button
                                                     onClick={async () => {
                                                         const result =

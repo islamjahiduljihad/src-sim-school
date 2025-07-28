@@ -1,6 +1,8 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { FaCheck, FaTimes, FaEye, FaPhoneVolume } from "react-icons/fa";
 import { FiMail } from "react-icons/fi";
+import Swal from "sweetalert2";
 
 const AdminContact = () => {
     const [selectedContact, setSelectedContact] = useState(null);
@@ -80,21 +82,66 @@ const AdminContact = () => {
                                 <td className="py-3 px-4">
                                     <div className="flex gap-2">
                                         <button
+                                            onClick={async () => {
+                                                const result = await axios.put(
+                                                    `http://localhost:3000/contact/${contact?._id}`,
+                                                    {
+                                                        contact_status:
+                                                            "success",
+                                                    }
+                                                );
+
+                                                if (
+                                                    result.data.success === true
+                                                ) {
+                                                    Swal.fire({
+                                                        title: "সফল",
+                                                        text: "যোগাযোগ সফল হয়েছে তাই এইটার কার্যক্রম বন্ধ করা হলো।",
+                                                        icon: "success",
+                                                        confirmButtonText:
+                                                            "বন্ধ করুন",
+                                                    });
+                                                } else {
+                                                    console.log(
+                                                        result?.message?.message
+                                                    );
+                                                }
+                                            }}
                                             disabled={
-                                                contact?.contact_status !==
-                                                "pending"
+                                                contact?.contact_status ==
+                                                "success"
                                             }
-                                            className={`flex items-center gap-1 bg-[#249742] hover:bg-[#1f7c38] text-white px-3 py-1 rounded text-sm transition btn btn-sm ${
-                                                contact?.contact_status !==
-                                                "pending"
-                                                    ? "opacity-50 cursor-not-allowed"
-                                                    : ""
-                                            }`}
+                                            className={`flex items-center gap-1 bg-[#249742] hover:bg-[#1f7c38] text-white px-3 py-1 rounded text-sm transition btn btn-sm`}
                                         >
                                             <FaCheck /> সফল
                                         </button>
 
                                         <button
+                                            onClick={async () => {
+                                                const result = await axios.put(
+                                                    `http://localhost:3000/contact/${contact?._id}`,
+                                                    {
+                                                        contact_status:
+                                                            "failed",
+                                                    }
+                                                );
+
+                                                if (
+                                                    result.data.success === true
+                                                ) {
+                                                    Swal.fire({
+                                                        title: "সফল",
+                                                        text: "যোগাযোগ অসফল হয়েছে তাই এইটার কার্যক্রম বন্ধ করা হলো।",
+                                                        icon: "success",
+                                                        confirmButtonText:
+                                                            "বন্ধ করুন",
+                                                    });
+                                                } else {
+                                                    console.log(
+                                                        result?.message?.message
+                                                    );
+                                                }
+                                            }}
                                             disabled={
                                                 contact?.contact_status !==
                                                 "pending"

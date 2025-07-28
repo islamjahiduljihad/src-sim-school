@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa";
-import { X, Bell, Calendar, Link2, FileText } from "lucide-react";
+import { X, Bell, Link2, FileText } from "lucide-react";
 import axios from "axios";
 import Swal from "sweetalert2";
 
@@ -130,7 +130,35 @@ const AdminNotice = () => {
                                                 <button className="btn btn-sm border border-[#249742] text-[#249742] hover:bg-[#249742] hover:text-white transition-colors duration-200">
                                                     আপডেট
                                                 </button>
-                                                <button className="btn btn-sm border border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition-colors duration-200">
+                                                <button
+                                                    onClick={async () => {
+                                                        const result =
+                                                            await axios.delete(
+                                                                `http://localhost:3000/notice/${notice._id}`
+                                                            );
+                                                        if (
+                                                            result?.data
+                                                                ?.success ===
+                                                            true
+                                                        ) {
+                                                            Swal.fire({
+                                                                title: "সফল!",
+                                                                text: "নোটিশ সফলভাবে মুছে ফেলা হয়েছে।",
+                                                                icon: "success",
+                                                                confirmButtonText:
+                                                                    "ঠিক আছে",
+                                                            });
+                                                            setNotices(
+                                                                notices.filter(
+                                                                    (n) =>
+                                                                        n._id !==
+                                                                        notice._id
+                                                                )
+                                                            );
+                                                        }
+                                                    }}
+                                                    className="btn btn-sm border border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition-colors duration-200"
+                                                >
                                                     ডিলিট
                                                 </button>
                                             </div>

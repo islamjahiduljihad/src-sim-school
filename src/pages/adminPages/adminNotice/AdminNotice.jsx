@@ -3,41 +3,7 @@ import { FaPlus } from "react-icons/fa";
 import { X, Bell, Calendar, Link2, FileText } from "lucide-react";
 
 const AdminNotice = () => {
-    const [notices, setNotices] = useState([
-        // // Changed to useState to allow adding new notices
-        // {
-        //     id: "N-001",
-        //     title: "৬ষ্ঠ শ্রেণির পরীক্ষার সময়সূচি প্রকাশ",
-        //     shortDesc:
-        //         "৬ষ্ঠ শ্রেণির ২য় সাময়িক পরীক্ষার সময়সূচি প্রকাশ করা হয়েছে।",
-        //     noticeLink: "https://example.com/notice-001",
-        //     date: "২০২৫-০৭-২৫",
-        // },
-        // {
-        //     id: "N-002",
-        //     title: "বিদ্যালয় বন্ধ সংক্রান্ত বিজ্ঞপ্তি",
-        //     shortDesc:
-        //         "আগামী সোমবার জাতীয় শোক দিবস উপলক্ষে বিদ্যালয় বন্ধ থাকবে।",
-        //     noticeLink: "https://example.com/notice-002",
-        //     date: "২০২৫-০৭-২০",
-        // },
-        // {
-        //     id: "N-003",
-        //     title: "বিদ্যালয় বন্ধ সংক্রান্ত বিজ্ঞপ্তি",
-        //     shortDesc:
-        //         "আগামী সোমবার জাতীয় শোক দিবস উপলক্ষে বিদ্যালয় বন্ধ থাকবে।",
-        //     noticeLink: "https://example.com/notice-002",
-        //     date: "২০২৫-০৭-২০",
-        // },
-        // {
-        //     id: "N-004",
-        //     title: "বিদ্যালয় বন্ধ সংক্রান্ত বিজ্ঞপ্তি",
-        //     shortDesc:
-        //         "আগামী সোমবার জাতীয় শোক দিবস উপলক্ষে বিদ্যালয় বন্ধ থাকবে।",
-        //     noticeLink: "https://example.com/notice-002",
-        //     date: "২০২৫-০৭-২০",
-        // },
-    ]);
+    const [notices, setNotices] = useState([]);
 
     useEffect(() => {
         fetch("http://localhost:3000/notices")
@@ -50,7 +16,7 @@ const AdminNotice = () => {
         title: "",
         shortDesc: "",
         noticeLink: "",
-        date: "",
+        date: new Date().toISOString().slice(0, 10),
     });
 
     // Handle input change for new notice form fields
@@ -65,18 +31,13 @@ const AdminNotice = () => {
     // Handle new notice form submission
     const handleAddNoticeSubmit = (e) => {
         e.preventDefault();
-        // Generate a simple unique ID (for demonstration purposes)
-        const newId = `N-${Date.now()}`;
-        const finalNoticeData = { ...newNoticeData, id: newId };
 
-        console.log("New Notice Data Submitted:", finalNoticeData);
-        // In a real application, you would send finalNoticeData to your backend API here
-        // For now, we'll just add it to the local state
-        setNotices((prevNotices) => [...prevNotices, finalNoticeData]);
+        console.log("New Notice Data Submitted:", newNoticeData);
+        setNotices((prevNotices) => [...prevNotices, newNoticeData]);
 
-        alert("নোটিশ সফলভাবে যুক্ত করা হয়েছে!"); // Show success alert
+        alert("নোটিশ সফলভাবে যুক্ত করা হয়েছে!");
 
-        setIsAddNoticeModalOpen(false); // Close the modal
+        setIsAddNoticeModalOpen(false);
         setNewNoticeData({
             // Clear the form
             title: "",
@@ -124,7 +85,7 @@ const AdminNotice = () => {
                             {notices.length > 0 ? (
                                 notices.map((notice, index) => (
                                     <tr
-                                        key={notice._id}
+                                        key={notice?._id}
                                         className="hover border-b border-gray-100 last:border-b-0"
                                     >
                                         <td className="py-3 px-4 font-semibold text-gray-800">
@@ -252,25 +213,6 @@ const AdminNotice = () => {
                                     onChange={handleNoticeFormChange}
                                     placeholder="নোটিশের সম্পূর্ণ লিংকের URL"
                                     className="input input-bordered w-full"
-                                />
-                            </div>
-                            <div>
-                                <label className="label">
-                                    <span className="label-text flex items-center">
-                                        <Calendar
-                                            size={18}
-                                            className="mr-2 text-orange-500"
-                                        />{" "}
-                                        তারিখ
-                                    </span>
-                                </label>
-                                <input
-                                    type="date"
-                                    name="date"
-                                    value={newNoticeData.date}
-                                    onChange={handleNoticeFormChange}
-                                    className="input input-bordered w-full"
-                                    required
                                 />
                             </div>
                             <div className="modal-action justify-center">

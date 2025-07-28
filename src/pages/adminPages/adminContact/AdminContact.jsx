@@ -7,7 +7,7 @@ const AdminContact = () => {
     const [showPhoneModal, setShowPhoneModal] = useState(false);
     const [contacts, setContacts] = useState([]);
 
-    console.log("Contact data:", contacts)
+    console.log("Contact data:", contacts);
 
     useEffect(() => {
         fetch("http://localhost:3000/contacts")
@@ -54,22 +54,65 @@ const AdminContact = () => {
                                     {contact.name}
                                 </td>
                                 <td className="py-3 px-4">{contact?.phone}</td>
-                                <td className="py-3 px-4">{contact?.subject}</td>
-                                <td className="py-3 px-4">{contact?.date}</td>
-                                <td className="py-3 px-4">{contact?.status}</td>
                                 <td className="py-3 px-4">
-                                    <div className="flex flex-wrap gap-2">
-                                        <button className="flex items-center gap-1 bg-[#249742] hover:bg-[#1f7c38] text-white px-3 py-1 rounded text-sm transition">
+                                    {contact?.subject}
+                                </td>
+                                <td className="py-3 px-4">{contact?.date}</td>
+                                <td className="py-3 px-4">
+                                    <p
+                                        className={`${
+                                            contact?.contact_status == "success"
+                                                ? "bg-success"
+                                                : contact?.contact_status ==
+                                                  "failed"
+                                                ? "bg-error"
+                                                : "bg-warning"
+                                        } px-1 text-center rounded-xl`}
+                                    >
+                                        {contact?.contact_status == "success"
+                                            ? "সফল"
+                                            : contact?.contact_status ==
+                                              "failed"
+                                            ? "অসফল"
+                                            : "পেন্ডিং"}
+                                    </p>
+                                </td>
+                                <td className="py-3 px-4">
+                                    <div className="flex gap-2">
+                                        <button
+                                            disabled={
+                                                contact?.contact_status !==
+                                                "pending"
+                                            }
+                                            className={`flex items-center gap-1 bg-[#249742] hover:bg-[#1f7c38] text-white px-3 py-1 rounded text-sm transition btn btn-sm ${
+                                                contact?.contact_status !==
+                                                "pending"
+                                                    ? "opacity-50 cursor-not-allowed"
+                                                    : ""
+                                            }`}
+                                        >
                                             <FaCheck /> সফল
                                         </button>
-                                        <button className="flex items-center gap-1 border border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-3 py-1 rounded text-sm transition">
+
+                                        <button
+                                            disabled={
+                                                contact?.contact_status !==
+                                                "pending"
+                                            }
+                                            className={`flex items-center gap-1 border border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-3 py-1 rounded text-sm transition btn btn-sm ${
+                                                contact?.contact_status !==
+                                                "pending"
+                                                    ? "opacity-50 cursor-not-allowed"
+                                                    : ""
+                                            }`}
+                                        >
                                             <FaTimes /> ব্যর্থ
                                         </button>
                                         <button
                                             onClick={() =>
                                                 setSelectedContact(contact)
                                             }
-                                            className="flex items-center gap-1 border border-gray-500 text-gray-700 hover:bg-gray-100 px-3 py-1 rounded text-sm transition"
+                                            className="flex items-center gap-1 border border-gray-500 text-gray-700 hover:bg-gray-100 px-3 py-1 rounded text-sm transition btn btn-sm"
                                         >
                                             <FaEye /> বিস্তারিত
                                         </button>

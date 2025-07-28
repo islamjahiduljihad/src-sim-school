@@ -1,123 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaPlus, FaSearch, FaFilter } from "react-icons/fa";
 import { MdOutlineKeyboardReturn } from "react-icons/md";
 
 const Class10List = () => {
     const [searchTerm, setSearchTerm] = useState("");
+    const [studentsData, setStudentsData] = useState([]);
+
+    useEffect(() => {
+        fetch("http://localhost:3000/students/10")
+            .then((response) => response.json())
+            .then((data) => {
+                setStudentsData(data);
+                console.log("Fetched Students Data:", data);
+            })
+            .catch((error) => {
+                console.error("Error fetching students data:", error);
+            });
+    }, []);
     const [filter, setFilter] = useState({
         gender: "",
         blood_group: "",
         religion: "",
     });
-
-    const studentsData = [
-        {
-            student_id: "SSIM-06A-001",
-            name_bn: "মোঃ আবির হোসেন",
-            name_en: "Md. Abir Hossain",
-            birth_date: "২০১১-০৩-১৫",
-            class: "৬ষ্ঠ",
-            session: "২০২৪",
-            gender: "পুরুষ",
-            blood_group: "O+",
-            nationality: "বাংলাদেশী",
-            religion: "ইসলাম",
-            permanent_address: "সিদ্ধিরগঞ্জ, নারায়ণগঞ্জ",
-            present_address: "মালিবাগ, ঢাকা",
-            father_name: "মোঃ আমজাদ হোসেন",
-            father_occupation: "সরকারি কর্মচারী",
-            mother_name: "মাহমুদা বেগম",
-            mother_occupation: "গৃহিণী",
-            guardian_phone: "০১৭১২৩৪৫৬৭৮",
-            student_photo_url: "https://example.com/photos/abir.jpg",
-            birth_certificate_no: "১৯৮৭২৩৪৫৬৭",
-        },
-        {
-            student_id: "SSIM-06A-002",
-            name_bn: "সাবরিনা আক্তার",
-            name_en: "Sabrina Akter",
-            birth_date: "২০১১-০৭-০৫",
-            class: "৬ষ্ঠ",
-            session: "২০২৪",
-            gender: "মহিলা",
-            blood_group: "A+",
-            nationality: "বাংলাদেশী",
-            religion: "ইসলাম",
-            permanent_address: "বহদ্দারহাট, চট্টগ্রাম",
-            present_address: "চকবাজার, চট্টগ্রাম",
-            father_name: "মোঃ নূরুল হক",
-            father_occupation: "ব্যবসায়ী",
-            mother_name: "সেলিনা আক্তার",
-            mother_occupation: "শিক্ষিকা",
-            guardian_phone: "০১৮৯৮৭৬৫৪৩২",
-            student_photo_url: "https://example.com/photos/sabrina.jpg",
-            birth_certificate_no: "১৯৮৭২৩৪৫৬৮",
-        },
-        {
-            student_id: "SSIM-06B-003",
-            name_bn: "রাফিউল ইসলাম",
-            name_en: "Rafiqul Islam",
-            birth_date: "২০১০-১২-২২",
-            class: "৬ষ্ঠ",
-            session: "২০২৪",
-            gender: "পুরুষ",
-            blood_group: "B+",
-            nationality: "বাংলাদেশী",
-            religion: "ইসলাম",
-            permanent_address: "নওগাঁ সদর, রাজশাহী",
-            present_address: "নওগাঁ সদর, রাজশাহী",
-            father_name: "মোঃ হানিফ আলী",
-            father_occupation: "চাষাবাদ",
-            mother_name: "জিন্নাত আরা",
-            mother_occupation: "গৃহিণী",
-            guardian_phone: "০১৯১১১১২৩৪৫",
-            student_photo_url: "https://example.com/photos/rafiul.jpg",
-            birth_certificate_no: "১৯৮৭২৩৪৫৬৯",
-        },
-        {
-            student_id: "SSIM-06A-004",
-            name_bn: "মেহজাবিন ইসলাম",
-            name_en: "Mehjabin Islam",
-            birth_date: "২০১২-০২-০৯",
-            class: "৬ষ্ঠ",
-            session: "২০২৪",
-            gender: "মহিলা",
-            blood_group: "AB+",
-            nationality: "বাংলাদেশী",
-            religion: "ইসলাম",
-            permanent_address: "পতেঙ্গা, চট্টগ্রাম",
-            present_address: "পতেঙ্গা, চট্টগ্রাম",
-            father_name: "মোঃ ইউসুফ আলী",
-            father_occupation: "প্রকৌশলী",
-            mother_name: "রোকসানা ইসলাম",
-            mother_occupation: "ডাক্তার",
-            guardian_phone: "০১৭২২২২৩৩৩৪",
-            student_photo_url: "https://example.com/photos/mehjabin.jpg",
-            birth_certificate_no: "১৯৮৭২৩৪৫৭০",
-        },
-        {
-            student_id: "SSIM-06B-005",
-            name_bn: "সাদিয়া রহমান",
-            name_en: "Sadia Rahman",
-            birth_date: "২০১১-০৬-১৭",
-            class: "৬ষ্ঠ",
-            session: "২০২৪",
-            gender: "মহিলা",
-            blood_group: "O−",
-            nationality: "বাংলাদেশী",
-            religion: "হিন্দু",
-            permanent_address: "দিনাজপুর, রংপুর বিভাগ",
-            present_address: "মিরপুর, ঢাকা",
-            father_name: "বিপ্লব কুমার",
-            father_occupation: "শিক্ষক",
-            mother_name: "সুমনা দত্ত",
-            mother_occupation: "গৃহিণী",
-            guardian_phone: "০১৬১২৩৪৫৬৭৮",
-            student_photo_url: "https://example.com/photos/sadia.jpg",
-            birth_certificate_no: "১৯৮৭২৩৪৫৭১",
-        },
-    ];
 
     const filteredStudents = studentsData.filter((student) => {
         const matchesSearch =
@@ -283,7 +188,7 @@ const Class10List = () => {
                                         </td>
                                         <td className="py-3 px-4 text-center">
                                             <Link
-                                                to={`/admin/studentList/${student?.student_id}`}
+                                                to={`/admin/studentList/${student?.classNo}/${student?._id}`}
                                                 className="btn btn-sm bg-[#249742] hover:bg-green-700 text-white transition-colors duration-200"
                                             >
                                                 বিস্তারিত দেখুন

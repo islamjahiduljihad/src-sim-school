@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import { FaUser, FaMale, FaMapMarkerAlt } from "react-icons/fa";
 import { MdOutlinePersonAddAlt1 } from "react-icons/md";
@@ -8,7 +9,8 @@ const AddStudent = () => {
         name_bn: "",
         name_en: "",
         birth_date: "",
-        class: "",
+        classNo: "",
+        department: "",
         session: "",
         gender: "",
         blood_group: "",
@@ -23,6 +25,9 @@ const AddStudent = () => {
         guardian_phone: "",
         student_photo_url: "",
         birth_certificate_no: "",
+        guardian_email: "",
+        student_email: "",
+        student_phone: "",
     });
 
     const handleChange = (e) => {
@@ -35,13 +40,29 @@ const AddStudent = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("New Student Data Submitted:", newStudentData);
+        axios
+            .post(
+                `http://localhost:3000/student/${newStudentData?.classNo}`,
+                newStudentData
+            )
+            .then((response) => {
+                if (response.data.success) {
+                    alert("শিক্ষার্থী সফলভাবে যুক্ত হয়েছে!");
+                } else {
+                    alert("শিক্ষার্থী যুক্ত করতে সমস্যা হয়েছে।");
+                }
+            })
+            .catch((error) => {
+                console.error("Error adding student:", error);
+                alert("শিক্ষার্থী যুক্ত করতে সমস্যা হয়েছে।");
+            });
         setNewStudentData({
             student_id: "",
             name_bn: "",
             name_en: "",
             birth_date: "",
-            class: "",
+            classNo: "",
+            department: "",
             session: "",
             gender: "",
             blood_group: "",
@@ -56,8 +77,10 @@ const AddStudent = () => {
             guardian_phone: "",
             student_photo_url: "",
             birth_certificate_no: "",
+            guardian_email: "",
+            student_email: "",
+            student_phone: "",
         });
-        alert("শিক্ষার্থী সফলভাবে যুক্ত করা হয়েছে!");
     };
 
     return (
@@ -141,16 +164,46 @@ const AddStudent = () => {
                                 <label className="label">
                                     <span className="label-text">শ্রেণি</span>
                                 </label>
-                                <input
-                                    type="text"
-                                    name="class"
-                                    value={newStudentData.class}
+                                <select
+                                    name="classNo"
+                                    value={newStudentData.classNo}
                                     onChange={handleChange}
-                                    placeholder="শ্রেনী লিখুন"
-                                    className="input input-bordered w-full"
+                                    className="select select-bordered w-full"
                                     required
-                                />
+                                >
+                                    <option value="">
+                                        শ্রেণি নির্বাচন করুন
+                                    </option>
+                                    <option value="6">৬ষ্ঠ</option>
+                                    <option value="7">৭ম</option>
+                                    <option value="8">৮ম</option>
+                                    <option value="9">৯ম</option>
+                                    <option value="10">১০ম</option>
+                                </select>
                             </div>
+                            <div>
+                                <label className="label">
+                                    <span className="label-text">বিভাগ</span>
+                                </label>
+                                <select
+                                    name="department"
+                                    value={newStudentData.department}
+                                    onChange={handleChange}
+                                    className="select select-bordered w-full"
+                                    required
+                                >
+                                    <option value="">
+                                        বিভাগ নির্বাচন করুন
+                                    </option>
+                                    <option value="general">জেনারেল</option>
+                                    <option value="science">বিজ্ঞান</option>
+                                    <option value="business">
+                                        ব্যাবসায় শিক্ষা
+                                    </option>
+                                    <option value="humanities">মানবিক</option>
+                                </select>
+                            </div>
+
                             <div>
                                 <label className="label">
                                     <span className="label-text">সেশন</span>
@@ -190,15 +243,27 @@ const AddStudent = () => {
                                         রক্তের গ্রুপ
                                     </span>
                                 </label>
-                                <input
-                                    type="text"
+                                <select
                                     name="blood_group"
                                     value={newStudentData.blood_group}
                                     onChange={handleChange}
-                                    placeholder="রক্তের গ্রুপ দিন বড় হাতের অক্ষরে"
-                                    className="input input-bordered w-full"
-                                />
+                                    className="select select-bordered w-full"
+                                    required
+                                >
+                                    <option value="">
+                                        রক্তের গ্রুপ নির্বাচন করুন
+                                    </option>
+                                    <option value="A+">A+</option>
+                                    <option value="A−">A−</option>
+                                    <option value="B+">B+</option>
+                                    <option value="B−">B−</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="AB−">AB−</option>
+                                    <option value="O+">O+</option>
+                                    <option value="O−">O−</option>
+                                </select>
                             </div>
+
                             <div>
                                 <label className="label">
                                     <span className="label-text">জাতীয়তা</span>
@@ -217,15 +282,20 @@ const AddStudent = () => {
                                 <label className="label">
                                     <span className="label-text">ধর্ম</span>
                                 </label>
-                                <input
-                                    type="text"
+                                <select
                                     name="religion"
                                     value={newStudentData.religion}
                                     onChange={handleChange}
-                                    placeholder="ধর্ম ইনপুট দিন"
-                                    className="input input-bordered w-full"
-                                />
+                                    className="select select-bordered w-full"
+                                    required
+                                >
+                                    <option value="">ধর্ম নির্বাচন করুন</option>
+                                    <option value="ইসলাম">ইসলাম</option>
+                                    <option value="হিন্দু">হিন্দু</option>
+                                    <option value="অন্যান্য">অন্যান্য</option>
+                                </select>
                             </div>
+
                             <div>
                                 <label className="label">
                                     <span className="label-text">
@@ -253,6 +323,36 @@ const AddStudent = () => {
                                     value={newStudentData.student_photo_url}
                                     onChange={handleChange}
                                     placeholder="imagebb তে আপলোড করা ছবির লিঙ্ক দিন"
+                                    className="input input-bordered w-full"
+                                />
+                            </div>
+                            <div>
+                                <label className="label">
+                                    <span className="label-text">
+                                        শিক্ষার্থীর নিজের ইমেইল
+                                    </span>
+                                </label>
+                                <input
+                                    type="email"
+                                    name="student_email"
+                                    value={newStudentData.student_email}
+                                    onChange={handleChange}
+                                    placeholder="শিক্ষার্থীর ইমেইল দিন"
+                                    className="input input-bordered w-full"
+                                />
+                            </div>
+                            <div>
+                                <label className="label">
+                                    <span className="label-text">
+                                        শিক্ষার্থীর নিজের মোবাইল নম্বর
+                                    </span>
+                                </label>
+                                <input
+                                    type="text"
+                                    name="student_phone"
+                                    value={newStudentData.student_phone}
+                                    onChange={handleChange}
+                                    placeholder="শিক্ষার্থীর মোবাইল নম্বর দিন"
                                     className="input input-bordered w-full"
                                 />
                             </div>
@@ -340,6 +440,22 @@ const AddStudent = () => {
                                     value={newStudentData.guardian_phone}
                                     onChange={handleChange}
                                     placeholder="অভিবাবকের মোবাইল নাম্বার দিন"
+                                    className="input input-bordered w-full"
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label className="label">
+                                    <span className="label-text">
+                                        অভিভাবকের ইমেইল
+                                    </span>
+                                </label>
+                                <input
+                                    type="email"
+                                    name="guardian_email"
+                                    value={newStudentData.guardian_email}
+                                    onChange={handleChange}
+                                    placeholder="অভিবাবকের ইমেইল দিন"
                                     className="input input-bordered w-full"
                                     required
                                 />

@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { FaUser, FaMale, FaMapMarkerAlt } from "react-icons/fa";
 import { MdOutlinePersonAddAlt1 } from "react-icons/md";
+import Swal from "sweetalert2";
 
 const AddStudent = () => {
     const [newStudentData, setNewStudentData] = useState({
@@ -47,9 +48,21 @@ const AddStudent = () => {
             )
             .then((response) => {
                 if (response.data.success) {
-                    alert("শিক্ষার্থী সফলভাবে যুক্ত হয়েছে!");
+                    Swal.fire({
+                        title: "শিক্ষার্থী যুক্ত হয়েছে!",
+                        text: "নতুন শিক্ষার্থী সফলভাবে যুক্ত হয়েছে।",
+                        icon: "success",
+                        confirmButtonText: "ঠিক আছে",
+                    });
                 } else {
-                    alert("শিক্ষার্থী যুক্ত করতে সমস্যা হয়েছে।");
+                    Swal.fire({
+                        title: "ত্রুটি!",
+                        text:
+                            response.data.message ||
+                            "শিক্ষার্থী যুক্ত করতে সমস্যা হয়েছে।",
+                        icon: "error",
+                        confirmButtonText: "ঠিক আছে",
+                    });
                 }
             })
             .catch((error) => {

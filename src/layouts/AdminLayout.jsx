@@ -68,7 +68,7 @@ const AdminLayout = () => {
                         নোটিশ ম্যানেজমেন্ট
                     </Link>
                     <Link
-                        to="/admin/notices"
+                        to="/admin/studentResults"
                         className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-[#249742] hover:text-white"
                     >
                         <SlCalculator className="text-[#249742]" />

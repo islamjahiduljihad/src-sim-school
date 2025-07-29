@@ -152,7 +152,7 @@ const AdminStudentDetails = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-4 gap-8">
                     {/* Left Column: Student Photo & Basic Info */}
-                    <div className="flex flex-col gap-4 md:gap-6">
+                    <div className="flex flex-col gap-4">
                         <div className="lg:col-span-1 flex flex-col items-center justify-start p-6 bg-base-200 rounded-lg shadow-md">
                             <div className="mb-6 flex justify-center">
                                 <img
@@ -208,15 +208,21 @@ const AdminStudentDetails = () => {
                                 {studentData?.classNo}
                             </h1>
                             <h1 className="shadow-md border border-gray-100 p-1 rounded-lg text-center text-[#249742] font-semibold">
-                                {studentData?.classNo}
+                                {studentData?.blood_group}
                             </h1>
                         </div>
 
-                        <div className="p-6 bg-base-200 rounded-lg shadow-md">
-                            <p className="text-lg">
-                                নোটঃ শিক্ষার্থীর তথ্য আপডেট এর ক্ষেত্রে অবশ্যই
-                                যাচাই পূর্বক সঠিক তথ্য প্রদান করতে হবে।
+                        <div className="p-3 bg-base-200 rounded-lg shadow-md">
+                            <p className="border border-gray-200 mb-2 p-2 rounded-lg">
+                                নোটঃ পরবর্তী শ্রেনীতে উন্নিত করার ক্ষেত্রে
+                                অবশ্যাই শিক্ষার্থীকে বর্তমান শ্রেনীতে সকল বিষয়ে
+                                পাস করতে হবে।
                             </p>
+                            <div className="flex items-center justify-center">
+                                <button className="btn btn-sm bg-[#249742] text-white rounded-lg border-none">
+                                    পরবর্তী শ্রেনীতে উন্নিত করুন
+                                </button>
+                            </div>
                         </div>
                     </div>
 

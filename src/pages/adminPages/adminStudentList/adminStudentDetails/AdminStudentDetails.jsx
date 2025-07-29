@@ -132,26 +132,25 @@ const AdminStudentDetails = () => {
                     <div className="divider"></div>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-4 gap-8">
                     {/* Left Column: Student Photo & Basic Info */}
                     <div className="lg:col-span-1 flex flex-col items-center justify-start p-6 bg-base-200 rounded-lg shadow-md">
-                        <div className="avatar mb-6">
-                            <div className="w-48 h-48 rounded-full ring ring-[#249742] ring-offset-base-100 ring-offset-4 overflow-hidden shadow-lg">
-                                <img
-                                    src={
-                                        studentData?.student_photo_url ||
-                                        "https://via.placeholder.com/192"
-                                    }
-                                    alt={studentData.name_en || "Student Photo"}
-                                    className="object-cover w-full h-full"
-                                />
-                            </div>
+                        <div className="mb-6 flex justify-center">
+                            <img
+                                src={
+                                    studentData?.student_photo_url ||
+                                    "https://via.placeholder.com/192"
+                                }
+                                alt={studentData?.name_en || "Student Photo"}
+                                className="object-cover w-32 h-32 rounded-full p-1 border-4 border-[#249742]"
+                            />
                         </div>
+
                         <div className="text-center">
-                            <h2 className="text-3xl font-bold text-gray-800 mb-2">
+                            <h2 className="text-2xl font-bold text-gray-800 mb-2">
                                 {studentData.name_bn}
                             </h2>
-                            <p className="text-lg text-gray-600 font-medium mb-3">
+                            <p className="text-xl text-gray-600 font-medium mb-3">
                                 {studentData.name_en}
                             </p>
                             <div className="flex flex-wrap items-center justify-center gap-2 mb-3">
@@ -159,27 +158,22 @@ const AdminStudentDetails = () => {
                                     className="badge badge-lg text-white font-semibold"
                                     style={{ backgroundColor: "#249742" }}
                                 >
-                                    <MdSchool className="mr-2 text-xl" />
-                                    {studentData.classNo} শ্রেণি,{" "}
+                                    <MdSchool className="text-xl" />
+                                    {studentData.classNo}-
                                     {studentData.department}
                                 </span>
                                 <span className="badge badge-info badge-lg text-white font-semibold">
                                     <FaClock className="mr-2 text-xl" />
-                                    সেশন: {studentData.session}
+                                    {studentData.session}
                                 </span>
                             </div>
                             <p className="text-md text-gray-700 flex items-center justify-center gap-2">
                                 <FaIdBadge className="inline text-xl text-[#249742]" />
-                                <span className="font-bold">ID:</span>{" "}
                                 {studentData.student_id}
                             </p>
                             <Link
                                 to="#"
-                                className="btn text-white mt-6 px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-                                style={{
-                                    backgroundColor: "#249742",
-                                    borderColor: "#249742",
-                                }}
+                                className="btn bg-[#249742] text-white mt-6 px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
                             >
                                 <LiaIdCardSolid className="text-2xl" />
                                 ডিজি-কার্ড
@@ -232,7 +226,7 @@ const AdminStudentDetails = () => {
                                 <p className="flex items-center text-lg text-gray-700">
                                     <MdOutlineAssignmentInd className="mr-3 text-xl text-[#249742]" />
                                     <span className="font-semibold">
-                                        জন্ম সনদ নম্বর:
+                                        জন্ম সনদ:
                                     </span>{" "}
                                     {studentData.birth_certificate_no}
                                 </p>
@@ -389,6 +383,9 @@ const AdminStudentDetails = () => {
 
                                 {/* Optional: Add an action button or status */}
                                 <div className="card-actions justify-end mt-4">
+                                    <p className="text-base">
+                                        {complain?.date}
+                                    </p>
                                     <span className="badge badge-lg badge-warning text-gray-700 font-medium">
                                         পর্যালোচনাধীন
                                     </span>

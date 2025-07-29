@@ -76,7 +76,7 @@ const AdminDigiCard = () => {
     };
 
     return (
-        <div className="p-4 sm:p-6 md:p-8 bg-gradient-to-b from-green-50 to-gray-100 min-h-screen flex flex-col items-center">
+        <div className="p-4 sm:p-6 md:p-8 bg-white min-h-screen flex flex-col items-center">
             <div className="card bg-white shadow-2xl p-6 w-full max-w-2xl mb-8 rounded-xl border border-green-100">
                 <div className="text-center mb-6">
                     <h1 className="text-3xl font-bold text-[#1a5632] mb-2">

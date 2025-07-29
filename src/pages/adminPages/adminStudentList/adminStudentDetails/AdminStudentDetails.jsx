@@ -1,4 +1,4 @@
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import {
     FaBirthdayCake,
@@ -23,7 +23,6 @@ import {
     MdMoodBad,
     MdDeleteForever,
     MdWork,
-    MdWarning,
 } from "react-icons/md";
 import { LiaIdCardSolid } from "react-icons/lia";
 import axios from "axios";
@@ -103,11 +102,30 @@ const AdminStudentDetails = () => {
         setIsComplaintModalOpen(false);
     };
 
-    const handleUpdateSubmit = (e) => {
+    const handleUpdateSubmit = async (e) => {
         e.preventDefault();
-        console.log("Student Data Updated:", updatedStudentData);
-        // Here you would typically send this updated data to your backend
+        const result = await axios.put(
+            `http://localhost:3000/student/${classNo}/${id}`,
+            updatedStudentData
+        );
+
+        if (result.data.success) {
+            Swal.fire({
+                title: "তথ্য সফলভাবে আপডেট হয়েছে!",
+                text: "আপনার শিক্ষার্থীর তথ্য আপডেট করা হয়েছে।",
+                icon: "success",
+                confirmButtonText: "ঠিক আছে",
+            });
+        } else {
+            Swal.fire({
+                title: "তথ্য আপডেট করতে ব্যর্থ!",
+                text: "দয়া করে আবার চেষ্টা করুন।",
+                icon: "error",
+                confirmButtonText: "ঠিক আছে",
+            });
+        }
         setIsUpdateModalOpen(false);
+        console.log("This also working");
     };
 
     const handleUpdateChange = (e) => {
@@ -511,273 +529,362 @@ const AdminStudentDetails = () => {
                     open
                 >
                     <div className="modal-box max-w-2xl">
-                        <h3 className="font-bold text-lg mb-4">
+                        <h3 className="font-bold text-xl text-[#249742] mb-4">
                             শিক্ষার্থীর তথ্য আপডেট করুন
                         </h3>
                         <form
                             onSubmit={handleUpdateSubmit}
                             className="space-y-4"
                         >
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                {/* Personal Info */}
-                                <div>
-                                    <label className="label">
-                                        <span className="label-text">
-                                            বাংলা নাম
-                                        </span>
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="name_bn"
-                                        value={updatedStudentData?.name_bn}
-                                        onChange={handleUpdateChange}
-                                        className="input input-bordered w-full"
-                                    />
-                                </div>
-                                <div>
-                                    <label className="label">
-                                        <span className="label-text">
-                                            ইংরেজি নাম
-                                        </span>
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="name_en"
-                                        value={updatedStudentData.name_en}
-                                        onChange={handleUpdateChange}
-                                        className="input input-bordered w-full"
-                                    />
-                                </div>
-                                <div>
-                                    <label className="label">
-                                        <span className="label-text">
-                                            জন্ম তারিখ
-                                        </span>
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="birth_date"
-                                        value={updatedStudentData.birth_date}
-                                        onChange={handleUpdateChange}
-                                        className="input input-bordered w-full"
-                                    />
-                                </div>
-                                <div>
-                                    <label className="label">
-                                        <span className="label-text">
-                                            শ্রেণি
-                                        </span>
-                                    </label>
-                                    <select
-                                        name="classNo"
-                                        value={updatedStudentData.classNo}
-                                        onChange={handleUpdateChange}
-                                        className="select select-bordered w-full"
-                                    >
-                                        <option value="">
-                                            শ্রেণি সিলেক্ট করুন
-                                        </option>
-                                        <option value="6">৬ষ্ঠ শ্রেণি</option>
-                                        <option value="7">৭ম শ্রেণি</option>
-                                        <option value="8">৮ম শ্রেণি</option>
-                                        <option value="9">৯ম শ্রেণি</option>
-                                        <option value="10">১০ম শ্রেণি</option>
-                                    </select>
-                                </div>
+                            <div className="">
+                                {/* Personal info */}
+                                <div className="shadow-lg grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 p-2 md:p-3 rounded-lg border border-gray-200">
+                                    <h1 className="col-span-1 md:col-span-2 text-lg font-semibold text-[#249742]">
+                                        ব্যক্তিগত তথ্য
+                                    </h1>
+                                    <div>
+                                        <label className="label">
+                                            <span className="label-text">
+                                                বাংলা নাম
+                                            </span>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            name="name_bn"
+                                            value={updatedStudentData?.name_bn}
+                                            onChange={handleUpdateChange}
+                                            className="input input-bordered w-full"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="label">
+                                            <span className="label-text">
+                                                ইংরেজি নাম
+                                            </span>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            name="name_en"
+                                            value={updatedStudentData.name_en}
+                                            onChange={handleUpdateChange}
+                                            className="input input-bordered w-full"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="label">
+                                            <span className="label-text">
+                                                জন্ম তারিখ
+                                            </span>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            name="birth_date"
+                                            value={
+                                                updatedStudentData.birth_date
+                                            }
+                                            onChange={handleUpdateChange}
+                                            className="input input-bordered w-full"
+                                        />
+                                    </div>
 
-                                <div>
-                                    <label className="label">
-                                        <span className="label-text">সেশন</span>
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="session"
-                                        value={updatedStudentData.session}
-                                        onChange={handleUpdateChange}
-                                        className="input input-bordered w-full"
-                                    />
+                                    <div>
+                                        <label className="label">
+                                            <span className="label-text">
+                                                সেশন
+                                            </span>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            name="session"
+                                            value={updatedStudentData.session}
+                                            onChange={handleUpdateChange}
+                                            className="input input-bordered w-full"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="label">
+                                            <span className="label-text">
+                                                লিঙ্গ
+                                            </span>
+                                        </label>
+                                        <select
+                                            name="gender"
+                                            value={updatedStudentData.gender}
+                                            onChange={handleUpdateChange}
+                                            className="select select-bordered w-full"
+                                        >
+                                            <option value={"পুরুষ"}>
+                                                পুরুষ
+                                            </option>
+                                            <option value={"মহিলা"}>
+                                                মহিলা
+                                            </option>
+                                            <option value={"অন্যান্য"}>
+                                                অন্যান্য
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label className="label">
+                                            <span className="label-text">
+                                                রক্তের গ্রুপ
+                                            </span>
+                                        </label>
+                                        <select
+                                            name="blood_group"
+                                            value={
+                                                updatedStudentData.blood_group
+                                            }
+                                            onChange={handleUpdateChange}
+                                            className="select select-bordered w-full"
+                                        >
+                                            <option disabled value="">
+                                                রক্তের গ্রুপ নির্বাচন করুন
+                                            </option>
+                                            <option value="A+">A+</option>
+                                            <option value="A−">A−</option>
+                                            <option value="B+">B+</option>
+                                            <option value="B−">B−</option>
+                                            <option value="O+">O+</option>
+                                            <option value="O−">O−</option>
+                                            <option value="AB+">AB+</option>
+                                            <option value="AB−">AB−</option>
+                                        </select>
+                                    </div>
+
+                                    <div>
+                                        <label className="label">
+                                            <span className="label-text">
+                                                জাতীয়তা
+                                            </span>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            name="nationality"
+                                            value={
+                                                updatedStudentData.nationality
+                                            }
+                                            onChange={handleUpdateChange}
+                                            className="input input-bordered w-full"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="label">
+                                            <span className="label-text">
+                                                ধর্ম
+                                            </span>
+                                        </label>
+                                        <select
+                                            name="religion"
+                                            value={updatedStudentData.religion}
+                                            onChange={handleUpdateChange}
+                                            className="select select-bordered w-full"
+                                        >
+                                            <option disabled value="">
+                                                ধর্ম নির্বাচন করুন
+                                            </option>
+                                            <option value="ইসলাম">ইসলাম</option>
+                                            <option value="হিন্দু">
+                                                হিন্দু
+                                            </option>
+                                            <option value="অন্যান্য">
+                                                অন্যান্য
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                    <div>
+                                        <label className="label">
+                                            <span className="label-text">
+                                                জন্ম সনদ নম্বর
+                                            </span>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            name="birth_certificate_no"
+                                            value={
+                                                updatedStudentData.birth_certificate_no
+                                            }
+                                            onChange={handleUpdateChange}
+                                            className="input input-bordered w-full"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="label">
+                                            <span className="label-text">
+                                                ইমেইল
+                                            </span>
+                                        </label>
+                                        <input
+                                            type="email"
+                                            name="student_email"
+                                            value={
+                                                updatedStudentData.student_email
+                                            }
+                                            onChange={handleUpdateChange}
+                                            className="input input-bordered w-full"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="label">
+                                            <span className="label-text">
+                                                ফোন নাম্বার
+                                            </span>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            name="student_phone"
+                                            value={
+                                                updatedStudentData.student_phone
+                                            }
+                                            onChange={handleUpdateChange}
+                                            className="input input-bordered w-full"
+                                        />
+                                    </div>
                                 </div>
-                                <div>
-                                    <label className="label">
-                                        <span className="label-text">
-                                            লিঙ্গ
-                                        </span>
-                                    </label>
-                                    <select
-                                        name="gender"
-                                        value={updatedStudentData.gender}
-                                        onChange={handleUpdateChange}
-                                        className="select select-bordered w-full"
-                                    >
-                                        <option>পুরুষ</option>
-                                        <option>মহিলা</option>
-                                        <option>অন্যান্য</option>
-                                    </select>
+                                {/* Personal info end */}
+
+                                {/* Guardian info */}
+                                <div className="shadow-lg grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 p-2 md:p-3 rounded-lg border border-gray-200">
+                                    <h1 className="col-span-1 md:col-span-2 text-lg font-semibold text-[#249742]">
+                                        অভিভাবকের তথ্য
+                                    </h1>
+                                    <div>
+                                        <label className="label">
+                                            <span className="label-text">
+                                                পিতার নাম
+                                            </span>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            name="father_name"
+                                            value={
+                                                updatedStudentData.father_name
+                                            }
+                                            onChange={handleUpdateChange}
+                                            className="input input-bordered w-full"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="label">
+                                            <span className="label-text">
+                                                পিতার পেশা
+                                            </span>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            name="father_occupation"
+                                            value={
+                                                updatedStudentData.father_occupation
+                                            }
+                                            onChange={handleUpdateChange}
+                                            className="input input-bordered w-full"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="label">
+                                            <span className="label-text">
+                                                মাতার নাম
+                                            </span>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            name="mother_name"
+                                            value={
+                                                updatedStudentData.mother_name
+                                            }
+                                            onChange={handleUpdateChange}
+                                            className="input input-bordered w-full"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="label">
+                                            <span className="label-text">
+                                                মাতার পেশা
+                                            </span>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            name="mother_occupation"
+                                            value={
+                                                updatedStudentData.mother_occupation
+                                            }
+                                            onChange={handleUpdateChange}
+                                            className="input input-bordered w-full"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="label">
+                                            <span className="label-text">
+                                                অভিভাবকের ফোন
+                                            </span>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            name="guardian_phone"
+                                            value={
+                                                updatedStudentData.guardian_phone
+                                            }
+                                            onChange={handleUpdateChange}
+                                            className="input input-bordered w-full"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="label">
+                                            <span className="label-text">
+                                                অভিভাবকের ইমেইল
+                                            </span>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            name="guardian_email"
+                                            value={
+                                                updatedStudentData.guardian_email
+                                            }
+                                            onChange={handleUpdateChange}
+                                            className="input input-bordered w-full"
+                                        />
+                                    </div>
                                 </div>
-                                <div>
-                                    <label className="label">
-                                        <span className="label-text">
-                                            রক্তের গ্রুপ
-                                        </span>
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="blood_group"
-                                        value={updatedStudentData.blood_group}
-                                        onChange={handleUpdateChange}
-                                        className="input input-bordered w-full"
-                                    />
+                                {/* Guardian info end */}
+
+                                {/* address info */}
+                                <div className="shadow-lg grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 p-2 md:p-3 rounded-lg border border-gray-200">
+                                    <h1 className="col-span-1 md:col-span-2 text-lg font-semibold text-[#249742]">
+                                        ঠিকানা তথ্য
+                                    </h1>
+                                    <div>
+                                        <label className="label">
+                                            <span className="label-text">
+                                                বর্তমান ঠিকানা
+                                            </span>
+                                        </label>
+                                        <textarea
+                                            name="present_address"
+                                            value={
+                                                updatedStudentData.present_address
+                                            }
+                                            onChange={handleUpdateChange}
+                                            className="textarea textarea-bordered h-12 w-full"
+                                        ></textarea>
+                                    </div>
+                                    <div>
+                                        <label className="label">
+                                            <span className="label-text">
+                                                স্থায়ী ঠিকানা
+                                            </span>
+                                        </label>
+                                        <textarea
+                                            name="permanent_address"
+                                            value={
+                                                updatedStudentData.permanent_address
+                                            }
+                                            onChange={handleUpdateChange}
+                                            className="textarea textarea-bordered h-12 w-full"
+                                        ></textarea>
+                                    </div>
                                 </div>
-                                <div>
-                                    <label className="label">
-                                        <span className="label-text">
-                                            জাতীয়তা
-                                        </span>
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="nationality"
-                                        value={updatedStudentData.nationality}
-                                        onChange={handleUpdateChange}
-                                        className="input input-bordered w-full"
-                                    />
-                                </div>
-                                <div>
-                                    <label className="label">
-                                        <span className="label-text">ধর্ম</span>
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="religion"
-                                        value={updatedStudentData.religion}
-                                        onChange={handleUpdateChange}
-                                        className="input input-bordered w-full"
-                                    />
-                                </div>
-                                <div>
-                                    <label className="label">
-                                        <span className="label-text">
-                                            জন্ম সনদ নম্বর
-                                        </span>
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="birth_certificate_no"
-                                        value={
-                                            updatedStudentData.birth_certificate_no
-                                        }
-                                        onChange={handleUpdateChange}
-                                        className="input input-bordered w-full"
-                                    />
-                                </div>
-                                {/* Guardian Info */}
-                                <div>
-                                    <label className="label">
-                                        <span className="label-text">
-                                            পিতার নাম
-                                        </span>
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="father_name"
-                                        value={updatedStudentData.father_name}
-                                        onChange={handleUpdateChange}
-                                        className="input input-bordered w-full"
-                                    />
-                                </div>
-                                <div>
-                                    <label className="label">
-                                        <span className="label-text">
-                                            পিতার পেশা
-                                        </span>
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="father_occupation"
-                                        value={
-                                            updatedStudentData.father_occupation
-                                        }
-                                        onChange={handleUpdateChange}
-                                        className="input input-bordered w-full"
-                                    />
-                                </div>
-                                <div>
-                                    <label className="label">
-                                        <span className="label-text">
-                                            মাতার নাম
-                                        </span>
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="mother_name"
-                                        value={updatedStudentData.mother_name}
-                                        onChange={handleUpdateChange}
-                                        className="input input-bordered w-full"
-                                    />
-                                </div>
-                                <div>
-                                    <label className="label">
-                                        <span className="label-text">
-                                            মাতার পেশা
-                                        </span>
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="mother_occupation"
-                                        value={
-                                            updatedStudentData.mother_occupation
-                                        }
-                                        onChange={handleUpdateChange}
-                                        className="input input-bordered w-full"
-                                    />
-                                </div>
-                                <div>
-                                    <label className="label">
-                                        <span className="label-text">
-                                            অভিভাবকের ফোন
-                                        </span>
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="guardian_phone"
-                                        value={
-                                            updatedStudentData.guardian_phone
-                                        }
-                                        onChange={handleUpdateChange}
-                                        className="input input-bordered w-full"
-                                    />
-                                </div>
-                                {/* Address Info */}
-                                <div>
-                                    <label className="label">
-                                        <span className="label-text">
-                                            বর্তমান ঠিকানা
-                                        </span>
-                                    </label>
-                                    <textarea
-                                        name="present_address"
-                                        value={
-                                            updatedStudentData.present_address
-                                        }
-                                        onChange={handleUpdateChange}
-                                        className="textarea textarea-bordered h-12 w-full"
-                                    ></textarea>
-                                </div>
-                                <div>
-                                    <label className="label">
-                                        <span className="label-text">
-                                            স্থায়ী ঠিকানা
-                                        </span>
-                                    </label>
-                                    <textarea
-                                        name="permanent_address"
-                                        value={
-                                            updatedStudentData.permanent_address
-                                        }
-                                        onChange={handleUpdateChange}
-                                        className="textarea textarea-bordered h-12 w-full"
-                                    ></textarea>
-                                </div>
+                                {/* address info end */}
                             </div>
                             <div className="modal-action">
                                 <button

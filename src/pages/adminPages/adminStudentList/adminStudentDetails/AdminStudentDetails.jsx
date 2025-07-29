@@ -152,50 +152,71 @@ const AdminStudentDetails = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-4 gap-8">
                     {/* Left Column: Student Photo & Basic Info */}
-                    <div className="lg:col-span-1 flex flex-col items-center justify-start p-6 bg-base-200 rounded-lg shadow-md">
-                        <div className="mb-6 flex justify-center">
-                            <img
-                                src={
-                                    studentData?.student_photo_url ||
-                                    "https://via.placeholder.com/192"
-                                }
-                                alt={studentData?.name_en || "Student Photo"}
-                                className="object-cover w-32 h-32 rounded-full p-1 border-4 border-[#249742]"
-                            />
+                    <div className="flex flex-col gap-4 md:gap-6">
+                        <div className="lg:col-span-1 flex flex-col items-center justify-start p-6 bg-base-200 rounded-lg shadow-md">
+                            <div className="mb-6 flex justify-center">
+                                <img
+                                    src={
+                                        studentData?.student_photo_url ||
+                                        "https://via.placeholder.com/192"
+                                    }
+                                    alt={
+                                        studentData?.name_en || "Student Photo"
+                                    }
+                                    className="object-cover w-32 h-32 rounded-full p-1 border-4 border-[#249742]"
+                                />
+                            </div>
+
+                            <div className="text-center">
+                                <h2 className="text-2xl font-bold text-gray-800 mb-2">
+                                    {studentData.name_bn}
+                                </h2>
+                                <p className="text-xl text-gray-600 font-medium mb-3">
+                                    {studentData.name_en}
+                                </p>
+                                <p className="text-md text-gray-700 flex items-center justify-center gap-2">
+                                    <FaIdBadge className="inline text-xl text-[#249742]" />
+                                    {studentData.student_id}
+                                </p>
+                                <Link
+                                    to="#"
+                                    className="btn bg-[#249742] text-white mt-6 px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+                                >
+                                    <LiaIdCardSolid className="text-2xl" />
+                                    ডিজি-কার্ড
+                                </Link>
+                            </div>
                         </div>
 
-                        <div className="text-center">
-                            <h2 className="text-2xl font-bold text-gray-800 mb-2">
-                                {studentData.name_bn}
-                            </h2>
-                            <p className="text-xl text-gray-600 font-medium mb-3">
-                                {studentData.name_en}
+                        <div className="lg:col-span-1 items-center justify-start p-6 bg-base-200 rounded-lg shadow-md grid grid-cols-1 md:grid-cols-2 gap-1 md:gap-2">
+                            <h1 className="shadow-md border border-gray-100 p-1 rounded-lg text-center text-[#249742] font-semibold">
+                                {studentData?.department?.toUpperCase() ==
+                                "SCIENCE"
+                                    ? "বিজ্ঞান"
+                                    : studentData?.department?.toUpperCase() ==
+                                      "BUSINESS"
+                                    ? "বাণিজ্য"
+                                    : studentData?.department?.toUpperCase() ==
+                                      "HUMANITIES"
+                                    ? "মানবিক"
+                                    : "জেনারেল"}
+                            </h1>
+                            <h1 className="shadow-md border border-gray-100 p-1 rounded-lg text-center text-[#249742] font-semibold">
+                                {studentData?.session}
+                            </h1>
+                            <h1 className="shadow-md border border-gray-100 p-1 rounded-lg text-center text-[#249742] font-semibold">
+                                {studentData?.classNo}
+                            </h1>
+                            <h1 className="shadow-md border border-gray-100 p-1 rounded-lg text-center text-[#249742] font-semibold">
+                                {studentData?.classNo}
+                            </h1>
+                        </div>
+
+                        <div className="p-6 bg-base-200 rounded-lg shadow-md">
+                            <p className="text-lg">
+                                নোটঃ শিক্ষার্থীর তথ্য আপডেট এর ক্ষেত্রে অবশ্যই
+                                যাচাই পূর্বক সঠিক তথ্য প্রদান করতে হবে।
                             </p>
-                            <div className="flex flex-wrap items-center justify-center gap-2 mb-3">
-                                <span
-                                    className="badge badge-lg text-white font-semibold"
-                                    style={{ backgroundColor: "#249742" }}
-                                >
-                                    <MdSchool className="text-xl" />
-                                    {studentData.classNo}-
-                                    {studentData.department}
-                                </span>
-                                <span className="badge badge-info badge-lg text-white font-semibold">
-                                    <FaClock className="mr-2 text-xl" />
-                                    {studentData.session}
-                                </span>
-                            </div>
-                            <p className="text-md text-gray-700 flex items-center justify-center gap-2">
-                                <FaIdBadge className="inline text-xl text-[#249742]" />
-                                {studentData.student_id}
-                            </p>
-                            <Link
-                                to="#"
-                                className="btn bg-[#249742] text-white mt-6 px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-                            >
-                                <LiaIdCardSolid className="text-2xl" />
-                                ডিজি-কার্ড
-                            </Link>
                         </div>
                     </div>
 

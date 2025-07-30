@@ -98,6 +98,7 @@ const AdminStudentDetails = () => {
         }
         // Here you would typically send this data to your backend
         setIsComplaintModalOpen(false);
+        window.location.reload();
     };
 
     const handleUpdateSubmit = async (e) => {
@@ -114,6 +115,8 @@ const AdminStudentDetails = () => {
                 icon: "success",
                 confirmButtonText: "ঠিক আছে",
             });
+
+            window.location.reload();
         } else {
             Swal.fire({
                 title: "তথ্য আপডেট করতে ব্যর্থ!",
@@ -135,24 +138,38 @@ const AdminStudentDetails = () => {
     };
 
     const handleDeleteStudent = async () => {
-        const result = await axios.delete(
-            `http://localhost:3000/student/${classNo}/${id}`
-        );
-        if (result.data.success) {
-            Swal.fire({
-                title: "শিক্ষার্থী সফলভাবে মুছে ফেলা হয়েছে!",
-                text: "আপনার শিক্ষার্থী তালিকা থেকে মুছে ফেলা হয়েছে।",
-                icon: "success",
-                confirmButtonText: "ঠিক আছে",
-            });
-        } else {
-            Swal.fire({
-                title: "শিক্ষার্থী মুছে ফেলতে ব্যর্থ!",
-                text: "দয়া করে আবার চেষ্টা করুন।",
-                icon: "error",
-                confirmButtonText: "ঠিক আছে",
-            });
-        }
+        Swal.fire({
+            title: "আপনি কি নিশ্চিত যে আপনি এই শিক্ষার্থীকে মুছে ফেলতে চান?",
+            text: "শিক্ষার্থী মুছে ফেলার পর তার সম্পূর্ণ রেকর্ড ডাটাবেস থেকে মুছে যাবে। অনুগ্রহ করে নিশ্চিত হয়ে নিন!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#249742",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "হ্যাঁ, মুছে ফেলুন!",
+            cancelButtonText: "না, বাতিল করুন!",
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                const result = await axios.delete(
+                    `http://localhost:3000/student/${classNo}/${id}`
+                );
+                if (result.data.success) {
+                    Swal.fire({
+                        title: "শিক্ষার্থী সফলভাবে মুছে ফেলা হয়েছে!",
+                        text: "আপনার শিক্ষার্থী তালিকা থেকে মুছে ফেলা হয়েছে।",
+                        icon: "success",
+                        confirmButtonText: "ঠিক আছে",
+                    });
+                    window.location.href = `/admin/studentList/${classNo}`;
+                } else {
+                    Swal.fire({
+                        title: "শিক্ষার্থী মুছে ফেলতে ব্যর্থ!",
+                        text: "দয়া করে আবার চেষ্টা করুন।",
+                        icon: "error",
+                        confirmButtonText: "ঠিক আছে",
+                    });
+                }
+            }
+        });
     };
 
     return (
@@ -413,7 +430,6 @@ const AdminStudentDetails = () => {
                     <button
                         onClick={() => {
                             handleDeleteStudent();
-                            window.location.href = `/admin/studentList/${classNo}`;
                         }}
                         className="btn btn-error btn-lg text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2"
                     >

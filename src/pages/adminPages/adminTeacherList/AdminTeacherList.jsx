@@ -216,7 +216,7 @@ const AdminTeacherList = () => {
                                         </td>
                                         <td className="py-3 px-4 text-center">
                                             <Link
-                                                to={`/admin/teacherList/${teacher?.teacher_id}`}
+                                                to={`/admin/teacherList/${teacher?._id}`}
                                                 className="btn btn-sm bg-[#249742] hover:bg-green-700 text-white transition-colors duration-200"
                                             >
                                                 <FaEye className="mr-1" />{" "}

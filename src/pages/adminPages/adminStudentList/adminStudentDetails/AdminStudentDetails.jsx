@@ -13,12 +13,10 @@ import {
     FaIdBadge,
     FaPhoneSquareAlt,
     FaPenSquare,
-    FaClock,
     FaRegEnvelope,
     FaUsers,
 } from "react-icons/fa";
 import {
-    MdSchool,
     MdOutlineAssignmentInd,
     MdMoodBad,
     MdDeleteForever,
@@ -134,6 +132,27 @@ const AdminStudentDetails = () => {
             ...prevData,
             [name]: value,
         }));
+    };
+
+    const handleDeleteStudent = async () => {
+        const result = await axios.delete(
+            `http://localhost:3000/student/${classNo}/${id}`
+        );
+        if (result.data.success) {
+            Swal.fire({
+                title: "শিক্ষার্থী সফলভাবে মুছে ফেলা হয়েছে!",
+                text: "আপনার শিক্ষার্থী তালিকা থেকে মুছে ফেলা হয়েছে।",
+                icon: "success",
+                confirmButtonText: "ঠিক আছে",
+            });
+        } else {
+            Swal.fire({
+                title: "শিক্ষার্থী মুছে ফেলতে ব্যর্থ!",
+                text: "দয়া করে আবার চেষ্টা করুন।",
+                icon: "error",
+                confirmButtonText: "ঠিক আছে",
+            });
+        }
     };
 
     return (
@@ -391,13 +410,16 @@ const AdminStudentDetails = () => {
                         <FaPenSquare className="text-2xl" />
                         তথ্য আপডেট করুন
                     </button>
-                    <Link
-                        to="#"
+                    <button
+                        onClick={() => {
+                            handleDeleteStudent();
+                            window.location.href = `/admin/studentList/${classNo}`;
+                        }}
                         className="btn btn-error btn-lg text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2"
                     >
                         <MdDeleteForever className="text-2xl" />
                         শিক্ষার্থী মুছে ফেলুন
-                    </Link>
+                    </button>
                 </div>
             </div>
 

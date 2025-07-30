@@ -665,7 +665,7 @@ const App = () => {
                                         </span>
                                     </label>
                                     <input
-                                        type="date"
+                                        type="text"
                                         name="birth_date"
                                         value={
                                             updatedTeacherData.birth_date || ""
@@ -735,10 +735,6 @@ const App = () => {
                                         </option>
                                         <option value="ইসলাম">ইসলাম</option>
                                         <option value="হিন্দু">হিন্দু</option>
-                                        <option value="খ্রিস্টান">
-                                            খ্রিস্টান
-                                        </option>
-                                        <option value="বৌদ্ধ">বৌদ্ধ</option>
                                         <option value="অন্যান্য">
                                             অন্যান্য
                                         </option>
@@ -809,12 +805,6 @@ const App = () => {
                                             অবিবাহিত
                                         </option>
                                         <option value="বিবাহিত">বিবাহিত</option>
-                                        <option value="বিপত্নীক">
-                                            বিপত্নীক
-                                        </option>
-                                        <option value="তালাকপ্রাপ্ত">
-                                            তালাকপ্রাপ্ত
-                                        </option>
                                     </select>
                                 </div>
                                 <div>
@@ -824,7 +814,7 @@ const App = () => {
                                         </span>
                                     </label>
                                     <input
-                                        type="date"
+                                        type="text"
                                         name="joining_date"
                                         value={
                                             updatedTeacherData.joining_date ||
@@ -867,21 +857,21 @@ const App = () => {
                                         required
                                     />
                                 </div>
-                                <div className="col-span-1 md:col-span-2 lg:col-span-3">
+                                <div className="">
                                     <label className="label">
                                         <span className="label-text">
                                             শিক্ষাগত যোগ্যতা
                                         </span>
                                     </label>
-                                    <textarea
+                                    <input
                                         name="education"
                                         value={
                                             updatedTeacherData.education || ""
                                         }
                                         onChange={handleUpdateChange}
-                                        className="textarea textarea-bordered h-24 w-full"
+                                        className="input w-full"
                                         required
-                                    ></textarea>
+                                    ></input>
                                 </div>
                                 <div className="col-span-1 md:col-span-2 lg:col-span-3">
                                     <label className="label">
@@ -889,15 +879,15 @@ const App = () => {
                                             এক্সট্রা কারিকুলার অ্যাক্টিভিটিস
                                         </span>
                                     </label>
-                                    <textarea
+                                    <input
                                         name="extra_curricular_activities"
                                         value={
                                             updatedTeacherData.extra_curricular_activities ||
                                             ""
                                         }
                                         onChange={handleUpdateChange}
-                                        className="textarea textarea-bordered h-24 w-full"
-                                    ></textarea>
+                                        className="input w-full"
+                                    ></input>
                                 </div>
                                 <div className="col-span-1 md:col-span-2 lg:col-span-3">
                                     <label className="label">
@@ -905,15 +895,15 @@ const App = () => {
                                             কম্পিউটার সম্পর্কিত দক্ষতা
                                         </span>
                                     </label>
-                                    <textarea
+                                    <input
                                         name="computer_skills"
                                         value={
                                             updatedTeacherData.computer_skills ||
                                             ""
                                         }
                                         onChange={handleUpdateChange}
-                                        className="textarea textarea-bordered h-24 w-full"
-                                    ></textarea>
+                                        className="input w-full"
+                                    ></input>
                                 </div>
                                 <div className="col-span-1 md:col-span-2 lg:col-span-3">
                                     <label className="label">
@@ -921,16 +911,16 @@ const App = () => {
                                             বর্তমান ঠিকানা
                                         </span>
                                     </label>
-                                    <textarea
+                                    <input
                                         name="present_address"
                                         value={
                                             updatedTeacherData.present_address ||
                                             ""
                                         }
                                         onChange={handleUpdateChange}
-                                        className="textarea textarea-bordered h-24 w-full"
+                                        className="input w-full"
                                         required
-                                    ></textarea>
+                                    ></input>
                                 </div>
                                 <div className="col-span-1 md:col-span-2 lg:col-span-3">
                                     <label className="label">
@@ -938,16 +928,16 @@ const App = () => {
                                             স্থায়ী ঠিকানা
                                         </span>
                                     </label>
-                                    <textarea
+                                    <input
                                         name="permanent_address"
                                         value={
                                             updatedTeacherData.permanent_address ||
                                             ""
                                         }
                                         onChange={handleUpdateChange}
-                                        className="textarea textarea-bordered h-24 w-full"
+                                        className="input w-full"
                                         required
-                                    ></textarea>
+                                    ></input>
                                 </div>
                                 <div>
                                     <label className="label">
@@ -1009,17 +999,17 @@ const App = () => {
                                             সাবজেক্ট লিস্ট
                                         </span>
                                     </label>
-                                    <textarea
+                                    <input
                                         name="subjectList"
                                         value={
                                             updatedTeacherData.subjectList || ""
                                         }
                                         onChange={handleUpdateChange}
-                                        className="textarea textarea-bordered h-24 w-full"
-                                    ></textarea>
+                                        className="input w-full"
+                                    ></input>
                                 </div>
                                 {/* Photo URL can be handled separately if file upload is needed */}
-                                <div>
+                                <div className="col-span-full">
                                     <label className="label">
                                         <span className="label-text">
                                             ছবি URL

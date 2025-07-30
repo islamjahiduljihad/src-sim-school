@@ -1,122 +1,45 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaEye, FaPlus, FaSearch, FaFilter } from "react-icons/fa";
 const AdminTeacherList = () => {
     const [searchTerm, setSearchTerm] = useState("");
+    const [teachersData, setTeachersData] = useState([]);
     const [filter, setFilter] = useState({
         gender: "",
         department: "",
         designation: "",
     });
 
-    const teachersData = [
-        {
-            teacher_id: "T-001",
-            name_bn: "মোহাম্মদ আলী",
-            name_en: "Mohammad Ali",
-            gender: "পুরুষ",
-            birth_date: "১৯৮০-০৫-১৫",
-            blood_group: "A+",
-            national_id: "১৯৮০১২৩৪৫৬৭৮৯",
-            religion: "ইসলাম",
-            nationality: "বাংলাদেশী",
-            phone: "০১৭১২৩৪৫৬৭৮",
-            email: "m.ali@example.com",
-            joining_date: "২০০৮-০১-২০",
-            designation: "সহকারী শিক্ষক",
-            department: "গণিত",
-            education: "এম.এসসি (গণিত), ঢাকা বিশ্ববিদ্যালয়",
-            present_address: "শাহবাগ, ঢাকা",
-            permanent_address: "মাদারীপুর সদর, মাদারীপুর",
-            photo_url: "https://i.ibb.co/rRx3vzt/noman.jpg", // Using a generic placeholder image
-            marital_status: "বিবাহিত",
-            emergency_contact: "০১৮৮৮৮৮৮৮৮৮",
-        },
-        {
-            teacher_id: "T-002",
-            name_bn: "সাবরিনা আক্তার",
-            name_en: "Sabrina Akter",
-            gender: "মহিলা",
-            birth_date: "১৯৮৫-০৭-১০",
-            blood_group: "B+",
-            national_id: "১৯৮৫১২৩৪৫৬৭৮৯",
-            religion: "ইসলাম",
-            nationality: "বাংলাদেশী",
-            phone: "০১৬১২৩৪৫৬৭৮",
-            email: "sabrina@example.com",
-            joining_date: "২০১০-০৬-১৫",
-            designation: "সহকারী শিক্ষিকা",
-            department: "বাংলা",
-            education: "এম.এ (বাংলা), জাহাঙ্গীরনগর বিশ্ববিদ্যালয়",
-            present_address: "উত্তরা, ঢাকা",
-            permanent_address: "নাটোর সদর, রাজশাহী",
-            photo_url: "https://i.ibb.co/rRx3vzt/noman.jpg",
-            marital_status: "অবিবাহিত",
-            emergency_contact: "০১৭৯৯৯৯৯৯৯৯",
-        },
-        {
-            teacher_id: "T-003",
-            name_bn: "রফিকুল ইসলাম",
-            name_en: "Rafiqul Islam",
-            gender: "পুরুষ",
-            birth_date: "১৯৭৫-১১-২৫",
-            blood_group: "O+",
-            national_id: "১৯৭৫১২৩৪৫৬৭৮৯",
-            religion: "ইসলাম",
-            nationality: "বাংলাদেশী",
-            phone: "০১৯১২৩৪৫৬৭৮",
-            email: "rafiqul@example.com",
-            joining_date: "২০০৫-০৩-০১",
-            designation: "সহকারী প্রধান শিক্ষক",
-            department: "ইংরেজি",
-            education: "এম.এ (ইংরেজি), চট্টগ্রাম বিশ্ববিদ্যালয়",
-            present_address: "আগ্রাবাদ, চট্টগ্রাম",
-            permanent_address: "চন্দনাইশ, চট্টগ্রাম",
-            photo_url: "https://i.ibb.co/rRx3vzt/noman.jpg",
-            marital_status: "বিবাহিত",
-            emergency_contact: "০১৭৭৭৭৭৭৭৭৭",
-        },
-        {
-            teacher_id: "T-004",
-            name_bn: "নিহারিকা সেন",
-            name_en: "Niharika Sen",
-            gender: "মহিলা",
-            birth_date: "১৯৮৮-০৯-১২",
-            blood_group: "AB−",
-            national_id: "১৯৮৮১২৩৪৫৬৭৮৯",
-            religion: "হিন্দু",
-            nationality: "বাংলাদেশী",
-            phone: "০১৮১২৩৪৫৬৭৮",
-            email: "niharika@example.com",
-            joining_date: "২০১২-০৯-২০",
-            designation: "শিক্ষিকা",
-            department: "বিজ্ঞান",
-            education: "এম.এসসি (পদার্থবিজ্ঞান), রাজশাহী বিশ্ববিদ্যালয়",
-            present_address: "নিউমার্কেট, খুলনা",
-            permanent_address: "বাগেরহাট সদর, খুলনা",
-            photo_url: "https://i.ibb.co/rRx3vzt/noman.jpg",
-            marital_status: "অবিবাহিত",
-            emergency_contact: "০১৯৯৯৯৯৯৯৯৯",
-        },
-    ];
+    useEffect(() => {
+        fetch("http://localhost:3000/teachers")
+            .then((response) => response.json())
+            .then((data) => {
+                setTeachersData(data);
+            })
+            .catch((error) => {
+                console.error("Error fetching teachers data:", error);
+            });
+    }, []);
+
+    console.log("Teachers data:", teachersData);
 
     const filteredTeachers = teachersData.filter((teacher) => {
         const matchesSearch =
-            teacher.name_bn.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            teacher.name_en.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            teacher.teacher_id
+            teacher?.name_bn.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            teacher?.name_en.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            teacher?.teacher_id
                 .toLowerCase()
                 .includes(searchTerm.toLowerCase()) ||
-            teacher.phone.includes(searchTerm);
+            teacher?.phone.includes(searchTerm);
 
         const matchesGender = filter.gender
-            ? teacher.gender === filter.gender
+            ? teacher?.gender === filter.gender
             : true;
         const matchesDepartment = filter.department
-            ? teacher.department === filter.department
+            ? teacher?.department === filter.department
             : true;
         const matchesDesignation = filter.designation
-            ? teacher.designation === filter.designation
+            ? teacher?.designation === filter.designation
             : true;
 
         return (
@@ -252,18 +175,18 @@ const AdminTeacherList = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {filteredTeachers.length > 0 ? (
-                                filteredTeachers.map((teacher) => (
+                            {filteredTeachers?.length > 0 ? (
+                                filteredTeachers?.map((teacher) => (
                                     <tr
-                                        key={teacher.teacher_id}
+                                        key={teacher?.teacher_id}
                                         className="hover border-b border-gray-100 last:border-b-0"
                                     >
                                         <td className="py-3 px-4">
                                             <div className="avatar">
                                                 <div className="w-12 h-12 rounded-full ring ring-[#249742] ring-offset-base-100 ring-offset-2 overflow-hidden">
                                                     <img
-                                                        src={teacher.photo_url}
-                                                        alt={teacher.name_bn}
+                                                        src={teacher?.photo_url}
+                                                        alt={teacher?.name_bn}
                                                         onError={(e) => {
                                                             e.target.onerror =
                                                                 null;
@@ -276,20 +199,20 @@ const AdminTeacherList = () => {
                                         </td>
                                         <td className="py-3 px-4">
                                             <div className="font-semibold text-gray-800">
-                                                {teacher.name_bn}
+                                                {teacher?.name_bn}
                                             </div>
                                             <div className="text-xs text-gray-500">
-                                                {teacher.name_en}
+                                                {teacher?.name_en}
                                             </div>
                                         </td>
                                         <td className="py-3 px-4 text-gray-600">
-                                            {teacher.designation}
+                                            {teacher?.designation}
                                         </td>
                                         <td className="py-3 px-4 text-gray-600">
-                                            {teacher.department}
+                                            {teacher?.department}
                                         </td>
                                         <td className="py-3 px-4 text-gray-600">
-                                            {teacher.phone}
+                                            {teacher?.phone}
                                         </td>
                                         <td className="py-3 px-4 text-center">
                                             <Link

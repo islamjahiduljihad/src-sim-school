@@ -14,9 +14,15 @@ import {
     MapPin,
     Heart,
     PhoneCall,
-    PlusCircle, // For add button
-    Users, // Added Users icon import
+    PlusCircle,
+    Users,
 } from "lucide-react";
+import { PiStudentBold } from "react-icons/pi";
+import { IoDiscOutline } from "react-icons/io5";
+import { FaComputer } from "react-icons/fa6";
+import { LuIdCard } from "react-icons/lu";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const AddTeacher = () => {
     // State to hold the new teacher's data
@@ -29,7 +35,7 @@ const AddTeacher = () => {
         blood_group: "",
         national_id: "",
         religion: "",
-        nationality: "বাংলাদেশী", // Default value
+        nationality: "বাংলাদেশী",
         phone: "",
         email: "",
         joining_date: "",
@@ -38,9 +44,17 @@ const AddTeacher = () => {
         education: "",
         present_address: "",
         permanent_address: "",
-        photo_url: "", // Placeholder for image URL
+        photo_url: "",
         marital_status: "",
-        emergency_contact: "",
+        emergency_contact_number: "",
+        emergency_contact_name: "",
+        emergency_contact_relationship: "",
+        subjectList: "",
+        department: "",
+        teacher_registration_number: "",
+        extra_curricular_activities: "",
+        computer_skills: "",
+        addedDate: new Date().toLocaleDateString(),
     });
 
     // Handle input change for all form fields
@@ -53,13 +67,27 @@ const AddTeacher = () => {
     };
 
     // Handle form submission
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("New Teacher Data Submitted:", newTeacherData);
-        // In a real application, you would send newTeacherData to your backend API here
-
-        // Show success alert (using a simple browser alert for demonstration)
-        alert("শিক্ষক সফলভাবে যুক্ত করা হয়েছে!");
+        const result = await axios.post(
+            "http://localhost:3000/teacher",
+            newTeacherData
+        );
+        if (result?.data.insertedId) {
+            Swal.fire({
+                title: "শিক্ষক সফলভাবে যুক্ত হয়েছে!",
+                text: "নতুন শিক্ষক তথ্য সংরক্ষণ করা হয়েছে।",
+                icon: "success",
+                confirmButtonText: "ঠিক আছে",
+            });
+        } else {
+            Swal.fire({
+                title: "ত্রুটি!",
+                text: "শিক্ষক তথ্য সংরক্ষণে সমস্যা হয়েছে।",
+                icon: "error",
+                confirmButtonText: "পুনরায় চেষ্টা করুন",
+            });
+        }
 
         // Optionally, clear the form after submission
         setNewTeacherData({
@@ -83,6 +111,14 @@ const AddTeacher = () => {
             photo_url: "",
             marital_status: "",
             emergency_contact: "",
+            subjectList: "",
+            department: "",
+            teacher_registration_number: "",
+            extra_curricular_activities: "",
+            computer_skills: "",
+            emergency_contact_name: "",
+            emergency_contact_relationship: "",
+            emergency_contact_number: "",
         });
     };
 
@@ -111,6 +147,8 @@ const AddTeacher = () => {
                 return (
                     <HeartHandshake size={18} className="mr-2 text-teal-500" />
                 );
+            case "সাবজেক্ট লিস্ট":
+                return <BookOpen size={18} className="mr-2 text-lime-600" />;
             case "জাতীয়তা":
                 return <Flag size={18} className="mr-2 text-yellow-500" />;
             case "ফোন":
@@ -122,10 +160,20 @@ const AddTeacher = () => {
                     <CalendarCheck size={18} className="mr-2 text-cyan-500" />
                 );
             case "শিক্ষাগত যোগ্যতা":
-                return <BookOpen size={18} className="mr-2 text-lime-600" />;
+                return (
+                    <PiStudentBold size={18} className="mr-2 text-purple-600" />
+                );
+            case "এক্সট্রা কারিকুলার অ্যাক্টিভিটিস":
+                return (
+                    <IoDiscOutline size={18} className="mr-2 text-red-600" />
+                );
+            case "কম্পিউটার সম্পর্কিত দক্ষতা":
+                return <FaComputer size={18} className="mr-2 text-blue-600" />;
+            case "শিক্ষক নিবন্ধন নম্বর":
+                return <LuIdCard size={18} className="mr-2 text-green-600" />;
             case "বর্তমান ঠিকানা":
             case "স্থায়ী ঠিকানা":
-                return <MapPin size={18} className="mr-2 text-gray-600" />;
+                return <MapPin size={18} className="mr-2 text-error" />;
             case "বৈবাহিক অবস্থা":
                 return <Heart size={18} className="mr-2 text-pink-600" />;
             case "জরুরি যোগাযোগ":
@@ -139,7 +187,7 @@ const AddTeacher = () => {
                         alt="Image Icon"
                         className="mr-2"
                     />
-                ); // Generic image icon
+                );
             default:
                 return null;
         }
@@ -172,7 +220,7 @@ const AddTeacher = () => {
                                     name="teacher_id"
                                     value={newTeacherData.teacher_id}
                                     onChange={handleChange}
-                                    placeholder="T-XXX"
+                                    placeholder="TS-001,TB-001,TH-001, TG-001"
                                     className="input input-bordered w-full"
                                     required
                                 />
@@ -314,8 +362,6 @@ const AddTeacher = () => {
                                     </option>
                                     <option value="ইসলাম">ইসলাম</option>
                                     <option value="হিন্দু">হিন্দু</option>
-                                    <option value="খ্রিস্টান">খ্রিস্টান</option>
-                                    <option value="বৌদ্ধ">বৌদ্ধ</option>
                                     <option value="অন্যান্য">অন্যান্য</option>
                                 </select>
                             </div>
@@ -388,10 +434,6 @@ const AddTeacher = () => {
                                     </option>
                                     <option value="অবিবাহিত">অবিবাহিত</option>
                                     <option value="বিবাহিত">বিবাহিত</option>
-                                    <option value="বিপত্নীক">বিপত্নীক</option>
-                                    <option value="তালাকপ্রাপ্ত">
-                                        তালাকপ্রাপ্ত
-                                    </option>
                                 </select>
                             </div>
                             {/* Photo URL */}
@@ -407,6 +449,50 @@ const AddTeacher = () => {
                                     value={newTeacherData.photo_url}
                                     onChange={handleChange}
                                     placeholder="শিক্ষকের ছবির URL"
+                                    className="input input-bordered w-full"
+                                />
+                            </div>
+
+                            {/* Department */}
+                            <div>
+                                <label className="label">
+                                    <span className="label-text flex items-center">
+                                        {getIconForField("বিভাগ")} বিভাগ
+                                    </span>
+                                </label>
+                                <select
+                                    name="department"
+                                    value={newTeacherData.department}
+                                    onChange={handleChange}
+                                    className="select select-bordered w-full"
+                                    required
+                                >
+                                    <option value="" disabled>
+                                        বিভাগ নির্বাচন করুন
+                                    </option>
+                                    <option value="General">জেনারেল</option>
+                                    <option value="Science">বিজ্ঞান</option>
+                                    <option value="Business Studies">
+                                        বব্যাবসায়িক শিক্ষা
+                                    </option>
+                                    <option value="Humanities">মানবিক</option>
+                                </select>
+                            </div>
+
+                            {/* subjects */}
+                            <div>
+                                <label className="label">
+                                    <span className="label-text flex items-center">
+                                        {getIconForField("সাবজেক্ট লিস্ট")}{" "}
+                                        সাবজেক্ট লিস্ট
+                                    </span>
+                                </label>
+                                <input
+                                    type="text"
+                                    name="subjectList"
+                                    value={newTeacherData.subjectList}
+                                    onChange={handleChange}
+                                    placeholder="শিক্ষক যে যে বিষয়ে ক্লাস নিবেন তার লিস্ট কমা (,) দিয়ে"
                                     className="input input-bordered w-full"
                                 />
                             </div>
@@ -440,56 +526,129 @@ const AddTeacher = () => {
                                     required
                                 />
                             </div>
-                            {/* Designation */}
+
+                            {/* Teacher Designation */}
                             <div>
                                 <label className="label">
                                     <span className="label-text flex items-center">
                                         {getIconForField("পদবি")} পদবি
                                     </span>
                                 </label>
-                                <input
-                                    type="text"
+                                <select
                                     name="designation"
                                     value={newTeacherData.designation}
                                     onChange={handleChange}
-                                    placeholder="পদবি"
-                                    className="input input-bordered w-full"
+                                    className="select select-bordered w-full"
                                     required
-                                />
+                                >
+                                    <option value="" disabled>
+                                        পদবি নির্বাচন করুন
+                                    </option>
+                                    <option value="Head Teacher">
+                                        প্রধান শিক্ষক
+                                    </option>
+                                    <option value="Assistant Head Teacher">
+                                        সহকারী প্রধান শিক্ষক
+                                    </option>
+                                    <option value="Senior Assistant Teacher">
+                                        সিনিয়র সহকারী শিক্ষক
+                                    </option>
+                                    <option value="Assistant Teacher">
+                                        সহকারী শিক্ষক
+                                    </option>
+                                    <option value="Librarian">
+                                        গ্রন্থাগারিক
+                                    </option>
+                                    <option value="Physical Education Teacher">
+                                        শারীরিক শিক্ষা শিক্ষক
+                                    </option>
+                                    <option value="Part Time Teacher">
+                                        খন্ডকালীন শিক্ষক
+                                    </option>
+                                </select>
                             </div>
-                            {/* Department */}
+
+                            {/* Teacher Registration Number */}
                             <div>
                                 <label className="label">
                                     <span className="label-text flex items-center">
-                                        {getIconForField("বিভাগ")} বিভাগ
+                                        {getIconForField(
+                                            "শিক্ষক নিবন্ধন নম্বর"
+                                        )}{" "}
+                                        শিক্ষক নিবন্ধন নম্বর
                                     </span>
                                 </label>
                                 <input
                                     type="text"
-                                    name="department"
-                                    value={newTeacherData.department}
+                                    name="teacher_registration_number"
+                                    value={
+                                        newTeacherData.teacher_registration_number
+                                    }
                                     onChange={handleChange}
-                                    placeholder="বিভাগ"
+                                    placeholder="শিক্ষক নিবন্ধন নম্বর"
                                     className="input input-bordered w-full"
                                     required
                                 />
                             </div>
+
                             {/* Education */}
-                            <div className="md:col-span-2 lg:col-span-3">
+                            <div>
                                 <label className="label">
                                     <span className="label-text flex items-center">
                                         {getIconForField("শিক্ষাগত যোগ্যতা")}{" "}
                                         শিক্ষাগত যোগ্যতা
                                     </span>
                                 </label>
-                                <textarea
+                                <input
                                     name="education"
                                     value={newTeacherData.education}
                                     onChange={handleChange}
                                     placeholder="শিক্ষাগত যোগ্যতা"
-                                    className="textarea textarea-bordered h-24 w-full"
+                                    className="input input-bordered w-full"
                                     required
-                                ></textarea>
+                                ></input>
+                            </div>
+
+                            {/* Extra curricular activities */}
+                            <div>
+                                <label className="label">
+                                    <span className="label-text flex items-center">
+                                        {getIconForField(
+                                            "এক্সট্রা কারিকুলার অ্যাক্টিভিটিস"
+                                        )}{" "}
+                                        এক্সট্রা কারিকুলার অ্যাক্টিভিটিস
+                                    </span>
+                                </label>
+                                <input
+                                    name="extra_curricular_activities"
+                                    value={
+                                        newTeacherData.extra_curricular_activities
+                                    }
+                                    onChange={handleChange}
+                                    placeholder="কমা দিয়ে (,) অ্যাক্টিভিটিগুলো লিখুন"
+                                    className="input input-bordered w-full"
+                                    required
+                                ></input>
+                            </div>
+
+                            {/* Computer related skills */}
+                            <div>
+                                <label className="label">
+                                    <span className="label-text flex items-center">
+                                        {getIconForField(
+                                            "কম্পিউটার সম্পর্কিত দক্ষতা"
+                                        )}{" "}
+                                        কম্পিউটার সম্পর্কিত দক্ষতা
+                                    </span>
+                                </label>
+                                <input
+                                    name="computer_skills"
+                                    value={newTeacherData.computer_skills}
+                                    onChange={handleChange}
+                                    placeholder="MS Office, Internet Browsing ইত্যাদি "
+                                    className="input input-bordered w-full"
+                                    required
+                                ></input>
                             </div>
                         </div>
                     </div>
@@ -547,7 +706,7 @@ const AddTeacher = () => {
                             />{" "}
                             জরুরি যোগাযোগ
                         </h3>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                             {/* Emergency Contact */}
                             <div>
                                 <label className="label">
@@ -558,12 +717,62 @@ const AddTeacher = () => {
                                 </label>
                                 <input
                                     type="tel"
-                                    name="emergency_contact"
-                                    value={newTeacherData.emergency_contact}
+                                    name="emergency_contact_number"
+                                    value={
+                                        newTeacherData.emergency_contact_number
+                                    }
                                     onChange={handleChange}
                                     placeholder="জরুরি যোগাযোগ নম্বর"
                                     className="input input-bordered w-full"
                                 />
+                            </div>
+                            {/* Emergency Contact */}
+                            <div>
+                                <label className="label">
+                                    <span className="label-text flex items-center">
+                                        {getIconForField("নাম (বাংলা)")}
+                                        যোগাযোগের ব্যাক্তির নাম
+                                    </span>
+                                </label>
+                                <input
+                                    type="tel"
+                                    name="emergency_contact_name"
+                                    value={
+                                        newTeacherData.emergency_contact_name
+                                    }
+                                    onChange={handleChange}
+                                    placeholder="জরুরি যোগাযোগের ব্যক্তির নাম"
+                                    className="input input-bordered w-full"
+                                />
+                            </div>
+                            {/* Emergency Contact Relationship */}
+                            <div>
+                                <label className="label">
+                                    <span className="label-text flex items-center">
+                                        {getIconForField("বৈবাহিক অবস্থা")}{" "}
+                                        ব্যক্তির সাথে সম্পর্ক
+                                    </span>
+                                </label>
+                                <select
+                                    name="emergency_contact_relationship"
+                                    value={
+                                        newTeacherData.emergency_contact_relationship
+                                    }
+                                    onChange={handleChange}
+                                    className="select select-bordered w-full"
+                                >
+                                    <option disabled value="">
+                                        সম্পর্ক নির্বাচন করুন
+                                    </option>
+                                    <option value="পিতা">পিতা</option>
+                                    <option value="মাতা">মাতা</option>
+                                    <option value="ভাই">ভাই</option>
+                                    <option value="বোন">বোন</option>
+                                    <option value="স্ত্রী">স্ত্রী</option>
+                                    <option value="স্বামী">স্বামী</option>
+                                    <option value="বন্ধু">বন্ধু</option>
+                                    <option value="অন্যান্য">অন্যান্য</option>
+                                </select>
                             </div>
                         </div>
                     </div>

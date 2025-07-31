@@ -131,7 +131,14 @@ const AcademicCalendar = () => {
         .slice(0, 5);
 
     return (
-        <div className="max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-16">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-16 relative">
+            {/* Decorative background elements */}
+            <div className="absolute inset-0 opacity-10">
+                <div className="absolute top-10 left-1/4 w-24 h-24 rounded-full bg-[#249742] animate-pulse"></div>
+                <div className="absolute top-1/3 right-1/4 w-16 h-16 rounded-full bg-[#249742] animate-pulse delay-300"></div>
+                <div className="absolute bottom-20 left-1/3 w-20 h-20 rounded-full bg-[#8E1C20] animate-pulse delay-700"></div>
+                <div className="absolute bottom-1/4 right-10 w-12 h-12 rounded-full bg-[#249742] animate-pulse delay-1000"></div>
+            </div>
             <div className="w-full mx-auto mb-12">
                 <SectionHeader
                     title={"একাডেমিক ক্যালেন্ডার ২০২৫"}

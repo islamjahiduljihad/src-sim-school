@@ -34,13 +34,13 @@ const AdminContact = () => {
                 <table className="table w-full text-sm sm:text-base">
                     <thead className="bg-[#249742] text-white text-left">
                         <tr>
-                            <th className="py-3 px-2">#</th>
-                            <th className="py-3 px-2">নাম</th>
-                            <th className="py-3 px-2">ফোন</th>
-                            <th className="py-3 px-2">বিষয়</th>
-                            <th className="py-3 px-2">তারিখ</th>
-                            <th className="py-3 px-2">স্ট্যাটাস</th>
-                            <th className="py-3 px-2">অ্যাকশন</th>
+                            <th className="py-3 px-4">#</th>
+                            <th className="py-3 px-4">নাম</th>
+                            <th className="py-3 px-4">ফোন</th>
+                            <th className="py-3 px-4">বিষয়</th>
+                            <th className="py-3 px-4">তারিখ</th>
+                            <th className="py-3 px-4">স্ট্যাটাস</th>
+                            <th className="py-3 px-4">অ্যাকশন</th>
                         </tr>
                     </thead>
                     <tbody>

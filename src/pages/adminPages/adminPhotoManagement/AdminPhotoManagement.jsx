@@ -89,9 +89,9 @@ const AdminPhotoManagement = () => {
 
     return (
         <div className="p-4 sm:p-8 bg-white rounded-xl shadow">
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
-                <h1 className="text-2xl sm:text-3xl font-bold text-[#249742] border-b-2 border-[#249742] pb-2">
-                    ফটো ম্যানেজমেন্ট
+            <div className="flex flex-col sm:flex-row justify-between items-center sm:items-center mb-6 gap-4 shadow-lg md:shadow-none p-4 md:p-0 rounded-lg border md:border-none border-gray-200">
+                <h1 className="text-2xl md:text-3xl font-bold text-[#249742] border-b-2 border-[#249742] pb-2">
+                    ফটো গ্যালারী ম্যানেজমেন্ট
                 </h1>
                 <button
                     onClick={() => openModal("add")}

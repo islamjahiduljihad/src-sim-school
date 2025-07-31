@@ -17,7 +17,6 @@ import SectionHeader from "../../components/sectionHeader/SectionHeader";
 const TeacherPublicProfile = () => {
     const { id } = useParams();
     const [teacher, setTeacher] = useState(null);
-    const [loading, setLoading] = useState(true);
     const [showContactModal, setShowContactModal] = useState(false);
 
     // Primary color
@@ -25,48 +24,17 @@ const TeacherPublicProfile = () => {
 
     // Fetch teacher data
     useEffect(() => {
-        const fetchTeacher = async () => {
-            try {
-                // Simulating API call
-                setTimeout(() => {
-                    const mockTeacher = {
-                        birth_date: "2025-07-17",
-                        department: "General",
-                        designation: "Assistant Teacher",
-                        education: "মাস্টার্স ইন সি এস ই",
-                        email: "zakir@gmail.com",
-                        extra_curricular_activities: "স্কাউটস, রেড ক্রিসেন্ট",
-                        joining_date: "2025-07-30",
-                        name_bn: "জাকির হোসাইন নেইমার",
-                        name_en: "Zakir Hossain",
-                        phone: "০১৯৬৫৪৮৫২১০",
-                        photo_url: "https://i.ibb.co/Fk2sWQyS/cst-09.jpg",
-                        present_address: "শ্রীরায়েরচর, দাউদকান্দি, কুমিল্লা",
-                        subjectList: "আইসিটি, ইংলিশ, বিজ্ঞান",
-                        teacher_id: "T-01",
-                    };
-
-                    setTeacher(mockTeacher);
-                    setLoading(false);
-                }, 800);
-            } catch (error) {
-                console.error("Error fetching teacher data:", error);
-                setLoading(false);
-            }
-        };
-        fetchTeacher();
+        try {
+            fetch(`http://localhost:3000/teacher/${id}`)
+                .then((res) => res.json())
+                .then((data) => {
+                    setTeacher(data);
+                    console.log(data)
+                });
+        } catch (error) {
+            console.error("Error fetching teacher data:", error);
+        }
     }, [id]);
-
-    if (loading) {
-        return (
-            <div className="min-h-screen flex items-center justify-center bg-gray-50">
-                <div
-                    className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4"
-                    style={{ borderColor: primaryColor }}
-                ></div>
-            </div>
-        );
-    }
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-50 to-green-50 py-8 px-4">
@@ -82,8 +50,8 @@ const TeacherPublicProfile = () => {
                             <div className="relative">
                                 <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-white shadow-xl">
                                     <img
-                                        src={teacher.photo_url}
-                                        alt={teacher.name_en}
+                                        src={teacher?.photo_url}
+                                        alt={teacher?.name_en}
                                         className="w-full h-full object-cover"
                                         onError={(e) => {
                                             e.target.onerror = null;
@@ -96,21 +64,21 @@ const TeacherPublicProfile = () => {
                                     className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 px-6 py-1 rounded-full text-white font-medium shadow-md"
                                     style={{ backgroundColor: primaryColor }}
                                 >
-                                    {teacher.designation}
+                                    {teacher?.designation}
                                 </div>
                             </div>
 
                             <h2 className="mt-10 text-2xl font-bold text-gray-800">
-                                {teacher.name_bn}
+                                {teacher?.name_bn}
                             </h2>
-                            <p className="text-gray-600">{teacher.name_en}</p>
+                            <p className="text-gray-600">{teacher?.name_en}</p>
 
                             <div className="mt-6 w-full">
                                 <h3 className="text-lg font-semibold mb-3 text-center">
                                     বিষয়সমূহ
                                 </h3>
                                 <div className="flex flex-wrap justify-center gap-2">
-                                    {teacher.subjectList
+                                    {teacher?.subjectList
                                         .split(", ")
                                         .map((subject, index) => (
                                             <span
@@ -165,7 +133,7 @@ const TeacherPublicProfile = () => {
                                     <div className="space-y-3">
                                         <InfoItem
                                             label="জন্ম তারিখ"
-                                            value={teacher.birth_date}
+                                            value={teacher?.birth_date}
                                             icon={
                                                 <FaCalendar
                                                     style={{
@@ -176,7 +144,7 @@ const TeacherPublicProfile = () => {
                                         />
                                         <InfoItem
                                             label="যোগদানের তারিখ"
-                                            value={teacher.joining_date}
+                                            value={teacher?.joining_date}
                                             icon={
                                                 <FaCalendar
                                                     style={{
@@ -214,7 +182,7 @@ const TeacherPublicProfile = () => {
                                     <div className="space-y-3">
                                         <InfoItem
                                             label="উচ্চতর ডিগ্রী"
-                                            value={teacher.education}
+                                            value={teacher?.education}
                                             icon={
                                                 <FaBook
                                                     style={{
@@ -252,7 +220,7 @@ const TeacherPublicProfile = () => {
                                     <div className="space-y-3">
                                         <InfoItem
                                             label="বর্তমান ঠিকানা"
-                                            value={teacher.present_address}
+                                            value={teacher?.present_address}
                                             icon={
                                                 <FaMapMarkerAlt
                                                     style={{
@@ -291,7 +259,7 @@ const TeacherPublicProfile = () => {
                                         <InfoItem
                                             label="সহশিক্ষা কার্যক্রম"
                                             value={
-                                                teacher.extra_curricular_activities
+                                                teacher?.extra_curricular_activities
                                             }
                                             icon={
                                                 <FaChalkboardTeacher
@@ -317,7 +285,7 @@ const TeacherPublicProfile = () => {
                                     >
                                         শিক্ষক আইডি:
                                     </span>{" "}
-                                    {teacher.teacher_id}
+                                    {teacher?.teacher_id}
                                 </p>
                             </div>
                         </div>

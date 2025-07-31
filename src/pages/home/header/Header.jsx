@@ -65,7 +65,7 @@ const Header = () => {
         },
         {
             id: 3,
-            title: "প্রতিদিন অনুপ্রেরণা পায় কচি মনগুলো",
+            title: "সেবা করার মানসিকতা তৈরি",
             desc: "স্রীরায়েরচর এসআইএম উচ্চ বিদ্যালয় এমন একটি পরিবেশ তৈরি করেছে যেখানে স্বপ্ন প্রসারিত হয়, সৃষ্টিশীলতা প্রবাহিত হয়, আর শিক্ষার্থীরা জীবনের প্রতিটি ধাপে অসাধারণ কিছু করার অনুপ্রেরণা পায়।",
             bg: "https://i.ibb.co/BCL8yTm/school2.jpg",
         },
@@ -75,7 +75,7 @@ const Header = () => {
         <div className="relative">
             <div
                 ref={sliderRef}
-                className="keen-slider h-[550px] overflow-hidden"
+                className="keen-slider h-[600px] overflow-hidden"
             >
                 {slides.map((slide, idx) => (
                     <div

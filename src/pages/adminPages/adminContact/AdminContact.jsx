@@ -23,7 +23,7 @@ const AdminContact = () => {
     }, []);
 
     return (
-        <div className="p-4 sm:p-8 bg-white rounded-xl shadow relative w-full">
+        <div className="p-4 sm:p-8 bg-white rounded-xl shadow w-full">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
                 <h1 className="text-2xl sm:text-3xl font-bold text-[#249742] border-b-2 border-[#249742] pb-2">
                     যোগাযোগ তালিকা
@@ -34,13 +34,13 @@ const AdminContact = () => {
                 <table className="table w-full text-sm sm:text-base">
                     <thead className="bg-[#249742] text-white text-left">
                         <tr>
-                            <th className="py-3 px-4">#</th>
-                            <th className="py-3 px-4">নাম</th>
-                            <th className="py-3 px-4">ফোন</th>
-                            <th className="py-3 px-4">বিষয়</th>
-                            <th className="py-3 px-4">তারিখ</th>
-                            <th className="py-3 px-4">স্ট্যাটাস</th>
-                            <th className="py-3 px-4">অ্যাকশন</th>
+                            <th className="py-3 px-2">#</th>
+                            <th className="py-3 px-2">নাম</th>
+                            <th className="py-3 px-2">ফোন</th>
+                            <th className="py-3 px-2">বিষয়</th>
+                            <th className="py-3 px-2">তারিখ</th>
+                            <th className="py-3 px-2">স্ট্যাটাস</th>
+                            <th className="py-3 px-2">অ্যাকশন</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,18 +49,18 @@ const AdminContact = () => {
                                 key={contact.id}
                                 className="hover:bg-gray-50 transition"
                             >
-                                <td className="py-3 px-4 font-semibold">
+                                <td className="py-1 px-2 font-semibold">
                                     {index + 1}
                                 </td>
-                                <td className="py-3 px-4 text-[#249742] font-medium">
+                                <td className="py-1 px-2 text-[#249742] font-medium">
                                     {contact.name}
                                 </td>
-                                <td className="py-3 px-4">{contact?.phone}</td>
-                                <td className="py-3 px-4">
+                                <td className="py-1 px-2">{contact?.phone}</td>
+                                <td className="py-1 px-2">
                                     {contact?.subject}
                                 </td>
-                                <td className="py-3 px-4">{contact?.date}</td>
-                                <td className="py-3 px-4">
+                                <td className="py-1 px-2">{contact?.date}</td>
+                                <td className="py-1 px-2">
                                     <p
                                         className={`${
                                             contact?.contact_status == "success"

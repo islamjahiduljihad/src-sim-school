@@ -20,17 +20,17 @@ const AdminLayout = () => {
     const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
     return (
-        <div className="h-screen flex overflow-hidden">
+        <div className="h-screen md:flex overflow-hidden">
             {/* Sidebar */}
             <aside
-                className={`bg-white shadow-xl fixed md:static top-0 left-0 h-full w-64 z-50 transform transition-transform duration-300 ease-in-out
+                className={`overflow-y-auto bg-white shadow-xl fixed md:static top-0 left-0 h-full w-64 z-50 transform transition-transform duration-300 ease-in-out
                 ${
                     isSidebarOpen
                         ? "translate-x-0"
                         : "-translate-x-full md:translate-x-0"
                 }`}
             >
-                <div className="p-6 border-b flex items-center justify-between">
+                <div className="p-6 border-b flex items-center justify-between sticky top-0 z-20 bg-white">
                     <h2 className="text-2xl font-extrabold text-[#249742]">
                         অ্যাডমিন প্যানেল
                     </h2>
@@ -38,78 +38,87 @@ const AdminLayout = () => {
                         <IoClose size={22} />
                     </button>
                 </div>
-                <nav className="p-4 space-y-2 text-gray-700 font-medium">
-                    <Link
-                        to="/admin"
-                        className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-[#249742] hover:text-white"
-                    >
-                        <RiHome9Line className="text-[#249742]" />
-                        হোম
-                    </Link>
-                    <Link
-                        to="/admin/studentList"
-                        className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-[#249742] hover:text-white"
-                    >
-                        <PiStudentBold className="text-[#249742]" />
-                        শিক্ষার্থী ম্যানেজমেন্ট
-                    </Link>
-                    <Link
-                        to="/admin/teacherList"
-                        className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-[#249742] hover:text-white"
-                    >
-                        <LiaChalkboardTeacherSolid className="text-[#249742]" />
-                        শিক্ষক ম্যানেজমেন্ট
-                    </Link>
-                    <Link
-                        to="/admin/notices"
-                        className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-[#249742] hover:text-white"
-                    >
-                        <HiOutlineBellAlert className="text-[#249742]" />
-                        নোটিশ ম্যানেজমেন্ট
-                    </Link>
-                    <Link
-                        to="/admin/studentResults"
-                        className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-[#249742] hover:text-white"
-                    >
-                        <SlCalculator className="text-[#249742]" />
-                        ফলাফল ম্যানেজমেন্ট
-                    </Link>
-                    <Link
-                        to="/admin/digiCardManagement"
-                        className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-[#249742] hover:text-white"
-                    >
-                        <FaRegIdCard className="text-[#249742]" />
-                        ডিজি-কার্ড ম্যানেজমেন্ট
-                    </Link>
-                    <Link
-                        to="/admin/photoManagement"
-                        className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-[#249742] hover:text-white"
-                    >
-                        <MdOutlinePhotoLibrary className="text-[#249742]" />
-                        ফটো ম্যানেজমেন্ট
-                    </Link>
-                    <Link
-                        to="/admin/contact"
-                        className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-[#249742] hover:text-white"
-                    >
-                        <MdOutlineContactPhone className="text-[#249742]" />
-                        যোগাযোগ পাতা
-                    </Link>
-                    <Link
-                        to="/admin/notices"
-                        className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-[#249742] hover:text-white"
-                    >
-                        <RiRadioButtonLine className="text-[#249742]" />
-                        শিক্ষার্থী পোর্টাল
-                    </Link>
-                    <Link
-                        to="/admin/developerContact"
-                        className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-[#249742] hover:text-white"
-                    >
-                        <MdOutlineDeveloperMode className="text-[#249742]" />
-                        ডেভেলপার কন্টাক্ট
-                    </Link>
-                </nav>
+                <div className="overflow-y-auto">
+                    <nav className="p-4 space-y-2 text-gray-700 font-medium">
+                        <Link
+                            to="/admin"
+                            className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-[#249742] hover:text-white"
+                        >
+                            <RiHome9Line className="text-[#249742]" />
+                            হোম
+                        </Link>
+                        <Link
+                            to="/admin/studentList"
+                            className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-[#249742] hover:text-white"
+                        >
+                            <PiStudentBold className="text-[#249742]" />
+                            শিক্ষার্থী ম্যানেজমেন্ট
+                        </Link>
+                        <Link
+                            to="/admin/teacherList"
+                            className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-[#249742] hover:text-white"
+                        >
+                            <LiaChalkboardTeacherSolid className="text-[#249742]" />
+                            শিক্ষক ম্যানেজমেন্ট
+                        </Link>
+                        <Link
+                            to="/admin/notices"
+                            className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-[#249742] hover:text-white"
+                        >
+                            <HiOutlineBellAlert className="text-[#249742]" />
+                            নোটিশ ম্যানেজমেন্ট
+                        </Link>
+                        <Link
+                            to="/admin/studentResults"
+                            className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-[#249742] hover:text-white"
+                        >
+                            <SlCalculator className="text-[#249742]" />
+                            ফলাফল ম্যানেজমেন্ট
+                        </Link>
+                        <Link
+                            to="/admin/digiCardManagement"
+                            className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-[#249742] hover:text-white"
+                        >
+                            <FaRegIdCard className="text-[#249742]" />
+                            ডিজি-কার্ড ম্যানেজমেন্ট
+                        </Link>
+                        <Link
+                            to="/admin/photoManagement"
+                            className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-[#249742] hover:text-white"
+                        >
+                            <MdOutlinePhotoLibrary className="text-[#249742]" />
+                            ফটো ম্যানেজমেন্ট
+                        </Link>
+                        <Link
+                            to="/admin/photoManagement"
+                            className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-[#249742] hover:text-white"
+                        >
+                            <MdOutlinePhotoLibrary className="text-[#249742]" />
+                            স্টাফ ম্যানেজমেন্ট
+                        </Link>
+                        <Link
+                            to="/admin/contact"
+                            className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-[#249742] hover:text-white"
+                        >
+                            <MdOutlineContactPhone className="text-[#249742]" />
+                            যোগাযোগ পাতা
+                        </Link>
+                        <Link
+                            to="/admin/notices"
+                            className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-[#249742] hover:text-white"
+                        >
+                            <RiRadioButtonLine className="text-[#249742]" />
+                            শিক্ষার্থী পোর্টাল
+                        </Link>
+                        <Link
+                            to="/admin/developerContact"
+                            className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-[#249742] hover:text-white"
+                        >
+                            <MdOutlineDeveloperMode className="text-[#249742]" />
+                            ডেভেলপার কন্টাক্ট
+                        </Link>
+                    </nav>
+                </div>
 
                 <div>
                     <div className="mx-3 px-2 py-4 border-t">
@@ -151,7 +160,7 @@ const AdminLayout = () => {
                     </div>
                     <div>
                         <img
-                            className="w-10 h-10 rounded-full border-2 border-[#249742]"
+                            className="p-[2px] w-10 h-10 rounded-full border-2 border-[#249742]"
                             src="https://res.cloudinary.com/dvhkcr2jb/image/upload/v1753203431/premium_photo-1683121413514-502338cb0b74_guik5n.avif"
                             alt="admin avatar"
                         />
@@ -159,7 +168,7 @@ const AdminLayout = () => {
                 </header>
 
                 {/* Scrollable Content */}
-                <main className="flex-1 overflow-y-auto p-4 md:p-8 bg-gray-50">
+                <main className="flex-1 overflow-y-auto p-4 md:p-8 bg-gray-50 w-full">
                     <Outlet />
                 </main>
             </div>

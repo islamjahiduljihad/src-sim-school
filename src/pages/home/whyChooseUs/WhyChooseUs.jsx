@@ -11,7 +11,7 @@ import { motion } from "framer-motion";
 
 const WhyChooseUs = () => {
     return (
-        <div className="relative py-16 px-4 md:px-10 lg:px-20 overflow-hidden bg-gradient-to-br from-[#f8f9fa] to-[#eef9f0]">
+        <div className="relative py-16 px-4 md:px-10 lg:px-20 overflow-hidden bg-[#eef9f0]">
             {/* Decorative background elements */}
             <div className="absolute inset-0 opacity-10">
                 <div className="absolute top-10 left-1/4 w-24 h-24 rounded-full bg-[#249742] animate-pulse"></div>

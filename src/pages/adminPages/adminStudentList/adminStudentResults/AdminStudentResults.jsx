@@ -620,7 +620,9 @@ const AdminStudentResults = () => {
         ); // Pretty print JSON
         // Instead of alert, you might use a modal or a toast notification in a real app
         // For this example, we'll keep the alert as requested, but it's not ideal for user experience.
-        alert("ফলাফল সফলভাবে জমা দেওয়া হয়েছে! ডেটার জন্য কনসোল চেক করুন।");
+        alert(
+            "এই অপশন টি এখনো ডেভেলপমেন্ট এ আছে। ইনশাআল্লাহ অপশন টি কার্যকর করা হবে শীঘ্রই।"
+        );
 
         // Optionally reset form after submission
         setStudentId("");
@@ -630,9 +632,9 @@ const AdminStudentResults = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gray-100 p-4 sm:p-6 lg:p-8 flex items-center justify-center font-sans">
+        <div className="min-h-screen bg-gray-100 sm:p-6 lg:p-8 flex items-center justify-center font-sans">
             <div className="bg-white shadow-xl rounded-lg p-6 sm:p-8 w-full max-w-4xl border-t-4 border-[#249742]">
-                <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">
+                <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-6">
                     <span className="text-[#249742]">এডমিন</span> শিক্ষার্থীর
                     ফলাফল ইনপুট
                 </h2>
@@ -641,7 +643,8 @@ const AdminStudentResults = () => {
                     ফলাফল ইনপুট দিন।
                 </p>
                 <p className="text-center text-error text-sm font-semibold mb-8">
-                    ঝুঁকিপূর্ণঃ এডমিন ব্যাতিত অন্য কেউ এই ফর্মটি পূরণ করবেন না।
+                    রেস্ট্রিক্টেডঃ রেজাল্ট আপলোড এর নিয়ম না যেনে রেজাল্ট আপলোড
+                    করবেন না। এতে সফটওয়্যার ক্র্যাশ হতে পারে।
                 </p>
 
                 <form onSubmit={handleSubmit}>

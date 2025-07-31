@@ -59,11 +59,11 @@ const AdminTeacherList = () => {
     ];
 
     return (
-        <div className="p-4 bg-gray-50 min-h-screen">
+        <div className="bg-gray-50 min-h-screen">
             <div className="card bg-base-100 shadow-xl p-6 mb-6">
                 {/* Header Section */}
                 <div className="flex flex-col sm:flex-row justify-between items-center mb-6 pb-4 border-b-2 border-[#249742]">
-                    <h1 className="text-3xl font-extrabold text-[#249742] mb-3 sm:mb-0">
+                    <h1 className="text-2xl md:text-3xl text-center font-extrabold text-[#249742] mb-3 sm:mb-0">
                         শিক্ষক ম্যানেজমেন্ট পোর্টাল
                     </h1>
                     <Link

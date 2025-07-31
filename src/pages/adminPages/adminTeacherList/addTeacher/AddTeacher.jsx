@@ -194,9 +194,9 @@ const AddTeacher = () => {
     };
 
     return (
-        <div className="p-4 sm:p-6 md:p-8 bg-gray-50 min-h-screen">
+        <div className="sm:p-6 md:p-8 bg-gray-50 min-h-screen">
             <div className="card bg-base-100 shadow-xl p-6 max-w-4xl mx-auto">
-                <h2 className="text-3xl font-bold text-center mb-6 text-[#249742] border-b-2 pb-2 border-[#249742]">
+                <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 text-[#249742] border-b-2 pb-2 border-[#249742]">
                     নতুন শিক্ষক যুক্ত করুন
                 </h2>
                 <form onSubmit={handleSubmit} className="space-y-6">

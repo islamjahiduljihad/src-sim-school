@@ -48,14 +48,14 @@ const Class7List = () => {
     });
 
     return (
-        <div className="p-4 bg-gray-50 min-h-screen">
+        <div className="bg-gray-50 min-h-screen">
             {" "}
             {/* Added a light background */}
             <div className="card bg-base-100 shadow-xl p-6 mb-6">
                 {" "}
                 {/* Unified card styling */}
                 <div className="text-center mb-6 pb-4 border-b-2 border-[#249742]">
-                    <h1 className="text-3xl font-extrabold text-[#249742]">
+                    <h1 className="text-2xl md:text-3xl font-extrabold text-[#249742]">
                         ৭ম শ্রেনী শিক্ষার্থী ম্যানেজমেন্ট পোর্টাল
                     </h1>
                 </div>
@@ -212,7 +212,7 @@ const Class7List = () => {
                 <div className="flex justify-center mt-6">
                     <Link
                         to={"/admin/studentList"}
-                        className="btn btn-neutral text-white hover:bg-gray-700 px-6 py-3 rounded-lg shadow-md flex items-center transition-colors duration-200"
+                        className="btn bg-[#249742] text-white hover:bg-gray-700 px-6 py-3 rounded-lg shadow-md flex items-center transition-colors duration-200"
                     >
                         <MdOutlineKeyboardReturn className="mr-2 text-xl" />{" "}
                         পেছনে ফিরে যান

@@ -472,7 +472,7 @@ const AddTeacher = () => {
                                     </option>
                                     <option value="General">জেনারেল</option>
                                     <option value="Science">বিজ্ঞান</option>
-                                    <option value="Business Studies">
+                                    <option value="Business">
                                         বব্যাবসায়িক শিক্ষা
                                     </option>
                                     <option value="Humanities">মানবিক</option>

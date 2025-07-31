@@ -28,6 +28,7 @@ import AdminDigiCard from "../pages/adminPages/adminDigiCard/AdminDigiCard";
 import AddStudent from "../pages/adminPages/adminStudentList/adminAddStudent/AddStudent";
 import AddTeacher from "../pages/adminPages/adminTeacherList/addTeacher/AddTeacher";
 import AdminStudentResults from "../pages/adminPages/adminStudentList/adminStudentResults/AdminStudentResults";
+import TeacherDetails from "../pages/teacherDetails/TeacherDetails";
 
 const router = createBrowserRouter([
     {
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
             {
                 path: "/contact",
                 element: <Contact></Contact>,
+            },
+            {
+                path: "teacher/:id",
+                element: <TeacherDetails></TeacherDetails>,
             },
         ],
     },

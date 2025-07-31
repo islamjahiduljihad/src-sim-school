@@ -101,7 +101,7 @@ const Faculty = () => {
                                                     </p>
                                                 )}
                                                 <Link
-                                                    to={`/teachers/${teacher.teacher_id}`}
+                                                    to={`/teacher/${teacher?._id}`}
                                                     className="btn bg-[#249742] border-none text-white text-base rounded-lg shadow-md hover:shadow-lg transition-all duration-300 ease-in-out transform hover:-translate-y-0.5"
                                                 >
                                                     ডিটেইলস দেখুন

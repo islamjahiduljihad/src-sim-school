@@ -76,7 +76,7 @@ const AdminDigiCard = () => {
     };
 
     return (
-        <div className="p-4 sm:p-6 md:p-8 bg-white min-h-screen flex flex-col items-center">
+        <div className="sm:p-6 md:p-8 bg-white min-h-screen flex flex-col items-center">
             <div className="card bg-white shadow-2xl p-6 w-full max-w-2xl mb-8 rounded-xl border border-green-100">
                 <div className="text-center mb-6">
                     <h1 className="text-3xl font-bold text-[#1a5632] mb-2">
@@ -145,16 +145,16 @@ const AdminDigiCard = () => {
                             <div className="flex items-center">
                                 <div className="bg-white p-1 rounded-full mr-3 shadow-md">
                                     <img
-                                        className="w-12 h-12"
+                                        className="w-10 h-10 md:w-12 md:h-12"
                                         src={logoTransparent}
                                         alt=""
                                     />
                                 </div>
                                 <div>
-                                    <h2 className="text-xl font-bold">
-                                        শ্রীরায়েরচর এস আই এম উচ্চ বিদ্যালয়
+                                    <h2 className="text-sm md:text-xl font-bold">
+                                        শ্রীরায়েরচর এস আই এম উচ্চ বিদ্যালয়{" "}
                                     </h2>
-                                    <p className="text opacity-90">
+                                    <p className="text-sm md:text-lg opacity-90 font-bold">
                                         Sreerayerchar S.I.M High School
                                     </p>
                                 </div>

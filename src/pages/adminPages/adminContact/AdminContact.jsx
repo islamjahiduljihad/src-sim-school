@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { FaCheck, FaTimes, FaEye, FaPhoneVolume } from "react-icons/fa";
 import { FiMail } from "react-icons/fi";
+import { RiHome9Line } from "react-icons/ri";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const AdminContact = () => {
@@ -24,10 +26,17 @@ const AdminContact = () => {
 
     return (
         <div className="p-4 sm:p-8 bg-white rounded-xl shadow w-full">
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+            <div className="flex flex-col md:flex-row justify-between items-center sm:items-center mb-6 gap-4">
                 <h1 className="text-2xl sm:text-3xl font-bold text-[#249742] border-b-2 border-[#249742] pb-2">
                     যোগাযোগ তালিকা
                 </h1>
+                <Link
+                    className="btn bg-[#249742] hover:bg-[#1f7c38] text-white"
+                    to="/admin"
+                >
+                    <RiHome9Line />
+                    হোম পেজ
+                </Link>
             </div>
 
             <div className="overflow-x-auto w-full">

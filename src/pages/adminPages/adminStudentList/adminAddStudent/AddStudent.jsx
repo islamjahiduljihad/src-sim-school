@@ -97,9 +97,9 @@ const AddStudent = () => {
     };
 
     return (
-        <div className="p-4">
+        <div>
             <div className="card bg-base-100 shadow-xl p-6">
-                <h2 className="text-3xl font-bold text-center mb-6 text-[#249742] border-b-2 pb-4">
+                <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 text-[#249742] border-b-2 pb-4">
                     নতুন শিক্ষার্থী যুক্ত করুন
                 </h2>
                 <form onSubmit={handleSubmit} className="space-y-6">

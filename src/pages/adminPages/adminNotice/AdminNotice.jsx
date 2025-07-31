@@ -65,14 +65,14 @@ const AdminNotice = () => {
     };
 
     return (
-        <div className="p-4 sm:p-6 md:p-8 bg-gray-50 min-h-screen">
+        <div className="sm:p-6 md:p-8 bg-gray-50 min-h-screen">
             {" "}
             {/* Added a light background */}
-            <div className="card bg-base-100 shadow-xl p-6">
+            <div className="card bg-base-100 shadow-xl p-4">
                 {" "}
                 {/* Unified card styling */}
-                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4 pb-4 border-b-2 border-[#249742]">
-                    <h1 className="text-3xl font-extrabold text-[#249742]">
+                <div className="flex flex-col sm:flex-row items-center justify-between  sm:items-center mb-6 gap-4 pb-4 border-b-2 border-[#249742]">
+                    <h1 className="text-2xl text-center md:text-left md:text-3xl font-extrabold text-[#249742]">
                         সাম্প্রতিক নোটিশসমূহ
                     </h1>
                     <button

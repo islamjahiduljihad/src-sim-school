@@ -10,6 +10,7 @@ import {
     FaClock,
     FaWhatsapp,
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -403,7 +404,7 @@ const Contact = () => {
                                         ঠিকানা
                                     </h3>
                                     <p className="mb-6 text-gray-700 text-lg">
-                                        শ্রীরায়ের চর, মুরাদনগর, কুমিল্লা,
+                                        শ্রীরায়ের চর, দাউদকান্দি, কুমিল্লা,
                                         বাংলাদেশ
                                     </p>
 
@@ -418,7 +419,7 @@ const Contact = () => {
                                                 </span>
                                                 <span>
                                                     কুমিল্লা শহর থেকে বাসে করে
-                                                    মুরাদনগর যান
+                                                    দাউদকান্দি যান
                                                 </span>
                                             </li>
                                             <li className="flex items-start">
@@ -426,8 +427,8 @@ const Contact = () => {
                                                     ২
                                                 </span>
                                                 <span>
-                                                    মুরাদনগর বাসস্ট্যান্ড থেকে
-                                                    অটোরিকশা নিন
+                                                    দাউদকান্দি বলদাখাল থেকে
+                                                    সিএনজি নিন
                                                 </span>
                                             </li>
                                             <li className="flex items-start">
@@ -435,8 +436,8 @@ const Contact = () => {
                                                     ৩
                                                 </span>
                                                 <span>
-                                                    অটোরিকশায় করে শ্রীরায়ের চর
-                                                    স্কুলে যান (১০ মিনিটের পথ)
+                                                    সিএনজি তে করে শ্রীরায়ের চর
+                                                    স্কুলে যান (৩০ মিনিটের পথ)
                                                 </span>
                                             </li>
                                         </ul>
@@ -472,11 +473,17 @@ const Contact = () => {
                                                 বিদ্যালয়
                                             </h3>
                                             <p className="mb-4">
-                                                কুমিল্লা, বাংলাদেশ
+                                                দাউদকান্দি, কুমিল্লা, বাংলাদেশ
                                             </p>
-                                            <button className="bg-white text-[#249742] font-semibold px-6 py-2 rounded-lg hover:bg-gray-100">
+                                            <Link
+                                                target="_blank"
+                                                to={
+                                                    "https://maps.app.goo.gl/FkrNuVwFqC8mUbPs8"
+                                                }
+                                                className="bg-white text-[#249742] font-semibold px-6 py-2 rounded-lg hover:bg-gray-100"
+                                            >
                                                 গুগল ম্যাপে দেখুন
-                                            </button>
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>

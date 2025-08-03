@@ -31,6 +31,7 @@ import AdminStudentResults from "../pages/adminPages/adminStudentList/adminStude
 import TeacherDetails from "../pages/teacherDetails/TeacherDetails";
 import FundManagement from "../pages/adminPages/fundManagement/FundManagement";
 import EventManagement from "../pages/adminPages/eventManagement/EventManagement";
+import StaffManagement from "../pages/adminPages/staffManagement/StaffManagement";
 
 const router = createBrowserRouter([
     {
@@ -159,6 +160,10 @@ const router = createBrowserRouter([
             {
                 path: "/admin/events",
                 element: <EventManagement></EventManagement>,
+            },
+            {
+                path: "/admin/staffManagement",
+                element: <StaffManagement></StaffManagement>,
             },
         ],
     },

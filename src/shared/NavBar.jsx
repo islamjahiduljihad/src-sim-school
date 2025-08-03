@@ -3,6 +3,12 @@ import { NavLink } from "react-router-dom";
 import logoTransparent from "../assets/logo/logoTransparent.png";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { PiStudent } from "react-icons/pi";
+import { RiHome9Line } from "react-icons/ri";
+import { FaSchool } from "react-icons/fa";
+import { HiOutlineAcademicCap, HiOutlineViewGrid } from "react-icons/hi";
+import { HiOutlineBellAlert } from "react-icons/hi2";
+import { MdOutlineCalculate, MdOutlineContactSupport } from "react-icons/md";
+import { IoImagesOutline } from "react-icons/io5";
 
 const NavBar = () => {
     const [drawerOpen, setDrawerOpen] = useState(false);
@@ -11,48 +17,56 @@ const NavBar = () => {
         <>
             <li>
                 <NavLink to={"/"} onClick={() => setDrawerOpen(false)}>
+                    <RiHome9Line className="text-[#249742]" />
                     হোম
                 </NavLink>
             </li>
             <li>
                 <NavLink to={"/about"} onClick={() => setDrawerOpen(false)}>
+                    <FaSchool className="text-[#249742]" />
                     প্রতিষ্ঠান সম্পর্কে
                 </NavLink>
             </li>
             <li>
-                <NavLink
-                    to={"/academic"}
-                    onClick={() => setDrawerOpen(false)}
-                >
+                <NavLink to={"/academic"} onClick={() => setDrawerOpen(false)}>
+                    <HiOutlineAcademicCap className="text-[#249742]" />
                     একাডেমিক
                 </NavLink>
             </li>
             <li>
                 <NavLink to={"/faculty"} onClick={() => setDrawerOpen(false)}>
+                    <HiOutlineViewGrid className="text-[#249742]" />
                     ফ্যাকাল্টি
                 </NavLink>
             </li>
             <li>
                 <NavLink to={"/notice"} onClick={() => setDrawerOpen(false)}>
+                    <HiOutlineBellAlert className="text-[#249742]" />
                     নোটিশ
                 </NavLink>
             </li>
             <li>
                 <NavLink to={"/result"} onClick={() => setDrawerOpen(false)}>
+                    <MdOutlineCalculate className="text-[#249742]" />
                     ফলাফল
                 </NavLink>
             </li>
             <li>
-                <NavLink to={"/photoGallery"} onClick={() => setDrawerOpen(false)}>
+                <NavLink
+                    to={"/photoGallery"}
+                    onClick={() => setDrawerOpen(false)}
+                >
+                    <IoImagesOutline className="text-[#249742]" />
                     ফটো গ্যালারী
                 </NavLink>
             </li>
             <li>
                 <NavLink to={"/contact"} onClick={() => setDrawerOpen(false)}>
+                    <MdOutlineContactSupport className="text-[#249742]" />
                     যোগাযোগ
                 </NavLink>
             </li>
-            <li>
+            <li className="hidden">
                 <NavLink
                     className={
                         "btn bg-[#249742] text-white rounded-3xl border-none outline-none flex items-center gap-2"

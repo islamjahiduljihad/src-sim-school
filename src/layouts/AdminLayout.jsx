@@ -52,7 +52,7 @@ const AdminLayout = () => {
                             এডমিন হোম
                         </Link>
                         <Link
-                            to="/admin/studentList"
+                            to="/admin/funds"
                             className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-[#249742] hover:text-white"
                         >
                             <TbCoinTaka className="text-[#249742]" />

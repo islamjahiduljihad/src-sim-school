@@ -29,6 +29,7 @@ import AddStudent from "../pages/adminPages/adminStudentList/adminAddStudent/Add
 import AddTeacher from "../pages/adminPages/adminTeacherList/addTeacher/AddTeacher";
 import AdminStudentResults from "../pages/adminPages/adminStudentList/adminStudentResults/AdminStudentResults";
 import TeacherDetails from "../pages/teacherDetails/TeacherDetails";
+import FundManagement from "../pages/adminPages/fundManagement/FundManagement";
 
 const router = createBrowserRouter([
     {
@@ -149,6 +150,10 @@ const router = createBrowserRouter([
             {
                 path: "/admin/studentResults",
                 element: <AdminStudentResults></AdminStudentResults>,
+            },
+            {
+                path: "/admin/funds",
+                element: <FundManagement></FundManagement>,
             },
         ],
     },

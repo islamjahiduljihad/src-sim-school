@@ -9,14 +9,6 @@ const Login = () => {
 
     const [showPassword, setShowPassword] = useState(false);
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setUser((prev) => ({
-            ...prev,
-            [name]: value,
-        }));
-    };
-
     const handleLogin = (e) => {
         e.preventDefault();
         setLoading(true);
@@ -99,7 +91,6 @@ const Login = () => {
                                     id="email"
                                     name="email"
                                     type="email"
-                                    onChange={handleChange}
                                     required
                                     className="w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#249742] focus:border-transparent"
                                     placeholder="admin@school.edu"
@@ -122,7 +113,6 @@ const Login = () => {
                                     id="password"
                                     name="password"
                                     type={showPassword ? "text" : "password"}
-                                    onChange={handleChange}
                                     required
                                     className="w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#249742] focus:border-transparent"
                                     placeholder="••••••••"

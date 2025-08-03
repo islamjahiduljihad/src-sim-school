@@ -34,6 +34,7 @@ import EventManagement from "../pages/adminPages/eventManagement/EventManagement
 import StaffManagement from "../pages/adminPages/staffManagement/StaffManagement";
 import Login from "../pages/authentication/login/Login";
 import PrivateRoute from "./privateRoute/PrivateRoute";
+import AdminPrivateRoute from "./adminPrivateRoute/AdminPrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -175,7 +176,11 @@ const router = createBrowserRouter([
     },
     {
         path: "/authentication/admin/login",
-        element: <Login></Login>,
+        element: (
+            <AdminPrivateRoute>
+                <Login></Login>
+            </AdminPrivateRoute>
+        ),
     },
 ]);
 

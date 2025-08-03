@@ -15,6 +15,8 @@ import {
 import { AiOutlineLogout } from "react-icons/ai";
 import { FaRegIdCard } from "react-icons/fa";
 import { CgReadme } from "react-icons/cg";
+import { BsPeople } from "react-icons/bs";
+import { TbCoinTaka } from "react-icons/tb";
 
 const AdminLayout = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -46,7 +48,14 @@ const AdminLayout = () => {
                             className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-[#249742] hover:text-white"
                         >
                             <RiHome9Line className="text-[#249742]" />
-                            হোম
+                            এডমিন হোম
+                        </Link>
+                        <Link
+                            to="/admin/studentList"
+                            className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-[#249742] hover:text-white"
+                        >
+                            <TbCoinTaka className="text-[#249742]" />
+                            স্কুল ফান্ড ম্যানেজমেন্ট
                         </Link>
                         <Link
                             to="/admin/studentList"
@@ -117,6 +126,13 @@ const AdminLayout = () => {
                         >
                             <CgReadme className="text-[#249742]" />
                             ভর্তি ম্যানেজমেন্ট
+                        </Link>
+                        <Link
+                            to="/admin"
+                            className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-[#249742] hover:text-white"
+                        >
+                            <BsPeople className="text-[#249742]" />
+                            ম্যানেজিং কমিটি
                         </Link>
                         <Link
                             to="/admin/developerContact"

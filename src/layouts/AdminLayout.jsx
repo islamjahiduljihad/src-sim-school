@@ -14,6 +14,7 @@ import {
 } from "react-icons/md";
 import { AiOutlineLogout } from "react-icons/ai";
 import { FaRegIdCard } from "react-icons/fa";
+import { CgReadme } from "react-icons/cg";
 
 const AdminLayout = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -109,6 +110,13 @@ const AdminLayout = () => {
                         >
                             <RiRadioButtonLine className="text-[#249742]" />
                             শিক্ষার্থী পোর্টাল
+                        </Link>
+                        <Link
+                            to="/admin"
+                            className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-[#249742] hover:text-white"
+                        >
+                            <CgReadme className="text-[#249742]" />
+                            ভর্তি ম্যানেজমেন্ট
                         </Link>
                         <Link
                             to="/admin/developerContact"

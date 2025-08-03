@@ -33,6 +33,7 @@ import FundManagement from "../pages/adminPages/fundManagement/FundManagement";
 import EventManagement from "../pages/adminPages/eventManagement/EventManagement";
 import StaffManagement from "../pages/adminPages/staffManagement/StaffManagement";
 import Login from "../pages/authentication/login/Login";
+import PrivateRoute from "./privateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -80,7 +81,11 @@ const router = createBrowserRouter([
     },
     {
         path: "/admin",
-        element: <AdminLayout></AdminLayout>,
+        element: (
+            <PrivateRoute>
+                <AdminLayout></AdminLayout>
+            </PrivateRoute>
+        ),
         children: [
             {
                 path: "/admin",

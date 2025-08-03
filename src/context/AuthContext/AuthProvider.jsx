@@ -21,7 +21,7 @@ const AuthProvider = ({ children }) => {
         };
     }, []);
 
-    const login = (email, password) => {
+    const login = async (email, password) => {
         setLoading(true);
         return signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
@@ -37,12 +37,29 @@ const AuthProvider = ({ children }) => {
             });
     };
 
+    const logout = async () => {
+        setLoading(true);
+        return auth
+            .signOut()
+            .then(() => {
+                setUser(null);
+            })
+            .catch((error) => {
+                console.error("Error signing out:", error);
+                throw error;
+            })
+            .finally(() => {
+                setLoading(false);
+            });
+    };
+
     const data = {
         user,
         loading,
         login,
         setUser,
         setLoading,
+        logout,
     };
 
     return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;

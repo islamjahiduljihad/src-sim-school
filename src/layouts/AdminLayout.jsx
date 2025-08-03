@@ -1,6 +1,6 @@
 import { BiMenu } from "react-icons/bi";
 import { Outlet, Link } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { IoClose } from "react-icons/io5";
 import { RiHome9Line, RiRadioButtonLine } from "react-icons/ri";
 import { PiStudentBold } from "react-icons/pi";
@@ -18,10 +18,12 @@ import { FaRegIdCard } from "react-icons/fa";
 import { CgReadme } from "react-icons/cg";
 import { BsPeople } from "react-icons/bs";
 import { TbCoinTaka } from "react-icons/tb";
+import AuthContext from "../context/AuthContext/AuthContext";
 
 const AdminLayout = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+    const { user, logout } = useContext(AuthContext);
 
     return (
         <div className="h-screen md:flex overflow-hidden">
@@ -162,12 +164,23 @@ const AdminLayout = () => {
                             />
                             <div>
                                 <h1 className="text-[#249742] font-bold">
-                                    জাকির হোসাইন
+                                    {user?.email}
                                 </h1>
                                 <p>#১০২১</p>
                             </div>
                         </div>
-                        <button className="flex items-center gap-2 mt-3 btn btn-sm rounded-3xl border-none bg-[#249742] text-white w-full">
+                        <button
+                            onClick={() => {
+                                logout()
+                                    .then(() => {
+                                        console.log("Logged out successfully");
+                                    })
+                                    .catch((error) => {
+                                        console.error("Logout failed:", error);
+                                    });
+                            }}
+                            className="flex items-center gap-2 mt-3 btn btn-sm rounded-3xl border-none bg-[#249742] text-white w-full"
+                        >
                             <AiOutlineLogout />
                             লগআউট
                         </button>

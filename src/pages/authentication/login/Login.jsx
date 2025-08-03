@@ -1,22 +1,17 @@
 import { useContext, useState } from "react";
 import { FaLock, FaEnvelope, FaEye, FaEyeSlash } from "react-icons/fa";
 import AuthContext from "../../../context/AuthContext/AuthContext";
+import Swal from "sweetalert2";
 
 const Login = () => {
-    const { user } = useContext(AuthContext);
+    const { user, setUser, loading, setLoading, login } =
+        useContext(AuthContext);
 
-    console.log("User:", user);
-
-    const [credentials, setCredentials] = useState({
-        email: "",
-        password: "",
-    });
     const [showPassword, setShowPassword] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setCredentials((prev) => ({
+        setUser((prev) => ({
             ...prev,
             [name]: value,
         }));
@@ -24,17 +19,32 @@ const Login = () => {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        setIsLoading(true);
+        setLoading(true);
 
-        login(credentials.email, credentials.password)
+        const form = e.target;
+
+        const email = form.email.value;
+        const password = form.password.value;
+
+        login(email, password)
             .then(() => {
-                // Handle successful login
+                Swal.fire({
+                    title: "লগইন সফল!",
+                    text: "আপনি সফলভাবে লগইন করেছেন।",
+                    icon: "success",
+                    confirmButtonText: "ঠিক আছে",
+                });
             })
             .catch((error) => {
-                console.error("Login failed:", error);
+                Swal.fire({
+                    title: "লগইন ব্যর্থ!",
+                    text: error.message,
+                    icon: "error",
+                    confirmButtonText: "পুনরায় চেষ্টা করুন",
+                });
             })
             .finally(() => {
-                setIsLoading(false);
+                setLoading(false);
             });
     };
 
@@ -89,7 +99,6 @@ const Login = () => {
                                     id="email"
                                     name="email"
                                     type="email"
-                                    value={credentials.email}
                                     onChange={handleChange}
                                     required
                                     className="w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#249742] focus:border-transparent"
@@ -113,7 +122,6 @@ const Login = () => {
                                     id="password"
                                     name="password"
                                     type={showPassword ? "text" : "password"}
-                                    value={credentials.password}
                                     onChange={handleChange}
                                     required
                                     className="w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#249742] focus:border-transparent"
@@ -158,10 +166,10 @@ const Login = () => {
 
                         <button
                             type="submit"
-                            disabled={isLoading}
+                            disabled={loading}
                             className="w-full bg-gradient-to-r from-[#249742] to-[#1c6e36] text-white py-3 px-4 rounded-lg font-semibold hover:from-[#1c6e36] hover:to-[#155a2b] transition-all duration-300 flex items-center justify-center"
                         >
-                            {isLoading ? (
+                            {loading ? (
                                 <>
                                     <svg
                                         className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"

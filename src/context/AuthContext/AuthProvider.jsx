@@ -23,12 +23,14 @@ const AuthProvider = ({ children }) => {
 
     const login = (email, password) => {
         setLoading(true);
-        signInWithEmailAndPassword(auth, email, password)
+        return signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 setUser(userCredential.user);
+                return userCredential.user;
             })
             .catch((error) => {
                 console.error("Error signing in:", error);
+                throw error;
             })
             .finally(() => {
                 setLoading(false);

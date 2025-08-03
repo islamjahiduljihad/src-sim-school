@@ -1,7 +1,12 @@
-import React, { useState } from "react";
+import { useContext, useState } from "react";
 import { FaLock, FaEnvelope, FaEye, FaEyeSlash } from "react-icons/fa";
+import AuthContext from "../../../context/AuthContext/AuthContext";
 
 const Login = () => {
+    const { user } = useContext(AuthContext);
+
+    console.log("User:", user);
+
     const [credentials, setCredentials] = useState({
         email: "",
         password: "",
@@ -21,11 +26,16 @@ const Login = () => {
         e.preventDefault();
         setIsLoading(true);
 
-        // Simulate API call
-        setTimeout(() => {
-            console.log("Login attempt with credentials:", credentials);
-            setIsLoading(false);
-        }, 1500);
+        login(credentials.email, credentials.password)
+            .then(() => {
+                // Handle successful login
+            })
+            .catch((error) => {
+                console.error("Login failed:", error);
+            })
+            .finally(() => {
+                setIsLoading(false);
+            });
     };
 
     const togglePasswordVisibility = () => {

@@ -8,6 +8,7 @@ import { LiaChalkboardTeacherSolid } from "react-icons/lia";
 import { HiOutlineBellAlert } from "react-icons/hi2";
 import { SlCalculator } from "react-icons/sl";
 import {
+    MdEventAvailable,
     MdOutlineContactPhone,
     MdOutlineDeveloperMode,
     MdOutlinePhotoLibrary,
@@ -77,6 +78,13 @@ const AdminLayout = () => {
                         >
                             <HiOutlineBellAlert className="text-[#249742]" />
                             নোটিশ ম্যানেজমেন্ট
+                        </Link>
+                        <Link
+                            to="/admin/notices"
+                            className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-[#249742] hover:text-white"
+                        >
+                            <MdEventAvailable className="text-[#249742]" />
+                            ইভেন্ট ম্যানেজমেন্ট
                         </Link>
                         <Link
                             to="/admin/studentResults"

@@ -15,110 +15,14 @@ const Faculty = () => {
     const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
-        // Simulating API call with mock data
-        const mockTeachers = [
-            {
-                _id: "1",
-                name_en: "Zakir Hossain",
-                name_bn: "জাকির হোসেন",
-                photo_url: "https://i.ibb.co/Fk2sWQyS/cst-09.jpg",
-                designation: "সহকারী শিক্ষক",
-                department: "General",
-                subjectList: "আইসিটি, ইংলিশ",
-                education: "এম.এসসি ইন কম্পিউটার সায়েন্স",
-                experience: "১০ বছর",
-            },
-            {
-                _id: "2",
-                name_en: "Fatema Begum",
-                name_bn: "ফাতেমা বেগম",
-                photo_url: "https://i.ibb.co/1rJQYf8/teacher2.jpg",
-                designation: "সহকারী শিক্ষক",
-                department: "Science",
-                subjectList: "গণিত, পদার্থবিজ্ঞান",
-                education: "এম.এসসি ইন গণিত",
-                experience: "৮ বছর",
-            },
-            {
-                _id: "3",
-                name_en: "Rahim Uddin",
-                name_bn: "রহিম উদ্দিন",
-                photo_url: "https://i.ibb.co/2FjSg3Z/teacher3.jpg",
-                designation: "সহকারী শিক্ষক",
-                department: "Science",
-                subjectList: "রসায়ন, জীববিজ্ঞান",
-                education: "এম.এসসি ইন কেমিস্ট্রি",
-                experience: "১২ বছর",
-            },
-            {
-                _id: "4",
-                name_en: "Nusrat Jahan",
-                name_bn: "নুসরাত জাহান",
-                photo_url: "https://i.ibb.co/KWzX7Hc/teacher4.jpg",
-                designation: "সহকারী শিক্ষক",
-                department: "Business",
-                subjectList: "ব্যবসায় শিক্ষা, অর্থনীতি",
-                education: "এমবিএ, বিএড",
-                experience: "৭ বছর",
-            },
-            {
-                _id: "5",
-                name_en: "Kamal Hossain",
-                name_bn: "কামাল হোসেন",
-                photo_url: "https://i.ibb.co/0XJb5yT/teacher5.jpg",
-                designation: "প্রধান শিক্ষক",
-                department: "General",
-                subjectList: "ইংরেজি, বাংলা",
-                education: "এম.এ ইন ইংরেজি",
-                experience: "১৫ বছর",
-            },
-            {
-                _id: "6",
-                name_en: "Shamima Akter",
-                name_bn: "শামীমা আক্তার",
-                photo_url: "https://i.ibb.co/6wYH0zT/teacher6.jpg",
-                designation: "সহকারী শিক্ষক",
-                department: "Humanities",
-                subjectList: "ইতিহাস, ভূগোল",
-                education: "এম.এ ইন ইতিহাস",
-                experience: "৯ বছর",
-            },
-            {
-                _id: "7",
-                name_en: "Abdul Karim",
-                name_bn: "আব্দুল করিম",
-                photo_url: "https://i.ibb.co/7yX6q0y/teacher7.jpg",
-                designation: "সহকারী শিক্ষক",
-                department: "Science",
-                subjectList: "গণিত, উচ্চতর গণিত",
-                education: "এম.এসসি ইন গণিত",
-                experience: "১১ বছর",
-            },
-            {
-                _id: "8",
-                name_en: "Rina Parvin",
-                name_bn: "রিনা পারভীন",
-                photo_url: "https://i.ibb.co/0fV0RcF/teacher8.jpg",
-                designation: "সহকারী শিক্ষক",
-                department: "Humanities",
-                subjectList: "সমাজবিজ্ঞান, নাগরিকতা",
-                education: "এম.এসএস ইন সমাজবিজ্ঞান",
-                experience: "৬ বছর",
-            },
-        ];
-
-        setTeachers(mockTeachers);
-        setFilteredTeachers(mockTeachers);
-
         // In production, use the actual API call:
-        /*
+
         fetch("http://localhost:3000/teachers")
             .then((res) => res.json())
             .then((data) => {
                 setTeachers(data);
                 setFilteredTeachers(data);
             });
-        */
     }, []);
 
     // Filter teachers based on department and search term

@@ -8,52 +8,8 @@ const OurTeachers = () => {
     const [teachersData, setTeachersData] = useState([]);
 
     useEffect(() => {
-        // Mock data for demonstration
-        const mockTeachers = [
-            {
-                _id: "1",
-                name_en: "Zakir Hossain",
-                name_bn: "জাকির হোসেন",
-                photoUrl: "https://i.ibb.co/Fk2sWQyS/cst-09.jpg",
-                subjectList: "আইসিটি, ইংলিশ",
-                designation: "সহকারী শিক্ষক",
-                department: "সাধারণ বিভাগ",
-            },
-            {
-                _id: "2",
-                name_en: "Fatema Begum",
-                name_bn: "ফাতেমা বেগম",
-                photoUrl:
-                    "https://i.ibb.co/60fzLj9m/photo-1544717305-2782549b5136.jpg",
-                subjectList: "গণিত, পদার্থবিজ্ঞান",
-                designation: "সহকারী শিক্ষক",
-                department: "বিজ্ঞান বিভাগ",
-            },
-            {
-                _id: "3",
-                name_en: "Rahim Uddin",
-                name_bn: "রহিম উদ্দিন",
-                photoUrl:
-                    "https://i.ibb.co/hRdpntqQ/photo-1557862921-37829c790f19.jpg",
-                subjectList: "রসায়ন, জীববিজ্ঞান",
-                designation: "সহকারী শিক্ষক",
-                department: "বিজ্ঞান বিভাগ",
-            },
-            {
-                _id: "4",
-                name_en: "Nusrat Jahan",
-                name_bn: "নুসরাত জাহান",
-                photoUrl:
-                    "https://i.ibb.co/9Hyh3Wfs/premium-photo-1690479510584-88e88bb4a44b.jpg",
-                subjectList: "ব্যবসায় শিক্ষা, অর্থনীতি",
-                designation: "সহকারী শিক্ষক",
-                department: "ব্যবসায় শিক্ষা",
-            },
-        ];
-        setTeachersData(mockTeachers);
-
         // In production, use the actual API call:
-        /*
+
         fetch("http://localhost:3000/teachers?limit=4")
             .then((res) => res.json())
             .then((data) => {
@@ -62,7 +18,6 @@ const OurTeachers = () => {
             .catch((error) =>
                 console.error("Error fetching teachers data:", error)
             );
-        */
     }, []);
 
     return (
@@ -146,7 +101,7 @@ const OurTeachers = () => {
                                     </div>
 
                                     <Link
-                                        to={`/teachers/${teacher?._id}`}
+                                        to={`/teacher/${teacher?._id}`}
                                         className="inline-flex items-center justify-center gap-1 text-[#249742] font-medium hover:text-[#1c6e36] transition-colors group-hover:underline"
                                     >
                                         বিস্তারিত দেখুন

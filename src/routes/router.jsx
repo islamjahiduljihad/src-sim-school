@@ -32,6 +32,7 @@ import TeacherDetails from "../pages/teacherDetails/TeacherDetails";
 import FundManagement from "../pages/adminPages/fundManagement/FundManagement";
 import EventManagement from "../pages/adminPages/eventManagement/EventManagement";
 import StaffManagement from "../pages/adminPages/staffManagement/StaffManagement";
+import Login from "../pages/authentication/login/Login";
 
 const router = createBrowserRouter([
     {
@@ -166,6 +167,10 @@ const router = createBrowserRouter([
                 element: <StaffManagement></StaffManagement>,
             },
         ],
+    },
+    {
+        path: "/authentication/admin/login",
+        element: <Login></Login>,
     },
 ]);
 

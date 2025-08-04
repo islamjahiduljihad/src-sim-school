@@ -19,11 +19,38 @@ import { CgReadme } from "react-icons/cg";
 import { BsPeople } from "react-icons/bs";
 import { TbCoinTaka } from "react-icons/tb";
 import AuthContext from "../context/AuthContext/AuthContext";
+import Swal from "sweetalert2";
 
 const AdminLayout = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
-    const { user, logout } = useContext(AuthContext);
+    const { user, logout, updateUserProfile } = useContext(AuthContext);
+
+    console.log(user);
+
+    const handleUpdateUser = (e) => {
+        e.preventDefault();
+
+        const form = e.target;
+
+        const displayName = form.displayName.value;
+        const photoURL = form.photoURL.value;
+
+        updateUserProfile({ displayName, photoURL })
+            .then(() => {
+                Swal.fire({
+                    title: "প্রোফাইল আপডেট হয়েছে!",
+                    text: "আপনার প্রোফাইল সফলভাবে আপডেট হয়েছে।",
+                    icon: "success",
+                    confirmButtonText: "ঠিক আছে",
+                });
+                form.reset();
+                document.getElementById("profile_update_modal").close();
+            })
+            .catch((error) => {
+                console.error("Error updating profile:", error);
+            });
+    };
 
     return (
         <div className="h-screen md:flex overflow-hidden">
@@ -124,13 +151,6 @@ const AdminLayout = () => {
                             যোগাযোগ পাতা
                         </Link>
                         <Link
-                            to="/admin/notices"
-                            className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-[#249742] hover:text-white"
-                        >
-                            <RiRadioButtonLine className="text-[#249742]" />
-                            শিক্ষার্থী পোর্টাল
-                        </Link>
-                        <Link
                             to="/admin"
                             className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-[#249742] hover:text-white"
                         >
@@ -159,31 +179,51 @@ const AdminLayout = () => {
                         <div className="flex items-center gap-2">
                             <img
                                 className="w-12 h-12 p-1 rounded-full border-2 border-[#249742]"
-                                src="https://res.cloudinary.com/dvhkcr2jb/image/upload/v1753203431/premium_photo-1683121413514-502338cb0b74_guik5n.avif"
+                                src={
+                                    user?.photoURL ||
+                                    "https://cdn-icons-png.flaticon.com/128/15239/15239514.png"
+                                }
                                 alt="admin avatar"
                             />
                             <div>
                                 <h1 className="text-[#249742] font-bold">
-                                    {user?.email}
+                                    {user?.displayName || "অ্যাডমিন"}
                                 </h1>
                                 <p>#১০২১</p>
                             </div>
                         </div>
-                        <button
-                            onClick={() => {
-                                logout()
-                                    .then(() => {
-                                        console.log("Logged out successfully");
-                                    })
-                                    .catch((error) => {
-                                        console.error("Logout failed:", error);
-                                    });
-                            }}
-                            className="flex items-center gap-2 mt-3 btn btn-sm rounded-3xl border-none bg-[#249742] text-white w-full"
-                        >
-                            <AiOutlineLogout />
-                            লগআউট
-                        </button>
+                        <div className="flex items-center gap-2 mt-2">
+                            <button
+                                onClick={() => {
+                                    document
+                                        .getElementById("profile_modal")
+                                        .showModal();
+                                }}
+                                className="btn btn-sm rounded-3xl bg-[#249742] text-white border-none shadow-none"
+                            >
+                                প্রোফাইল
+                            </button>
+                            <button
+                                onClick={() => {
+                                    logout()
+                                        .then(() => {
+                                            console.log(
+                                                "Logged out successfully"
+                                            );
+                                        })
+                                        .catch((error) => {
+                                            console.error(
+                                                "Logout failed:",
+                                                error
+                                            );
+                                        });
+                                }}
+                                className="flex items-center gap-1 btn btn-sm rounded-3xl border-none btn-error text-white"
+                            >
+                                <AiOutlineLogout />
+                                লগআউট
+                            </button>
+                        </div>
                     </div>
                 </div>
             </aside>
@@ -206,7 +246,10 @@ const AdminLayout = () => {
                     <div>
                         <img
                             className="p-[2px] w-10 h-10 rounded-full border-2 border-[#249742]"
-                            src="https://res.cloudinary.com/dvhkcr2jb/image/upload/v1753203431/premium_photo-1683121413514-502338cb0b74_guik5n.avif"
+                            src={
+                                user?.photoURL ||
+                                "https://cdn-icons-png.flaticon.com/128/15239/15239514.png"
+                            }
                             alt="admin avatar"
                         />
                     </div>
@@ -217,6 +260,133 @@ const AdminLayout = () => {
                     <Outlet />
                 </main>
             </div>
+
+            {/* Profile modal */}
+            {/* Open the modal using document.getElementById('ID').showModal() method */}
+            <dialog
+                id="profile_modal"
+                className="modal modal-bottom sm:modal-middle"
+            >
+                <div className="modal-box">
+                    <h3 className="font-bold text-2xl text-[#249742]">
+                        অ্যাডমিন প্রোফাইল
+                    </h3>
+                    {/* Main content */}
+                    <div>
+                        <div className="flex items-center gap-4 mt-4">
+                            <img
+                                className="w-24 h-24 border-2 rounded-full p-1 border-[#249742]"
+                                src={
+                                    user?.photoURL ||
+                                    "https://cdn-icons-png.flaticon.com/128/15239/15239514.png"
+                                }
+                                alt="Admin"
+                            />
+
+                            <div>
+                                <h1 className="text-xl font-bold text-[#249742]">
+                                    {user?.displayName
+                                        ? user.displayName
+                                        : "এসএসআইএমএইচএস অ্যাডমিন"}
+                                </h1>
+                                <p className="text-gray-600 font-semibold">
+                                    {user?.email}
+                                </p>
+                            </div>
+                        </div>
+                        <table className="table w-full mt-6">
+                            <tbody>
+                                <tr>
+                                    <td>একাউন্ট তৈরির সময়ঃ</td>
+                                    <td>{user?.metadata?.creationTime}</td>
+                                </tr>
+                                <tr>
+                                    <td>লাস্ট সাইন ইনঃ</td>
+                                    <td>{user?.metadata?.lastSignInTime}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div className="mt-4">
+                        <button
+                            onClick={() => {
+                                document
+                                    .getElementById("profile_update_modal")
+                                    .showModal();
+                            }}
+                            className="btn bg-[#249742] text-white shadow-none border-none"
+                        >
+                            প্রোফাইল আপডেট
+                        </button>
+                        <button
+                            className="btn btn-error ml-2 text-white shadow-none border-none"
+                            onClick={() => {
+                                document
+                                    .getElementById("profile_modal")
+                                    .close();
+                            }}
+                        >
+                            বন্ধ করুন
+                        </button>
+                    </div>
+                </div>
+            </dialog>
+
+            {/* Profile update modal */}
+            {/* Open the modal using document.getElementById('ID').showModal() method */}
+            <dialog
+                id="profile_update_modal"
+                className="modal modal-bottom sm:modal-middle"
+            >
+                <div className="modal-box">
+                    <h3 className="font-bold text-xl text-[#249742]">
+                        অ্যাডমিন প্রোফাইল আপডেট
+                    </h3>
+                    {/* Main */}
+                    <div>
+                        <form onSubmit={handleUpdateUser} action="">
+                            <div>
+                                <label htmlFor="">নাম</label>
+                                <input
+                                    name="displayName"
+                                    type="text"
+                                    className="input input-bordered w-full"
+                                    defaultValue={user?.displayName || ""}
+                                />
+                            </div>
+                            <div className="mt-4">
+                                <label htmlFor="">ফটো ইউআরএল</label>
+                                <input
+                                    name="photoURL"
+                                    type="url"
+                                    className="input input-bordered w-full"
+                                    defaultValue={user?.photoURL || ""}
+                                />
+                            </div>
+
+                            <div className="mt-4 flex justify-end">
+                                <button className="btn bg-[#249742] text-white shadow-none border-none">
+                                    আপডেট করুন
+                                </button>
+                                <button
+                                    type="button"
+                                    className="btn btn-error ml-2 text-white shadow-none border-none"
+                                    onClick={() => {
+                                        document
+                                            .getElementById(
+                                                "profile_update_modal"
+                                            )
+                                            .close();
+                                    }}
+                                >
+                                    বাতিল করুন
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
         </div>
     );
 };

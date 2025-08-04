@@ -1,4 +1,8 @@
-import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import {
+    onAuthStateChanged,
+    signInWithEmailAndPassword,
+    updateProfile,
+} from "firebase/auth";
 import { useEffect, useState } from "react";
 import auth from "../../firebase/firebase.init";
 import AuthContext from "./AuthContext";
@@ -53,6 +57,18 @@ const AuthProvider = ({ children }) => {
             });
     };
 
+    const updateUserProfile = async (newUserData) => {
+        setLoading(true);
+        try {
+            await updateProfile(auth.currentUser, newUserData);
+        } catch (error) {
+            console.error("Error updating profile:", error);
+            throw error;
+        } finally {
+            setLoading(false);
+        }
+    };
+
     const data = {
         user,
         loading,
@@ -60,6 +76,7 @@ const AuthProvider = ({ children }) => {
         setUser,
         setLoading,
         logout,
+        updateUserProfile,
     };
 
     return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;

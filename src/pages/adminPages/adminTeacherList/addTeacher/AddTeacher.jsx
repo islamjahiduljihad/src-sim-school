@@ -103,7 +103,6 @@ const AddTeacher = () => {
             email: "",
             joining_date: "",
             designation: "",
-            department: "",
             education: "",
             present_address: "",
             permanent_address: "",

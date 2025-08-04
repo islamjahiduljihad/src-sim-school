@@ -80,7 +80,7 @@ const NavBar = () => {
     );
 
     return (
-        <div>
+        <div className="sticky top-0 z-50 bg-white shadow-md">
             <div
                 id="top-message"
                 className="relative text-center bg-[#8E1C20] text-white p-[2px]"

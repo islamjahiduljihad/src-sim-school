@@ -10,6 +10,7 @@ import {
 import { Pie, Bar } from "react-chartjs-2";
 import SectionHeader from "../../../components/sectionHeader/SectionHeader";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 ChartJS.register(
     ArcElement,
@@ -21,6 +22,15 @@ ChartJS.register(
 );
 
 const StudentStatistics = () => {
+    const [studentStat, setStudentStat] = useState({});
+
+    console.log(studentStat);
+
+    useEffect(() => {
+        fetch("http://localhost:3000/statistics/student")
+            .then((res) => res.json())
+            .then((data) => setStudentStat(data));
+    }, []);
     // Demo Student Data
     const totalStudents = 500;
     const boys = 280;
@@ -111,7 +121,10 @@ const StudentStatistics = () => {
                     >
                         <div className="bg-[#249742]/10 rounded-full w-16 h-16 flex items-center justify-center mb-4">
                             <span className="text-3xl font-bold text-[#249742]">
-                                {totalStudents}
+                                {
+                                    studentStat?.data?.studentsCount
+                                        ?.totalStudentCount
+                                }
                             </span>
                         </div>
                         <h3 className="text-xl font-bold text-gray-800 mb-2">
@@ -131,7 +144,7 @@ const StudentStatistics = () => {
                     >
                         <div className="bg-[#249742]/10 rounded-full w-16 h-16 flex items-center justify-center mb-4">
                             <span className="text-3xl font-bold text-[#249742]">
-                                {boys}
+                                {studentStat?.data?.totalMaleFemaleCount.পুরুষ}
                             </span>
                         </div>
                         <h3 className="text-xl font-bold text-gray-800 mb-2">
@@ -151,7 +164,7 @@ const StudentStatistics = () => {
                     >
                         <div className="bg-[#8E1C20]/10 rounded-full w-16 h-16 flex items-center justify-center mb-4">
                             <span className="text-3xl font-bold text-[#8E1C20]">
-                                {girls}
+                                {studentStat?.data?.totalMaleFemaleCount.মহিলা}
                             </span>
                         </div>
                         <h3 className="text-xl font-bold text-gray-800 mb-2">

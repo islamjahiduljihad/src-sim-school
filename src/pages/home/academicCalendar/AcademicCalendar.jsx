@@ -150,7 +150,7 @@ const AcademicCalendar = () => {
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 {/* Calendar Section */}
-                <div className="lg:col-span-2 bg-white rounded-xl shadow-xl overflow-hidden border border-gray-200">
+                <div className="lg:col-span-2 bg-white rounded-xl shadow-xl overflow-hidden border-gray-200 border p-8">
                     <Calendar
                         onChange={setSelectedDate}
                         value={selectedDate}
@@ -260,12 +260,6 @@ const AcademicCalendar = () => {
                                 </div>
                             </div>
                         ))}
-                    </div>
-
-                    <div className="mt-8 text-center">
-                        <button className="bg-white text-[#249742] font-semibold px-6 py-2 rounded-full hover:bg-gray-100 transition-colors">
-                            সম্পূর্ণ ক্যালেন্ডার ডাউনলোড করুন
-                        </button>
                     </div>
                 </div>
             </div>

@@ -1,2 +1,8 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+.react-calendar {
+    width: 100% !important;
+    max-width: 100% !important;
+    border: 0 !important;
+}

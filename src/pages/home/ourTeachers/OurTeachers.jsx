@@ -14,6 +14,7 @@ const OurTeachers = () => {
             .then((res) => res.json())
             .then((data) => {
                 setTeachersData(data);
+                console.log(data);
             })
             .catch((error) =>
                 console.error("Error fetching teachers data:", error)
@@ -45,9 +46,9 @@ const OurTeachers = () => {
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                             viewport={{ once: true }}
                         >
-                            <div className="relative overflow-hidden">
+                            <div className="relative overflow-hidden border-black z-1">
                                 <img
-                                    src={teacher?.photoUrl}
+                                    src={teacher?.photo_url}
                                     alt={teacher?.name_bn}
                                     className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
                                     onError={(e) => {
@@ -57,18 +58,18 @@ const OurTeachers = () => {
                                     }}
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                                <div className="absolute bottom-4 left-4">
-                                    <div className="bg-[#249742] text-white px-3 py-1 rounded-full text-sm font-medium">
-                                        {teacher?.designation}
+                                <div className="absolute top-0 right-0">
+                                    <div className="bg-[#249742] text-white px-3 py-1 font-medium rounded-bl-2xl">
+                                        {teacher?.department}
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="p-5">
+                            <div className="p-5 z-10">
                                 <div className="flex flex-col items-center -mt-14 mb-4">
-                                    <div className="bg-white rounded-full p-1 shadow-lg">
+                                    <div className="bg-white rounded-full p-1 shadow-lg z-10">
                                         <img
-                                            src={teacher?.photoUrl}
+                                            src={teacher?.photo_url}
                                             alt={teacher?.name_bn}
                                             className="w-20 h-20 rounded-full object-cover border-4 border-white"
                                             onError={(e) => {
@@ -81,22 +82,15 @@ const OurTeachers = () => {
                                 </div>
 
                                 <div className="text-center">
-                                    <h3 className="text-xl font-bold text-gray-800 mb-1">
+                                    <h3 className="text-xl font-bold text-gray-800 mb-[2px]">
                                         {teacher?.name_bn}
                                     </h3>
-                                    <p className="text-gray-600 mb-2">
-                                        {teacher?.name_en}
+                                    <p className="mb-2">
+                                        {teacher?.designation}
                                     </p>
-
                                     <div className="mb-3">
                                         <span className="inline-block bg-[#249742]/10 text-[#249742] text-sm px-3 py-1 rounded-full">
                                             {teacher?.subjectList}
-                                        </span>
-                                    </div>
-
-                                    <div className="flex items-center justify-center text-sm text-gray-600 mb-4">
-                                        <span className="bg-gray-100 px-2 py-1 rounded">
-                                            {teacher?.department}
                                         </span>
                                     </div>
 

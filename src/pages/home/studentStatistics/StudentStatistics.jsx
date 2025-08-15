@@ -31,17 +31,13 @@ const StudentStatistics = () => {
             .then((res) => res.json())
             .then((data) => setStudentStat(data));
     }, []);
-    // Demo Student Data
-    const totalStudents = 500;
-    const boys = 280;
-    const girls = 220;
 
     const classData = {
-        "ক্লাস ০৬": 90,
-        "ক্লাস ০৭": 95,
-        "ক্লাস ০৮": 85,
-        "ক্লাস ০৯": 120,
-        "ক্লাস ১০": 110,
+        "ক্লাস ০৬": studentStat?.data?.studentsCount?.class6StudentsCount,
+        "ক্লাস ০৭": studentStat?.data?.studentsCount?.class7StudentsCount,
+        "ক্লাস ০৮": studentStat?.data?.studentsCount?.class8StudentsCount,
+        "ক্লাস ০৯": studentStat?.data?.studentsCount?.class9StudentsCount,
+        "ক্লাস ১০": studentStat?.data?.studentsCount?.class10StudentsCount,
     };
 
     const departmentData = {

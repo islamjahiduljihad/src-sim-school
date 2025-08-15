@@ -80,7 +80,7 @@ const NavBar = () => {
     );
 
     return (
-        <div className="sticky top-0 z-50 bg-white shadow-md">
+        <div className="bg-white">
             <div
                 id="top-message"
                 className="relative text-center bg-[#8E1C20] text-white p-[2px]"
@@ -107,7 +107,7 @@ const NavBar = () => {
                 </div>
             </div>
 
-            <div className="navbar bg-base-100 shadow-sm px-4 md:px-8 sticky top-0 z-40">
+            <div className="sticky top-0 z-50 shadow-md navbar bg-base-100 px-4 md:px-8">
                 <div className="flex-1">
                     <div className="flex items-center gap-2">
                         <div>

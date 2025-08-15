@@ -73,7 +73,7 @@ const NoticeBoard = () => {
     return (
         <section className="relative py-16 px-4 md:px-8 lg:px-16 ">
             {/* Decorative background elements */}
-            <div className="absolute inset-0 opacity-10">
+            <div className="absolute inset-0 pointer-events-none opacity-10">
                 <div className="absolute top-10 left-1/4 w-24 h-24 rounded-full bg-[#249742] animate-pulse"></div>
                 <div className="absolute top-1/3 right-1/4 w-16 h-16 rounded-full bg-[#249742] animate-pulse delay-300"></div>
                 <div className="absolute bottom-20 left-1/3 w-20 h-20 rounded-full bg-[#8E1C20] animate-pulse delay-700"></div>
@@ -271,10 +271,10 @@ const NoticeBoard = () => {
                 <div className="text-center mt-12">
                     <Link
                         to={"/notice"}
-                        className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#249742] to-[#1c6e36] hover:from-[#1c6e36] hover:to-[#155a2b] text-white font-semibold px-6 py-3 rounded-full shadow-lg transform hover:scale-105 active:scale-95 transition-all duration-300"
+                        className="btn btn-lg bg-gradient-to-r from-[#249742] to-[#1c6e36] hover:from-[#1c6e36] hover:to-[#155a2b] text-white font-semibold rounded-3xl cursor-pointer z-50"
                     >
                         সকল নোটিশ দেখুন
-                        <FiChevronRight className="text-xl ml-1 transition-transform group-hover:translate-x-1" />
+                        <FiChevronRight className="text-xl ml-1" />
                     </Link>
                 </div>
             </div>

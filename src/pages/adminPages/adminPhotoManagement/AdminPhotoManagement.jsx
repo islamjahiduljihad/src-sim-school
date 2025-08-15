@@ -195,6 +195,18 @@ const AdminPhotoManagement = () => {
                                 />
                                 <input
                                     type="text"
+                                    placeholder="ছবির সংক্ষিপ্ত বিবরণ"
+                                    className="w-full border border-gray-300 rounded px-3 py-2"
+                                    value={formData.short_description}
+                                    onChange={(e) =>
+                                        setFormData({
+                                            ...formData,
+                                            short_description: e.target.value,
+                                        })
+                                    }
+                                />
+                                <input
+                                    type="text"
                                     placeholder="ছবির URL"
                                     className="w-full border border-gray-300 rounded px-3 py-2"
                                     value={formData.image_url}
@@ -205,6 +217,20 @@ const AdminPhotoManagement = () => {
                                         })
                                     }
                                 />
+                                <select
+                                    className="select select-bordered w-full"
+                                    name="category"
+                                    id=""
+                                >
+                                    <option value="">
+                                        ক্যাটাগরি নির্বাচন করুন
+                                    </option>
+                                    <option value="campus">ক্যাম্পাস</option>
+                                    <option value="events">অনুষ্ঠান</option>
+                                    <option value="activities">
+                                        কার্যক্রম
+                                    </option>
+                                </select>
                                 <button
                                     onClick={
                                         modalType === "add"

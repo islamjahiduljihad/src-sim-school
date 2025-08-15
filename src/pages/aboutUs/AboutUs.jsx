@@ -56,9 +56,9 @@ const AboutUs = () => {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
                     {/* Overview Section */}
-                    <div className="lg:col-span-2">
+                    <div>
                         <div className="bg-white rounded-2xl shadow-md p-6 md:p-8 border-l-4 border-[#249742]">
                             <div className="flex items-center mb-5">
                                 <div className="bg-[#249742]/10 p-3 rounded-full mr-4">

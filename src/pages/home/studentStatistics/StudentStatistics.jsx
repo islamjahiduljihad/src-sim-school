@@ -56,7 +56,10 @@ const StudentStatistics = () => {
         datasets: [
             {
                 label: "শিক্ষার্থী",
-                data: [boys, girls],
+                data: [
+                    studentStat?.data?.totalMaleFemaleCount.পুরুষ,
+                    studentStat?.data?.totalMaleFemaleCount.মহিলা,
+                ],
                 backgroundColor: ["#249742", "#8E1C20"],
                 hoverOffset: 30,
                 borderWidth: 0,
@@ -217,16 +220,38 @@ const StudentStatistics = () => {
                             <div className="flex items-center">
                                 <div className="w-4 h-4 rounded-full bg-[#249742] mr-2"></div>
                                 <span>
-                                    বালক: {boys} (
-                                    {((boys / totalStudents) * 100).toFixed(1)}
+                                    বালক:{" "}
+                                    {
+                                        studentStat?.data?.totalMaleFemaleCount
+                                            .পুরুষ
+                                    }{" "}
+                                    (
+                                    {(
+                                        (studentStat?.data?.totalMaleFemaleCount
+                                            .পুরুষ /
+                                            studentStat?.data?.studentsCount
+                                                ?.totalStudentCount) *
+                                        100
+                                    ).toFixed(1)}
                                     %)
                                 </span>
                             </div>
                             <div className="flex items-center">
                                 <div className="w-4 h-4 rounded-full bg-[#8E1C20] mr-2"></div>
                                 <span>
-                                    বালিকা: {girls} (
-                                    {((girls / totalStudents) * 100).toFixed(1)}
+                                    বালিকা:{" "}
+                                    {
+                                        studentStat?.data?.totalMaleFemaleCount
+                                            .মহিলা
+                                    }{" "}
+                                    (
+                                    {(
+                                        (studentStat?.data?.totalMaleFemaleCount
+                                            .মহিলা /
+                                            studentStat?.data?.studentsCount
+                                                ?.totalStudentCount) *
+                                        100
+                                    ).toFixed(1)}
                                     %)
                                 </span>
                             </div>

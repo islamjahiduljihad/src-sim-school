@@ -41,9 +41,10 @@ const StudentStatistics = () => {
     };
 
     const departmentData = {
-        Science: 80,
-        "Business Studies": 70,
-        Humanities: 80,
+        General: studentStat?.data?.totalDeptCount?.general,
+        Science: studentStat?.data?.totalDeptCount?.science,
+        "Business Studies": studentStat?.data?.totalDeptCount?.business,
+        Humanities: studentStat?.data?.totalDeptCount?.humanities,
     };
 
     // Gender Pie Chart Data
@@ -84,7 +85,7 @@ const StudentStatistics = () => {
             {
                 label: "ডিপার্টমেন্ট",
                 data: Object.values(departmentData),
-                backgroundColor: ["#249742", "#8E1C20", "#f59e0b"],
+                backgroundColor: ["#249742", "#8E1C20", "#f59e0b", "#e7155e"],
                 hoverOffset: 30,
                 borderWidth: 0,
             },
@@ -351,10 +352,23 @@ const StudentStatistics = () => {
                             />
                         </div>
                         <div className="mt-6">
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                            <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
                                 <div className="bg-[#249742]/5 p-3 rounded text-center">
-                                    <div className="font-medium">বিজ্ঞান</div>
+                                    <div className="font-medium">জেনারেল</div>
                                     <div className="font-bold text-[#249742] text-xl">
+                                        {departmentData.General}
+                                    </div>
+                                    <div className="text-sm">
+                                        {(
+                                            (departmentData.General / 230) *
+                                            100
+                                        ).toFixed(1)}
+                                        %
+                                    </div>
+                                </div>
+                                <div className="bg-[#8E1C20]/5 p-3 rounded text-center">
+                                    <div className="font-medium">বিজ্ঞান</div>
+                                    <div className="font-bold text-[#8E1C20] text-xl">
                                         {departmentData.Science}
                                     </div>
                                     <div className="text-sm">
@@ -365,11 +379,9 @@ const StudentStatistics = () => {
                                         %
                                     </div>
                                 </div>
-                                <div className="bg-[#8E1C20]/5 p-3 rounded text-center">
-                                    <div className="font-medium">
-                                        ব্যবসায় শিক্ষা
-                                    </div>
-                                    <div className="font-bold text-[#8E1C20] text-xl">
+                                <div className="bg-[#f59e0b]/5 p-3 rounded text-center">
+                                    <div className="font-medium">ব্যবসায়</div>
+                                    <div className="font-bold text-[#f59e0b] text-xl">
                                         {departmentData["Business Studies"]}
                                     </div>
                                     <div className="text-sm">
@@ -383,9 +395,9 @@ const StudentStatistics = () => {
                                         %
                                     </div>
                                 </div>
-                                <div className="bg-[#f59e0b]/5 p-3 rounded text-center">
+                                <div className="bg-[#e7155e]/5 p-3 rounded text-center">
                                     <div className="font-medium">মানবিক</div>
-                                    <div className="font-bold text-[#f59e0b] text-xl">
+                                    <div className="font-bold text-[#e7155e] text-xl">
                                         {departmentData.Humanities}
                                     </div>
                                     <div className="text-sm">

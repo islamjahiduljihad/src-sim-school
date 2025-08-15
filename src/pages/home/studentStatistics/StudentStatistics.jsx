@@ -352,7 +352,7 @@ const StudentStatistics = () => {
                             />
                         </div>
                         <div className="mt-6">
-                            <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                                 <div className="bg-[#249742]/5 p-3 rounded text-center">
                                     <div className="font-medium">জেনারেল</div>
                                     <div className="font-bold text-[#249742] text-xl">

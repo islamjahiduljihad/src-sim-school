@@ -90,7 +90,7 @@ const Header = () => {
                     >
                         {/* Background image with parallax effect */}
                         <div
-                            className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-1000"
+                            className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-1000 blur-[4px]"
                             style={{
                                 backgroundImage: `url(${slide.bg})`,
                                 transform: `scale(1.1)`,
@@ -188,10 +188,10 @@ const Header = () => {
             </div>
 
             {/* Decorative corner elements */}
-            <div className="absolute top-0 left-0 w-24 h-24 border-t-4 border-l-4 border-[#249742] rounded-tl-lg z-10"></div>
+            {/* <div className="absolute top-0 left-0 w-24 h-24 border-t-4 border-l-4 border-[#249742] rounded-tl-lg z-10"></div>
             <div className="absolute top-0 right-0 w-24 h-24 border-t-4 border-r-4 border-[#249742] rounded-tr-lg z-10"></div>
             <div className="absolute bottom-0 left-0 w-24 h-24 border-b-4 border-l-4 border-[#249742] rounded-bl-lg z-10"></div>
-            <div className="absolute bottom-0 right-0 w-24 h-24 border-b-4 border-r-4 border-[#249742] rounded-br-lg z-10"></div>
+            <div className="absolute bottom-0 right-0 w-24 h-24 border-b-4 border-r-4 border-[#249742] rounded-br-lg z-10"></div> */}
         </div>
     );
 };

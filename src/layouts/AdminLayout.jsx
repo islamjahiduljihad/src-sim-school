@@ -151,7 +151,7 @@ const AdminLayout = () => {
                             যোগাযোগ পাতা
                         </Link>
                         <Link
-                            to="/admin"
+                            to="/admin/admissionManagement"
                             className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-[#249742] hover:text-white"
                         >
                             <CgReadme className="text-[#249742]" />

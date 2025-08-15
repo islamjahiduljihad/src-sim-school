@@ -35,6 +35,7 @@ import StaffManagement from "../pages/adminPages/staffManagement/StaffManagement
 import Login from "../pages/authentication/login/Login";
 import PrivateRoute from "./privateRoute/PrivateRoute";
 import AdminPrivateRoute from "./adminPrivateRoute/AdminPrivateRoute";
+import AdminAdmissionManagement from "../pages/adminPages/adminAdmission/AdminAdmissionManagement";
 
 const router = createBrowserRouter([
     {
@@ -172,6 +173,10 @@ const router = createBrowserRouter([
                 path: "/admin/staffManagement",
                 element: <StaffManagement></StaffManagement>,
             },
+            {
+                path:"/admin/admissionManagement",
+                element: <AdminAdmissionManagement></AdminAdmissionManagement>
+            }
         ],
     },
     {

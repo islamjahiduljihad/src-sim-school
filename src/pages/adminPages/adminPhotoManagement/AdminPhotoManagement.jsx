@@ -9,7 +9,9 @@ const AdminPhotoManagement = () => {
     const [selectedPhoto, setSelectedPhoto] = useState(null);
     const [formData, setFormData] = useState({
         image_title: "",
+        short_description: "",
         image_url: "",
+        category: "",
     });
 
     const fetchPhotos = () => {
@@ -28,13 +30,20 @@ const AdminPhotoManagement = () => {
         setFormData({
             image_title: photo?.image_title || "",
             image_url: photo?.image_url || "",
+            short_description: photo?.short_description || "",
+            category: photo?.category || "",
         });
     };
 
     const closeModal = () => {
         setModalType(null);
         setSelectedPhoto(null);
-        setFormData({ image_title: "", image_url: "" });
+        setFormData({
+            image_title: "",
+            image_url: "",
+            short_description: "",
+            category: "",
+        });
     };
 
     const handleSubmit = async () => {
@@ -43,6 +52,7 @@ const AdminPhotoManagement = () => {
             date: new Date().toISOString().split("T")[0],
         };
         try {
+            console.log("Submitting photo:", payload);
             const res = await axios.post(
                 "http://localhost:3000/photo",
                 payload
@@ -119,6 +129,8 @@ const AdminPhotoManagement = () => {
                             <p className="text-sm text-gray-600">
                                 আপলোড: {photo.date}
                             </p>
+                            <p>বিবরণ: {photo.short_description}</p>
+                            <p>বিভাগ: {photo.category}</p>
                             <div className="flex flex-wrap gap-2 mt-3">
                                 <button
                                     onClick={() => openModal("view", photo)}

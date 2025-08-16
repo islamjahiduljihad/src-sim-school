@@ -1,0 +1,168 @@
+Date : 2025-08-16 10:11:19
+Directory : d:\Full Stack Project\ssim-school\src-sim-school
+Total : 70 files,  20337 codes, 455 comments, 829 blanks, all 21621 lines
+
+Languages
++----------------+------------+------------+------------+------------+------------+
+| language       | files      | code       | comment    | blank      | total      |
++----------------+------------+------------+------------+------------+------------+
+| JavaScript JSX |         55 |     14,930 |        446 |        803 |     16,179 |
+| JSON           |          4 |      5,264 |          0 |          3 |      5,267 |
+| JavaScript     |          5 |         66 |          5 |         13 |         84 |
+| PostCSS        |          2 |         44 |          0 |          8 |         52 |
+| HTML           |          1 |         30 |          4 |          2 |         36 |
+| XML            |          2 |          2 |          0 |          0 |          2 |
+| Markdown       |          1 |          1 |          0 |          0 |          1 |
++----------------+------------+------------+------------+------------+------------+
+
+Directories
++------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                               | files      | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                                  |         70 |     20,337 |        455 |        829 |     21,621 |
+| . (Files)                                                                                                                          |          8 |      5,344 |          6 |         10 |      5,360 |
+| public                                                                                                                             |          1 |          1 |          0 |          0 |          1 |
+| src                                                                                                                                |         61 |     14,992 |        449 |        819 |     16,260 |
+| src (Files)                                                                                                                        |          4 |         89 |          0 |         14 |        103 |
+| src\assets                                                                                                                         |          2 |          2 |          0 |          0 |          2 |
+| src\assets (Files)                                                                                                                 |          1 |          1 |          0 |          0 |          1 |
+| src\assets\lottie                                                                                                                  |          1 |          1 |          0 |          0 |          1 |
+| src\components                                                                                                                     |          2 |        158 |         18 |         13 |        189 |
+| src\components\digiCard                                                                                                            |          1 |        146 |         17 |         11 |        174 |
+| src\components\sectionHeader                                                                                                       |          1 |         12 |          1 |          2 |         15 |
+| src\context                                                                                                                        |          2 |         80 |          0 |         12 |         92 |
+| src\context\AuthContext                                                                                                            |          2 |         80 |          0 |         12 |         92 |
+| src\firebase                                                                                                                       |          1 |         13 |          3 |          5 |         21 |
+| src\layouts                                                                                                                        |          2 |        381 |         16 |         22 |        419 |
+| src\pages                                                                                                                          |         43 |     13,760 |        408 |        726 |     14,894 |
+| src\pages\aboutUs                                                                                                                  |          1 |        291 |         11 |         20 |        322 |
+| src\pages\academic                                                                                                                 |          1 |        330 |          8 |         21 |        359 |
+| src\pages\adminPages                                                                                                               |         22 |      7,563 |        221 |        351 |      8,135 |
+| src\pages\adminPages\adminAdmission                                                                                                |          1 |         17 |          2 |          2 |         21 |
+| src\pages\adminPages\adminContact                                                                                                  |          1 |        261 |          2 |         13 |        276 |
+| src\pages\adminPages\adminDeveloperContact                                                                                         |          1 |        138 |          4 |         10 |        152 |
+| src\pages\adminPages\adminDigiCard                                                                                                 |          1 |        319 |          6 |         19 |        344 |
+| src\pages\adminPages\adminHome                                                                                                     |          1 |        233 |          7 |         14 |        254 |
+| src\pages\adminPages\adminNotice                                                                                                   |          1 |        269 |          7 |         11 |        287 |
+| src\pages\adminPages\adminPhotoManagement                                                                                          |          1 |        253 |          1 |         14 |        268 |
+| src\pages\adminPages\adminStudentList                                                                                              |          9 |      3,504 |        109 |        131 |      3,744 |
+| src\pages\adminPages\adminStudentList (Files)                                                                                      |          1 |        206 |         12 |         16 |        234 |
+| src\pages\adminPages\adminStudentList\adminAddStudent                                                                              |          1 |        519 |          3 |         12 |        534 |
+| src\pages\adminPages\adminStudentList\adminStudentDetails                                                                          |          1 |        920 |         22 |         36 |        978 |
+| src\pages\adminPages\adminStudentList\adminStudentResults                                                                          |          1 |        829 |         10 |         18 |        857 |
+| src\pages\adminPages\adminStudentList\class10List                                                                                  |          1 |        206 |         12 |         10 |        228 |
+| src\pages\adminPages\adminStudentList\class6List                                                                                   |          1 |        206 |         13 |          9 |        228 |
+| src\pages\adminPages\adminStudentList\class7List                                                                                   |          1 |        206 |         11 |         10 |        227 |
+| src\pages\adminPages\adminStudentList\class8List                                                                                   |          1 |        206 |         13 |         10 |        229 |
+| src\pages\adminPages\adminStudentList\class9List                                                                                   |          1 |        206 |         13 |         10 |        229 |
+| src\pages\adminPages\adminTeacherList                                                                                              |          3 |      1,419 |         53 |         54 |      1,526 |
+| src\pages\adminPages\adminTeacherList (Files)                                                                                      |          1 |        227 |          7 |         13 |        247 |
+| src\pages\adminPages\adminTeacherList\addTeacher                                                                                   |          1 |        738 |         36 |         19 |        793 |
+| src\pages\adminPages\adminTeacherList\adminTeacherDetails                                                                          |          1 |        454 |         10 |         22 |        486 |
+| src\pages\adminPages\eventManagement                                                                                               |          1 |        222 |          7 |         12 |        241 |
+| src\pages\adminPages\fundManagement                                                                                                |          1 |        705 |         19 |         61 |        785 |
+| src\pages\adminPages\staffManagement                                                                                               |          1 |        223 |          4 |         10 |        237 |
+| src\pages\authentication                                                                                                           |          1 |        192 |          2 |         18 |        212 |
+| src\pages\authentication\login                                                                                                     |          1 |        192 |          2 |         18 |        212 |
+| src\pages\contact                                                                                                                  |          1 |        486 |          6 |         30 |        522 |
+| src\pages\errorPage                                                                                                                |          1 |         41 |          0 |          3 |         44 |
+| src\pages\faculty                                                                                                                  |          1 |        302 |          8 |         21 |        331 |
+| src\pages\home                                                                                                                     |         11 |      2,875 |        122 |        166 |      3,163 |
+| src\pages\home (Files)                                                                                                             |          1 |         27 |         20 |         12 |         59 |
+| src\pages\home\academicCalendar                                                                                                    |          1 |        332 |         15 |         22 |        369 |
+| src\pages\home\academicProgrammes                                                                                                  |          1 |        279 |          8 |         14 |        301 |
+| src\pages\home\atAglance                                                                                                           |          1 |        131 |          6 |         11 |        148 |
+| src\pages\home\faq                                                                                                                 |          1 |        470 |         12 |         12 |        494 |
+| src\pages\home\header                                                                                                              |          1 |        162 |         15 |         23 |        200 |
+| src\pages\home\noticeBoard                                                                                                         |          1 |        260 |         16 |         10 |        286 |
+| src\pages\home\ourTeachers                                                                                                         |          1 |        143 |          3 |         13 |        159 |
+| src\pages\home\studentStatistics                                                                                                   |          1 |        501 |         10 |         20 |        531 |
+| src\pages\home\testimonial                                                                                                         |          1 |        288 |          9 |         18 |        315 |
+| src\pages\home\whyChooseUs                                                                                                         |          1 |        282 |          8 |         11 |        301 |
+| src\pages\notice                                                                                                                   |          1 |        377 |          8 |         17 |        402 |
+| src\pages\photoGallery                                                                                                             |          1 |        373 |          5 |         28 |        406 |
+| src\pages\result                                                                                                                   |          1 |        559 |          2 |         30 |        591 |
+| src\pages\teacherDetails                                                                                                           |          1 |        371 |         15 |         21 |        407 |
+| src\routes                                                                                                                         |          3 |        228 |          0 |         15 |        243 |
+| src\routes (Files)                                                                                                                 |          1 |        190 |          0 |          3 |        193 |
+| src\routes\adminPrivateRoute                                                                                                       |          1 |         19 |          0 |          6 |         25 |
+| src\routes\privateRoute                                                                                                            |          1 |         19 |          0 |          6 |         25 |
+| src\shared                                                                                                                         |          2 |        281 |          4 |         12 |        297 |
++------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++------------------------------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| filename                                                                                                                           | language       | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| d:\Full Stack Project\ssim-school\src-sim-school\README.md                                                                         | Markdown       |          1 |          0 |          0 |          1 |
+| d:\Full Stack Project\ssim-school\src-sim-school\eslint.config.js                                                                  | JavaScript     |         29 |          0 |          2 |         31 |
+| d:\Full Stack Project\ssim-school\src-sim-school\index.html                                                                        | HTML           |         30 |          4 |          2 |         36 |
+| d:\Full Stack Project\ssim-school\src-sim-school\package-lock.json                                                                 | JSON           |      5,210 |          0 |          1 |      5,211 |
+| d:\Full Stack Project\ssim-school\src-sim-school\package.json                                                                      | JSON           |         50 |          0 |          1 |         51 |
+| d:\Full Stack Project\ssim-school\src-sim-school\public\vite.svg                                                                   | XML            |          1 |          0 |          0 |          1 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\App.css                                                                       | PostCSS        |         37 |          0 |          6 |         43 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\App.jsx                                                                       | JavaScript JSX |         32 |          0 |          4 |         36 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\assets\lottie\404Error.json                                                   | JSON           |          1 |          0 |          0 |          1 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\assets\react.svg                                                              | XML            |          1 |          0 |          0 |          1 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\components\digiCard\DigiCard.jsx                                              | JavaScript JSX |        146 |         17 |         11 |        174 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\components\sectionHeader\SectionHeader.jsx                                    | JavaScript JSX |         12 |          1 |          2 |         15 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\context\AuthContext\AuthContext.js                                            | JavaScript     |          3 |          0 |          3 |          6 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\context\AuthContext\AuthProvider.jsx                                          | JavaScript JSX |         77 |          0 |          9 |         86 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\firebase\firebase.init.js                                                     | JavaScript     |         13 |          3 |          5 |         21 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\index.css                                                                     | PostCSS        |          7 |          0 |          2 |          9 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\layouts\AdminLayout.jsx                                                       | JavaScript JSX |        368 |         10 |         17 |        395 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\layouts\MainLayout.jsx                                                        | JavaScript JSX |         13 |          6 |          5 |         24 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\main.jsx                                                                      | JavaScript JSX |         13 |          0 |          2 |         15 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\aboutUs\AboutUs.jsx                                                     | JavaScript JSX |        291 |         11 |         20 |        322 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\academic\Academic.jsx                                                   | JavaScript JSX |        330 |          8 |         21 |        359 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\adminPages\adminAdmission\AdminAdmissionManagement.jsx                  | JavaScript JSX |         17 |          2 |          2 |         21 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\adminPages\adminContact\AdminContact.jsx                                | JavaScript JSX |        261 |          2 |         13 |        276 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\adminPages\adminDeveloperContact\AdminDeveloperContact.jsx              | JavaScript JSX |        138 |          4 |         10 |        152 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\adminPages\adminDigiCard\AdminDigiCard.jsx                              | JavaScript JSX |        319 |          6 |         19 |        344 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\adminPages\adminHome\AdminHome.jsx                                      | JavaScript JSX |        233 |          7 |         14 |        254 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\adminPages\adminNotice\AdminNotice.jsx                                  | JavaScript JSX |        269 |          7 |         11 |        287 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\adminPages\adminPhotoManagement\AdminPhotoManagement.jsx                | JavaScript JSX |        253 |          1 |         14 |        268 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\adminPages\adminStudentList\AdminStudentList.jsx                        | JavaScript JSX |        206 |         12 |         16 |        234 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\adminPages\adminStudentList\adminAddStudent\AddStudent.jsx              | JavaScript JSX |        519 |          3 |         12 |        534 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\adminPages\adminStudentList\adminStudentDetails\AdminStudentDetails.jsx | JavaScript JSX |        920 |         22 |         36 |        978 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\adminPages\adminStudentList\adminStudentResults\AdminStudentResults.jsx | JavaScript JSX |        829 |         10 |         18 |        857 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\adminPages\adminStudentList\class10List\Class10List.jsx                 | JavaScript JSX |        206 |         12 |         10 |        228 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\adminPages\adminStudentList\class6List\Class6List.jsx                   | JavaScript JSX |        206 |         13 |          9 |        228 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\adminPages\adminStudentList\class7List\Class7List.jsx                   | JavaScript JSX |        206 |         11 |         10 |        227 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\adminPages\adminStudentList\class8List\Class8List.jsx                   | JavaScript JSX |        206 |         13 |         10 |        229 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\adminPages\adminStudentList\class9List\Class9List.jsx                   | JavaScript JSX |        206 |         13 |         10 |        229 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\adminPages\adminTeacherList\AdminTeacherList.jsx                        | JavaScript JSX |        227 |          7 |         13 |        247 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\adminPages\adminTeacherList\addTeacher\AddTeacher.jsx                   | JavaScript JSX |        738 |         36 |         19 |        793 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\adminPages\adminTeacherList\adminTeacherDetails\AdminTeacherDetails.jsx | JavaScript JSX |        454 |         10 |         22 |        486 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\adminPages\eventManagement\EventManagement.jsx                          | JavaScript JSX |        222 |          7 |         12 |        241 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\adminPages\fundManagement\FundManagement.jsx                            | JavaScript JSX |        705 |         19 |         61 |        785 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\adminPages\staffManagement\StaffManagement.jsx                          | JavaScript JSX |        223 |          4 |         10 |        237 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\authentication\login\Login.jsx                                          | JavaScript JSX |        192 |          2 |         18 |        212 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\contact\Contact.jsx                                                     | JavaScript JSX |        486 |          6 |         30 |        522 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\errorPage\ErrorPage.jsx                                                 | JavaScript JSX |         41 |          0 |          3 |         44 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\faculty\Faculty.jsx                                                     | JavaScript JSX |        302 |          8 |         21 |        331 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\home\Home.jsx                                                           | JavaScript JSX |         27 |         20 |         12 |         59 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\home\academicCalendar\AcademicCalendar.jsx                              | JavaScript JSX |        332 |         15 |         22 |        369 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\home\academicProgrammes\AcademicProgrammes.jsx                          | JavaScript JSX |        279 |          8 |         14 |        301 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\home\atAglance\AtAGlance.jsx                                            | JavaScript JSX |        131 |          6 |         11 |        148 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\home\faq\FAQ.jsx                                                        | JavaScript JSX |        470 |         12 |         12 |        494 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\home\header\Header.jsx                                                  | JavaScript JSX |        162 |         15 |         23 |        200 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\home\noticeBoard\NoticeBoard.jsx                                        | JavaScript JSX |        260 |         16 |         10 |        286 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\home\ourTeachers\OurTeachers.jsx                                        | JavaScript JSX |        143 |          3 |         13 |        159 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\home\studentStatistics\StudentStatistics.jsx                            | JavaScript JSX |        501 |         10 |         20 |        531 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\home\testimonial\Testimonial.jsx                                        | JavaScript JSX |        288 |          9 |         18 |        315 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\home\whyChooseUs\WhyChooseUs.jsx                                        | JavaScript JSX |        282 |          8 |         11 |        301 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\notice\Notice.jsx                                                       | JavaScript JSX |        377 |          8 |         17 |        402 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\photoGallery\PhotoGallery.jsx                                           | JavaScript JSX |        373 |          5 |         28 |        406 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\result\Result.jsx                                                       | JavaScript JSX |        559 |          2 |         30 |        591 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\pages\teacherDetails\TeacherDetails.jsx                                       | JavaScript JSX |        371 |         15 |         21 |        407 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\routes\adminPrivateRoute\AdminPrivateRoute.jsx                                | JavaScript JSX |         19 |          0 |          6 |         25 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\routes\privateRoute\PrivateRoute.jsx                                          | JavaScript JSX |         19 |          0 |          6 |         25 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\routes\router.jsx                                                             | JavaScript JSX |        190 |          0 |          3 |        193 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\shared\Footer.jsx                                                             | JavaScript JSX |        112 |          0 |          2 |        114 |
+| d:\Full Stack Project\ssim-school\src-sim-school\src\shared\NavBar.jsx                                                             | JavaScript JSX |        169 |          4 |         10 |        183 |
+| d:\Full Stack Project\ssim-school\src-sim-school\tailwind.config.js                                                                | JavaScript     |         11 |          1 |          1 |         13 |
+| d:\Full Stack Project\ssim-school\src-sim-school\vercel.json                                                                       | JSON           |          3 |          0 |          1 |          4 |
+| d:\Full Stack Project\ssim-school\src-sim-school\vite.config.js                                                                    | JavaScript     |         10 |          1 |          2 |         13 |
+| Total                                                                                                                              |                |     20,337 |        455 |        829 |     21,621 |
++------------------------------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+

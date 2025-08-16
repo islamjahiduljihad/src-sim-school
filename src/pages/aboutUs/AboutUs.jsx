@@ -100,132 +100,137 @@ const AboutUs = () => {
                     </div>
                 </div>
 
-                {/* History Timeline Section */}
-                <div className="mb-16">
-                    <div className="flex items-center mb-8">
-                        <div className="bg-[#249742]/10 p-3 rounded-full mr-4">
-                            <FaHistory className="text-2xl text-[#249742]" />
+                {/* 2nd section */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+                    {/* History Timeline Section */}
+                    <div className="mb-16">
+                        <div className="flex items-center mb-8">
+                            <div className="bg-[#249742]/10 p-3 rounded-full mr-4">
+                                <FaHistory className="text-2xl text-[#249742]" />
+                            </div>
+                            <h3 className="text-2xl font-bold text-gray-800">
+                                আমাদের ইতিহাসের ধারা
+                            </h3>
                         </div>
-                        <h3 className="text-2xl font-bold text-gray-800">
-                            আমাদের ইতিহাসের ধারা
-                        </h3>
+
+                        <div className="relative pl-8 border-l-2 border-[#249742] ml-4">
+                            {/* Timeline item */}
+                            <div className="mb-10 relative">
+                                <div className="absolute -left-10 w-6 h-6 rounded-full bg-[#249742] border-4 border-white"></div>
+                                <h4 className="text-xl font-bold text-[#249742] mb-2">
+                                    ১৯৬৫: প্রতিষ্ঠার সূচনা
+                                </h4>
+                                <p className="text-gray-700">
+                                    স্থানীয় শিক্ষানুরাগী ব্যক্তিবর্গের উদ্যোগে
+                                    প্রতিষ্ঠিত হয় শ্রীরায়ের চর এস আই এম উচ্চ
+                                    বিদ্যালয়। শুরুতে মাত্র ৩টি কক্ষ ও ৫০ জন
+                                    শিক্ষার্থী নিয়ে যাত্রা শুরু করে
+                                    প্রতিষ্ঠানটি।
+                                </p>
+                            </div>
+
+                            {/* Timeline item */}
+                            <div className="mb-10 relative">
+                                <div className="absolute -left-10 w-6 h-6 rounded-full bg-[#249742] border-4 border-white"></div>
+                                <h4 className="text-xl font-bold text-[#249742] mb-2">
+                                    ১৯৭৮: প্রথম সরকারি স্বীকৃতি
+                                </h4>
+                                <p className="text-gray-700">
+                                    প্রতিষ্ঠানের একাডেমিক সাফল্য ও অবকাঠামোগত
+                                    উন্নতির স্বীকৃতি স্বরূপ প্রাপ্ত হয় সরকারি
+                                    অনুমোদন।
+                                </p>
+                            </div>
+
+                            {/* Timeline item */}
+                            <div className="mb-10 relative">
+                                <div className="absolute -left-10 w-6 h-6 rounded-full bg-[#249742] border-4 border-white"></div>
+                                <h4 className="text-xl font-bold text-[#249742] mb-2">
+                                    ২০০৫: বিজ্ঞান ভবন উদ্বোধন
+                                </h4>
+                                <p className="text-gray-700">
+                                    আধুনিক বিজ্ঞান ল্যাব ও কম্পিউটার ল্যাব
+                                    সমৃদ্ধ নতুন বিজ্ঞান ভবনের উদ্বোধন করা হয়।
+                                </p>
+                            </div>
+
+                            {/* Timeline item */}
+                            <div className="relative">
+                                <div className="absolute -left-10 w-6 h-6 rounded-full bg-[#249742] border-4 border-white"></div>
+                                <h4 className="text-xl font-bold text-[#249742] mb-2">
+                                    ২০২০: ডিজিটাল ক্লাসরুম
+                                </h4>
+                                <p className="text-gray-700">
+                                    প্রতিষ্ঠানের সকল শ্রেণিকক্ষে আধুনিক ডিজিটাল
+                                    স্মার্ট ক্লাসরুম চালু করা হয়।
+                                </p>
+                            </div>
+                        </div>
                     </div>
 
-                    <div className="relative pl-8 border-l-2 border-[#249742] ml-4">
-                        {/* Timeline item */}
-                        <div className="mb-10 relative">
-                            <div className="absolute -left-10 w-6 h-6 rounded-full bg-[#249742] border-4 border-white"></div>
-                            <h4 className="text-xl font-bold text-[#249742] mb-2">
-                                ১৯৬৫: প্রতিষ্ঠার সূচনা
-                            </h4>
-                            <p className="text-gray-700">
-                                স্থানীয় শিক্ষানুরাগী ব্যক্তিবর্গের উদ্যোগে
-                                প্রতিষ্ঠিত হয় শ্রীরায়ের চর এস আই এম উচ্চ
-                                বিদ্যালয়। শুরুতে মাত্র ৩টি কক্ষ ও ৫০ জন
-                                শিক্ষার্থী নিয়ে যাত্রা শুরু করে প্রতিষ্ঠানটি।
-                            </p>
-                        </div>
-
-                        {/* Timeline item */}
-                        <div className="mb-10 relative">
-                            <div className="absolute -left-10 w-6 h-6 rounded-full bg-[#249742] border-4 border-white"></div>
-                            <h4 className="text-xl font-bold text-[#249742] mb-2">
-                                ১৯৭৮: প্রথম সরকারি স্বীকৃতি
-                            </h4>
-                            <p className="text-gray-700">
-                                প্রতিষ্ঠানের একাডেমিক সাফল্য ও অবকাঠামোগত
-                                উন্নতির স্বীকৃতি স্বরূপ প্রাপ্ত হয় সরকারি
-                                অনুমোদন।
-                            </p>
-                        </div>
-
-                        {/* Timeline item */}
-                        <div className="mb-10 relative">
-                            <div className="absolute -left-10 w-6 h-6 rounded-full bg-[#249742] border-4 border-white"></div>
-                            <h4 className="text-xl font-bold text-[#249742] mb-2">
-                                ২০০৫: বিজ্ঞান ভবন উদ্বোধন
-                            </h4>
-                            <p className="text-gray-700">
-                                আধুনিক বিজ্ঞান ল্যাব ও কম্পিউটার ল্যাব সমৃদ্ধ
-                                নতুন বিজ্ঞান ভবনের উদ্বোধন করা হয়।
-                            </p>
-                        </div>
-
-                        {/* Timeline item */}
-                        <div className="relative">
-                            <div className="absolute -left-10 w-6 h-6 rounded-full bg-[#249742] border-4 border-white"></div>
-                            <h4 className="text-xl font-bold text-[#249742] mb-2">
-                                ২০২০: ডিজিটাল ক্লাসরুম
-                            </h4>
-                            <p className="text-gray-700">
-                                প্রতিষ্ঠানের সকল শ্রেণিকক্ষে আধুনিক ডিজিটাল
-                                স্মার্ট ক্লাসরুম চালু করা হয়।
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Facilities Section */}
-                <div className="mb-16">
-                    <div className="flex items-center mb-8">
-                        <div className="bg-[#249742]/10 p-3 rounded-full mr-4">
-                            <FaBook className="text-2xl text-[#249742]" />
-                        </div>
-                        <h3 className="text-2xl font-bold text-gray-800">
-                            আমাদের সুযোগ-সুবিধা
-                        </h3>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <div className="bg-white rounded-xl shadow-md p-6 text-center border-t-4 border-[#249742] hover:shadow-lg transition-all">
-                            <div className="bg-[#249742]/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <FaGraduationCap className="text-2xl text-[#249742]" />
-                            </div>
-                            <h4 className="text-xl font-bold mb-2">
-                                আধুনিক পাঠাগার
-                            </h4>
-                            <p className="text-gray-700">
-                                ১০,০০০+ বই সমৃদ্ধ সমৃদ্ধ গ্রন্থাগার
-                            </p>
-                        </div>
-
-                        <div className="bg-white rounded-xl shadow-md p-6 text-center border-t-4 border-[#249742] hover:shadow-lg transition-all">
-                            <div className="bg-[#249742]/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <FaMedal className="text-2xl text-[#249742]" />
-                            </div>
-                            <h4 className="text-xl font-bold mb-2">
-                                বিজ্ঞান গবেষণাগার
-                            </h4>
-                            <p className="text-gray-700">
-                                আধুনিক যন্ত্রপাতি সমৃদ্ধ বিজ্ঞান ল্যাব
-                            </p>
-                        </div>
-
-                        <div className="bg-white rounded-xl shadow-md p-6 text-center border-t-4 border-[#249742] hover:shadow-lg transition-all">
-                            <div className="bg-[#249742]/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <FaUserFriends className="text-2xl text-[#249742]" />
-                            </div>
-                            <h4 className="text-xl font-bold mb-2">
-                                সাংস্কৃতিক চর্চা কেন্দ্র
-                            </h4>
-                            <p className="text-gray-700">
-                                নাচ, গান ও আবৃত্তির জন্য বিশেষায়িত স্থান
-                            </p>
-                        </div>
-
-                        <div className="bg-white rounded-xl shadow-md p-6 text-center border-t-4 border-[#249742] hover:shadow-lg transition-all">
-                            <div className="bg-[#249742]/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    {/* Facilities Section */}
+                    <div className="mb-16">
+                        <div className="flex items-center mb-8">
+                            <div className="bg-[#249742]/10 p-3 rounded-full mr-4">
                                 <FaBook className="text-2xl text-[#249742]" />
                             </div>
-                            <h4 className="text-xl font-bold mb-2">
-                                ডিজিটাল শ্রেণিকক্ষ
-                            </h4>
-                            <p className="text-gray-700">
-                                সব শ্রেণিকক্ষে স্মার্ট ক্লাসরুম সুবিধা
-                            </p>
+                            <h3 className="text-2xl font-bold text-gray-800">
+                                আমাদের সুযোগ-সুবিধা
+                            </h3>
+                        </div>
+
+                        <div className="grid grid-cols-2 md:grid-cols-2 gap-6">
+                            <div className="bg-white rounded-xl shadow-md p-6 text-center border-t-4 border-[#249742] hover:shadow-lg transition-all">
+                                <div className="bg-[#249742]/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <FaGraduationCap className="text-2xl text-[#249742]" />
+                                </div>
+                                <h4 className="text-xl font-bold mb-2">
+                                    আধুনিক পাঠাগার
+                                </h4>
+                                <p className="text-gray-700">
+                                    ১০,০০০+ বই সমৃদ্ধ সমৃদ্ধ গ্রন্থাগার
+                                </p>
+                            </div>
+
+                            <div className="bg-white rounded-xl shadow-md p-6 text-center border-t-4 border-[#8E1C20] hover:shadow-lg transition-all">
+                                <div className="bg-[#8E1C20]/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <FaMedal className="text-2xl text-[#8E1C20]" />
+                                </div>
+                                <h4 className="text-xl font-bold mb-2">
+                                    বিজ্ঞান গবেষণাগার
+                                </h4>
+                                <p className="text-gray-700">
+                                    আধুনিক যন্ত্রপাতি সমৃদ্ধ বিজ্ঞান ল্যাব
+                                </p>
+                            </div>
+
+                            <div className="bg-white rounded-xl shadow-md p-6 text-center border-t-4 border-[#8E1C20] hover:shadow-lg transition-all">
+                                <div className="bg-[#8E1C20]/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <FaUserFriends className="text-2xl text-[#8E1C20]" />
+                                </div>
+                                <h4 className="text-xl font-bold mb-2">
+                                    সাংস্কৃতিক চর্চা কেন্দ্র
+                                </h4>
+                                <p className="text-gray-700">
+                                    নাচ, গান ও আবৃত্তির জন্য বিশেষায়িত স্থান
+                                </p>
+                            </div>
+
+                            <div className="bg-white rounded-xl shadow-md p-6 text-center border-t-4 border-[#249742] hover:shadow-lg transition-all">
+                                <div className="bg-[#249742]/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <FaBook className="text-2xl text-[#249742]" />
+                                </div>
+                                <h4 className="text-xl font-bold mb-2">
+                                    ডিজিটাল শ্রেণিকক্ষ
+                                </h4>
+                                <p className="text-gray-700">
+                                    সব শ্রেণিকক্ষে স্মার্ট ক্লাসরুম সুবিধা
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
+                {/* 2nd section end */}
 
                 {/* Founder and Principal */}
                 <div className="mb-16">

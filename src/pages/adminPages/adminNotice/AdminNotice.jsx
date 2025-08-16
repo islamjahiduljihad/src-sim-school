@@ -19,7 +19,7 @@ const AdminNotice = () => {
         shortDesc: "",
         noticeLink: "",
         date: new Date().toISOString().slice(0, 10),
-        category: "",
+        category: "notice",
     });
 
     // Handle input change for new notice form fields

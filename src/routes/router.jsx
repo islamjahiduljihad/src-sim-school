@@ -30,7 +30,6 @@ import AddTeacher from "../pages/adminPages/adminTeacherList/addTeacher/AddTeach
 import AdminStudentResults from "../pages/adminPages/adminStudentList/adminStudentResults/AdminStudentResults";
 import TeacherDetails from "../pages/teacherDetails/TeacherDetails";
 import FundManagement from "../pages/adminPages/fundManagement/FundManagement";
-import EventManagement from "../pages/adminPages/eventManagement/EventManagement";
 import StaffManagement from "../pages/adminPages/staffManagement/StaffManagement";
 import Login from "../pages/authentication/login/Login";
 import PrivateRoute from "./privateRoute/PrivateRoute";
@@ -166,17 +165,13 @@ const router = createBrowserRouter([
                 element: <FundManagement></FundManagement>,
             },
             {
-                path: "/admin/events",
-                element: <EventManagement></EventManagement>,
-            },
-            {
                 path: "/admin/staffManagement",
                 element: <StaffManagement></StaffManagement>,
             },
             {
-                path:"/admin/admissionManagement",
-                element: <AdminAdmissionManagement></AdminAdmissionManagement>
-            }
+                path: "/admin/admissionManagement",
+                element: <AdminAdmissionManagement></AdminAdmissionManagement>,
+            },
         ],
     },
     {

@@ -10,64 +10,24 @@ import { Link } from "react-router-dom";
 
 const NoticeBoard = () => {
     const [notices, setNotices] = useState([]);
+    const [events, setEvents] = useState([]);
+    const [downloads, setDownloads] = useState([]);
 
     useEffect(() => {
-        // Mock data for demonstration
-        const mockNotices = [
-            {
-                _id: "1",
-                date: "২০২৩-১০-১৫",
-                title: "মিড টার্ম পরীক্ষার রুটিন প্রকাশ",
-                shortDesc:
-                    "নবম ও দশম শ্রেণির মিড টার্ম পরীক্ষার রুটিন প্রকাশ করা হলো। সকল শিক্ষার্থীদের অবগতির জন্য অনুরোধ করা হচ্ছে।",
-                noticeLink: "#",
-            },
-            {
-                _id: "2",
-                date: "২০২৩-১০-১০",
-                title: "বার্ষিক ক্রীড়া প্রতিযোগিতা",
-                shortDesc:
-                    "আগামী মাসে বার্ষিক ক্রীড়া প্রতিযোগিতা অনুষ্ঠিত হবে। আগ্রহী শিক্ষার্থীদের নাম নিবন্ধনের জন্য অনুরোধ করা হচ্ছে।",
-                noticeLink: "#",
-            },
-            {
-                _id: "3",
-                date: "২০২৩-১০-০৫",
-                title: "শিক্ষক প্রশিক্ষণ কর্মশালা",
-                shortDesc:
-                    "আগামী সপ্তাহে শিক্ষকদের জন্য একটি প্রশিক্ষণ কর্মশালার আয়োজন করা হবে। সকল শিক্ষকদের উপস্থিতি আবশ্যক।",
-                noticeLink: "#",
-            },
-            {
-                _id: "4",
-                date: "২০২৩-১০-০১",
-                title: "ছুটির ঘোষণা",
-                shortDesc:
-                    "আগামী সপ্তাহে প্রতিষ্ঠানের সকল শ্রেণির কার্যক্রম বন্ধ থাকবে। সকলকে অবগতির জন্য অনুরোধ করা হচ্ছে।",
-                noticeLink: "#",
-            },
-            {
-                _id: "5",
-                date: "২০২৩-০৯-২৮",
-                title: "বৃত্তি পরীক্ষার ফলাফল",
-                shortDesc:
-                    "বৃত্তি পরীক্ষার ফলাফল প্রকাশ করা হলো। ফলাফল অফিস থেকে সংগ্রহ করা যাবে।",
-                noticeLink: "#",
-            },
-        ];
-        setNotices(mockNotices);
-
         // In production, use the actual API call:
-        /*
+
         fetch("http://localhost:3000/notices?limit=5")
             .then((res) => res.json())
             .then((data) => {
-                setNotices(data);
+                setNotices(data.filter((item) => item.category === "notice"));
+                setEvents(data.filter((item) => item.category === "event"));
+                setDownloads(
+                    data.filter((item) => item.category === "download")
+                );
             })
             .catch((error) => {
                 console.error("Error fetching notices:", error);
             });
-        */
     }, []);
 
     return (
@@ -151,28 +111,7 @@ const NoticeBoard = () => {
                             </p>
                         </div>
                         <div className="p-1">
-                            {[
-                                {
-                                    date: "২০২৩-১১-১০",
-                                    title: "বার্ষিক পুরস্কার বিতরণী",
-                                    desc: "বিদ্যালয়ের বার্ষিক পুরস্কার বিতরণী অনুষ্ঠান",
-                                },
-                                {
-                                    date: "২০২৩-১১-২০",
-                                    title: "মূল্যায়ন পরীক্ষা",
-                                    desc: "ষষ্ঠ থেকে নবম শ্রেণির মূল্যায়ন পরীক্ষা",
-                                },
-                                {
-                                    date: "২০২৩-১২-০৫",
-                                    title: "শীতকালীন ছুটি",
-                                    desc: "শীতকালীন ছুটি শুরু",
-                                },
-                                {
-                                    date: "২০২৩-১২-২৫",
-                                    title: "পুনরায় ক্লাস শুরু",
-                                    desc: "শীতকালীন ছুটির পর পুনরায় ক্লাস শুরু",
-                                },
-                            ].map((event, index) => (
+                            {events.map((event, index) => (
                                 <div
                                     key={index}
                                     className="p-4 border-b border-gray-100 last:border-b-0 hover:bg-[#f9fcfb] transition-colors duration-200"
@@ -192,8 +131,15 @@ const NoticeBoard = () => {
                                                 {event.title}
                                             </h4>
                                             <p className="text-gray-600 text-sm">
-                                                {event.desc}
+                                                {event.shortDesc}
                                             </p>
+                                            <Link
+                                                to={event?.noticeLink}
+                                                className="text-[#8E1C20] font-semibold hover:underline flex items-center gap-2"
+                                            >
+                                                বিস্তারিত পড়ুন
+                                                <FiChevronRight className="ml-1" />
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>
@@ -213,28 +159,7 @@ const NoticeBoard = () => {
                             </p>
                         </div>
                         <div className="p-1">
-                            {[
-                                {
-                                    title: "ভর্তি ফরম ২০২৪",
-                                    type: "PDF",
-                                    size: "1.2 MB",
-                                },
-                                {
-                                    title: "শিক্ষক নিয়োগ ফরম",
-                                    type: "DOC",
-                                    size: "0.8 MB",
-                                },
-                                {
-                                    title: "প্রবেশপত্র ফরম",
-                                    type: "PDF",
-                                    size: "0.5 MB",
-                                },
-                                {
-                                    title: "বার্ষিক পরীক্ষার রুটিন",
-                                    type: "PDF",
-                                    size: "0.9 MB",
-                                },
-                            ].map((file, index) => (
+                            {downloads.map((file, index) => (
                                 <div
                                     key={index}
                                     className="p-4 border-b border-gray-100 last:border-b-0 hover:bg-[#f9fcfb] transition-colors duration-200"
@@ -249,17 +174,16 @@ const NoticeBoard = () => {
                                             <h4 className="font-semibold text-gray-800 mb-1">
                                                 {file.title}
                                             </h4>
-                                            <div className="flex text-sm text-gray-500">
-                                                <span className="mr-3">
-                                                    {file.type}
-                                                </span>
-                                                <span>{file.size}</span>
-                                            </div>
+                                            <p>{file.shortDesc}</p>
                                         </div>
                                         <div>
-                                            <button className="bg-[#249742] hover:bg-[#1e7a37] text-white p-2 rounded-full">
+                                            <Link
+                                                target="_blank"
+                                                to={file.noticeLink}
+                                                className="btn bg-[#249742] hover:bg-[#1e7a37] text-white p-2 rounded-full"
+                                            >
                                                 <FiDownload />
-                                            </button>
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>

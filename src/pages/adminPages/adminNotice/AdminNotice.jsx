@@ -19,6 +19,7 @@ const AdminNotice = () => {
         shortDesc: "",
         noticeLink: "",
         date: new Date().toISOString().slice(0, 10),
+        category: "",
     });
 
     // Handle input change for new notice form fields
@@ -92,6 +93,9 @@ const AdminNotice = () => {
                                 <th className="py-3 px-4 text-left">
                                     সংক্ষিপ্ত বিবরণ
                                 </th>
+                                <th className="py-3 px-4 text-left">
+                                    ক্যাটাগরি
+                                </th>
                                 <th className="py-3 px-4 text-left">তারিখ</th>
                                 <th className="py-3 px-4 text-center">
                                     অ্যাকশন
@@ -113,6 +117,22 @@ const AdminNotice = () => {
                                         </td>
                                         <td className="py-3 px-4 text-gray-600">
                                             {notice.shortDesc}
+                                        </td>
+                                        <td
+                                            className={`${
+                                                notice?.category === "notice"
+                                                    ? "text-info"
+                                                    : notice?.category ===
+                                                      "event"
+                                                    ? "text-warning"
+                                                    : "text-error"
+                                            } py-3 px-4`}
+                                        >
+                                            {notice?.category === "notice"
+                                                ? "নোটিশ"
+                                                : notice?.category === "event"
+                                                ? "ইভেন্ট"
+                                                : "ডাউনলোড"}
                                         </td>
                                         <td className="py-3 px-4 text-gray-600">
                                             {notice.date}
@@ -246,7 +266,7 @@ const AdminNotice = () => {
                                             size={18}
                                             className="mr-2 text-purple-500"
                                         />{" "}
-                                        নোটিশ লিংক (ঐচ্ছিক)
+                                        নোটিশ লিংক
                                     </span>
                                 </label>
                                 <input
@@ -257,6 +277,29 @@ const AdminNotice = () => {
                                     placeholder="নোটিশের সম্পূর্ণ লিংকের URL"
                                     className="input input-bordered w-full"
                                 />
+                            </div>
+                            <div>
+                                <label className="label">
+                                    <span className="label-text flex items-center">
+                                        <Link2
+                                            size={18}
+                                            className="mr-2 text-purple-500"
+                                        />{" "}
+                                        ক্যাটাগরি
+                                    </span>
+                                </label>
+
+                                <select
+                                    className="select select-bordered w-full"
+                                    name="category"
+                                    id=""
+                                    value={newNoticeData?.category}
+                                    onChange={handleNoticeFormChange}
+                                >
+                                    <option value="notice">নোটিশ</option>
+                                    <option value="event">ইভেন্ট</option>
+                                    <option value="download">ডাউনলোড</option>
+                                </select>
                             </div>
                             <div className="modal-action justify-center">
                                 <button

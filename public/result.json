@@ -1,0 +1,128 @@
+[
+    {
+        "id": 1,
+        "student_id": "SSIM-06-005",
+        "exam_result": [
+            {
+                "exam_name": "First Term Exam",
+                "exam_date": "2023-01-15",
+                "result": {
+                    "math": 85,
+                    "english": 78,
+                    "science": 92,
+                    "social_studies": 88,
+                    "bangla": 90,
+                    "total": 433
+                }
+            },
+            {
+                "exam_name": "Second Term Exam",
+                "exam_date": "2023-06-15",
+                "result": {
+                    "math": 88,
+                    "english": 82,
+                    "science": 95,
+                    "social_studies": 90,
+                    "bangla": 92,
+                    "total": 462
+                }
+            },
+            {
+                "exam_name": "Final Exam",
+                "exam_date": "2023-11-15",
+                "result": {
+                    "math": 90,
+                    "english": 85,
+                    "science": 93,
+                    "social_studies": 89,
+                    "bangla": 91,
+                    "total": 448
+                }
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "student_id": "SSIM-06-006",
+        "exam_result": [
+            {
+                "exam_name": "First Term Exam",
+                "exam_date": "2023-01-15",
+                "result": {
+                    "math": 75,
+                    "english": 80,
+                    "science": 85,
+                    "social_studies": 78,
+                    "bangla": 88,
+                    "total": 426
+                }
+            },
+            {
+                "exam_name": "Second Term Exam",
+                "exam_date": "2023-06-15",
+                "result": {
+                    "math": 78,
+                    "english": 82,
+                    "science": 88,
+                    "social_studies": 80,
+                    "bangla": 90,
+                    "total": 430
+                }
+            },
+            {
+                "exam_name": "Final Exam",
+                "exam_date": "2023-11-15",
+                "result": {
+                    "math": 80,
+                    "english": 85,
+                    "science": 90,
+                    "social_studies": 82,
+                    "bangla": 92,
+                    "total": 429
+                }
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "student_id": "SSIM-06-007",
+        "exam_result": [
+            {
+                "exam_name": "First Term Exam",
+                "exam_date": "2023-01-15",
+                "result": {
+                    "math": 90,
+                    "english": 85,
+                    "science": 88,
+                    "social_studies": 92,
+                    "bangla": 95,
+                    "total": 450
+                }
+            },
+            {
+                "exam_name": "Second Term Exam",
+                "exam_date": "2023-06-15",
+                "result": {
+                    "math": 92,
+                    "english": 87,
+                    "science": 90,
+                    "social_studies": 94,
+                    "bangla": 96,
+                    "total": 459
+                }
+            },
+            {
+                "exam_name": "Final Exam",
+                "exam_date": "2023-11-15",
+                "result": {
+                    "math": 95,
+                    "english": 90,
+                    "science": 93,
+                    "social_studies": 96,
+                    "bangla": 98,
+                    "total": 472
+                }
+            }
+        ]
+    }
+]

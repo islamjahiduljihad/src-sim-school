@@ -553,6 +553,7 @@ const classSubjects = {
 const AdminStudentResults = () => {
     const [studentId, setStudentId] = useState("");
     const [selectedClass, setSelectedClass] = useState("");
+    const [selectedExam, setSelectedExam] = useState("");
     const [selectedDepartment, setSelectedDepartment] = useState("");
     const [availableSubjects, setAvailableSubjects] = useState([]);
     const [marksInput, setMarksInput] = useState([{ subject: "", marks: "" }]);
@@ -574,7 +575,7 @@ const AdminStudentResults = () => {
                 }
             }
             setAvailableSubjects(subjects);
-            setMarksInput([{ subject: "", marks: "" }]); // Reset marks input when class/department changes
+            setMarksInput([{ subject: "", marks: "" }]);
         } else {
             setAvailableSubjects([]);
             setSelectedDepartment("");
@@ -607,11 +608,12 @@ const AdminStudentResults = () => {
         const studentResults = {
             studentId,
             classNo: selectedClass,
-            department: selectedDepartment || null, // Set null if no department selected
+            department: selectedDepartment || null,
             results: filteredResults.map((item) => ({
-                subject: item.subject, // This will be the English (no space) value
-                marks: parseFloat(item.marks), // Convert marks to number
+                subject: item.subject,
+                marks: parseFloat(item.marks),
             })),
+            examName: selectedExam || null,
         };
 
         console.log(
@@ -649,7 +651,7 @@ const AdminStudentResults = () => {
 
                 <form onSubmit={handleSubmit}>
                     {/* Student ID and Class Selection */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
                         <div>
                             <label
                                 htmlFor="studentId"
@@ -691,6 +693,32 @@ const AdminStudentResults = () => {
                                 <option value="8">৮</option>
                                 <option value="9">৯</option>
                                 <option value="10">১০</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label
+                                htmlFor="examName"
+                                className="block text-gray-700 text-sm font-medium mb-2"
+                            >
+                                পরীক্ষার নাম (Exam Name)
+                            </label>
+                            <select
+                                id="examName"
+                                className="select select-bordered w-full focus:border-[#249742] focus:ring focus:ring-[#249742] focus:ring-opacity-50"
+                                value={selectedExam}
+                                onChange={(e) =>
+                                    setSelectedExam(e.target.value)
+                                }
+                                required
+                            >
+                                <option value="" disabled>
+                                    পরীক্ষার নাম নির্বাচন করুন
+                                </option>
+                                <option value="first_term">প্রথম সাময়িক</option>
+                                <option value="half_yearly">
+                                    অর্ধ বার্ষিক
+                                </option>
+                                <option value="final_exam">বার্ষিক</option>
                             </select>
                         </div>
                     </div>

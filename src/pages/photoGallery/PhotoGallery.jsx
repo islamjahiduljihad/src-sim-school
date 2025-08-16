@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SectionHeader from "../../components/sectionHeader/SectionHeader";
 import {
     FaSearch,
@@ -12,135 +12,25 @@ const PhotoGallery = () => {
     const [filter, setFilter] = useState("all");
     const [searchTerm, setSearchTerm] = useState("");
 
-    const galleryImages = [
-        {
-            id: 1,
-            src: "https://i.ibb.co/DYd16TV/5680e4eb-33ea-48b7-85a1-a2c75c66651f.jpg",
-            category: "events",
-            title: "বার্ষিক পুরস্কার বিতরণী",
-            description:
-                "২০২৩ শিক্ষাবর্ষের বার্ষিক পুরস্কার বিতরণী অনুষ্ঠানে প্রধান অতিথি",
-        },
-        {
-            id: 2,
-            src: "https://i.ibb.co/SxtJdzT/school.jpg",
-            category: "campus",
-            title: "বিদ্যালয় প্রাঙ্গণ",
-            description: "সকালের সূর্যালোকে বিদ্যালয়ের মূল ভবন",
-        },
-        {
-            id: 3,
-            src: "https://i.ibb.co/q5FTsWz/c2acb51d-317b-4956-9b66-40d60f60ff4b.jpg",
-            category: "activities",
-            title: "বিজ্ঞান মেলা",
-            description: "বার্ষিক বিজ্ঞান মেলায় শিক্ষার্থীদের প্রদর্শনী",
-        },
-        {
-            id: 4,
-            src: "https://i.ibb.co/BCL8yTm/school2.jpg",
-            category: "campus",
-            title: "খেলার মাঠ",
-            description:
-                "বিদ্যালয়ের ক্রীড়া মাঠ, যেখানে প্রতিদিন খেলাধুলা ও শরীরচর্চা হয়",
-        },
-        {
-            id: 5,
-            src: "https://i.ibb.co/ZBfZjr7/school1.jpg",
-            category: "events",
-            title: "স্বাধীনতা দিবস",
-            description: "স্বাধীনতা দিবস উপলক্ষ্যে আয়োজিত সাংস্কৃতিক অনুষ্ঠান",
-        },
-        {
-            id: 6,
-            src: "https://i.ibb.co/DYd16TV/5680e4eb-33ea-48b7-85a1-a2c75c66651f.jpg",
-            category: "activities",
-            title: "শিক্ষা সফর",
-            description: "ঐতিহাসিক স্থান পরিদর্শনে শিক্ষা সফরের কিছু মুহূর্ত",
-        },
-        {
-            id: 7,
-            src: "https://i.ibb.co/SxtJdzT/school.jpg",
-            category: "campus",
-            title: "গ্রন্থাগার",
-            description:
-                "বিদ্যালয়ের সমৃদ্ধ গ্রন্থাগার, যেখানে জ্ঞানের ভাণ্ডার",
-        },
-        {
-            id: 8,
-            src: "https://i.ibb.co/q5FTsWz/c2acb51d-317b-4956-9b66-40d60f60ff4b.jpg",
-            category: "events",
-            title: "বিজয় দিবস",
-            description: "বিজয় দিবসের কুচকাওয়াজে শিক্ষার্থীদের অংশগ্রহণ",
-        },
-        {
-            id: 9,
-            src: "https://i.ibb.co/BCL8yTm/school2.jpg",
-            category: "activities",
-            title: "বিতর্ক প্রতিযোগিতা",
-            description:
-                "বার্ষিক বিতর্ক প্রতিযোগিতায় অংশগ্রহণকারী শিক্ষার্থীরা",
-        },
-        {
-            id: 10,
-            src: "https://i.ibb.co/ZBfZjr7/school1.jpg",
-            category: "events",
-            title: "শিক্ষক দিবস",
-            description: "শিক্ষক দিবসে শিক্ষকদের প্রতি শ্রদ্ধা নিবেদন",
-        },
-        {
-            id: 11,
-            src: "https://i.ibb.co/SxtJdzT/school.jpg",
-            category: "campus",
-            title: "বিজ্ঞান গবেষণাগার",
-            description: "আধুনিক যন্ত্রপাতি সমৃদ্ধ বিজ্ঞান গবেষণাগার",
-        },
-        {
-            id: 12,
-            src: "https://i.ibb.co/q5FTsWz/c2acb51d-317b-4956-9b66-40d60f60ff4b.jpg",
-            category: "activities",
-            title: "বৃক্ষরোপণ কর্মসূচি",
-            description: "পরিবেশ দিবসে বিদ্যালয় প্রাঙ্গণে বৃক্ষরোপণ কর্মসূচি",
-        },
-    ];
+    const [galleryImages, setGalleryImages] = useState([]);
+
+    useEffect(() => {
+        fetch("http://localhost:3000/photos")
+            .then((res) => res.json())
+            .then((data) => setGalleryImages(data));
+    }, []);
 
     const filteredImages = galleryImages.filter((img) => {
         const matchesCategory = filter === "all" || img.category === filter;
+
         const matchesSearch =
-            img.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            img.description.toLowerCase().includes(searchTerm.toLowerCase());
+            img.image_title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            img.short_description
+                .toLowerCase()
+                .includes(searchTerm.toLowerCase());
+
         return matchesCategory && matchesSearch;
     });
-
-    const openLightbox = (image) => {
-        setSelectedImage(image);
-        document.body.style.overflow = "hidden";
-    };
-
-    const closeLightbox = () => {
-        setSelectedImage(null);
-        document.body.style.overflow = "auto";
-    };
-
-    const navigateImage = (direction) => {
-        const currentIndex = filteredImages.findIndex(
-            (img) => img.id === selectedImage.id
-        );
-        let newIndex;
-
-        if (direction === "prev") {
-            newIndex =
-                currentIndex === 0
-                    ? filteredImages.length - 1
-                    : currentIndex - 1;
-        } else {
-            newIndex =
-                currentIndex === filteredImages.length - 1
-                    ? 0
-                    : currentIndex + 1;
-        }
-
-        setSelectedImage(filteredImages[newIndex]);
-    };
 
     return (
         <div className="relative min-h-screen bg-gradient-to-b from-white to-[#f0fdf4] py-12 px-4 md:px-8">
@@ -234,24 +124,23 @@ const PhotoGallery = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     {filteredImages.map((image) => (
                         <div
-                            key={image.id}
+                            key={image._id}
                             className="group relative overflow-hidden rounded-2xl shadow-lg cursor-pointer transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
-                            onClick={() => openLightbox(image)}
                         >
-                            <div className="aspect-w-16 aspect-h-12">
+                            <div className="w-full h-64">
                                 <img
-                                    src={image.src}
-                                    alt={image.title}
+                                    src={image.image_url}
+                                    alt={image.image_title}
                                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                 />
                             </div>
 
                             <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 flex flex-col justify-end">
                                 <h3 className="text-white text-lg font-bold mb-1">
-                                    {image.title}
+                                    {image.image_title}
                                 </h3>
                                 <p className="text-gray-200 text-sm line-clamp-2">
-                                    {image.description}
+                                    {image.short_description}
                                 </p>
                                 <div className="mt-2 text-xs text-gray-300 capitalize">
                                     {image.category === "campus" &&
@@ -285,94 +174,6 @@ const PhotoGallery = () => {
                                 যায়নি। অনুগ্রহ করে ভিন্ন শব্দে আবার চেষ্টা
                                 করুন।
                             </p>
-                        </div>
-                    </div>
-                )}
-
-                {/* Lightbox Modal */}
-                {selectedImage && (
-                    <div
-                        className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
-                        onClick={closeLightbox}
-                    >
-                        <button
-                            className="absolute top-6 right-6 text-white text-3xl z-10"
-                            onClick={closeLightbox}
-                        >
-                            <FaTimes />
-                        </button>
-
-                        <button
-                            className="absolute left-6 top-1/2 transform -translate-y-1/2 text-white text-3xl z-10 bg-black/50 p-3 rounded-full hover:bg-black/70 transition-colors"
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                navigateImage("prev");
-                            }}
-                        >
-                            <FaChevronLeft />
-                        </button>
-
-                        <button
-                            className="absolute right-6 top-1/2 transform -translate-y-1/2 text-white text-3xl z-10 bg-black/50 p-3 rounded-full hover:bg-black/70 transition-colors"
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                navigateImage("next");
-                            }}
-                        >
-                            <FaChevronRight />
-                        </button>
-
-                        <div
-                            className="max-w-6xl w-full max-h-[90vh] relative"
-                            onClick={(e) => e.stopPropagation()}
-                        >
-                            <div className="flex flex-col md:flex-row gap-6">
-                                <div className="md:w-2/3">
-                                    <img
-                                        src={selectedImage.src}
-                                        alt={selectedImage.title}
-                                        className="w-full h-full max-h-[70vh] object-contain rounded-xl"
-                                    />
-                                </div>
-
-                                <div className="md:w-1/3 bg-white/90 text-gray-800 rounded-xl p-6">
-                                    <h3 className="text-2xl font-bold mb-3">
-                                        {selectedImage.title}
-                                    </h3>
-                                    <p className="mb-6">
-                                        {selectedImage.description}
-                                    </p>
-
-                                    <div className="mb-4">
-                                        <span className="font-semibold">
-                                            বিষয়শ্রেণী:
-                                        </span>
-                                        <span className="ml-2 px-3 py-1 bg-gray-200 rounded-full text-sm capitalize">
-                                            {selectedImage.category ===
-                                                "campus" &&
-                                                "বিদ্যালয় প্রাঙ্গণ"}
-                                            {selectedImage.category ===
-                                                "events" && "অনুষ্ঠান"}
-                                            {selectedImage.category ===
-                                                "activities" && "কার্যক্রম"}
-                                        </span>
-                                    </div>
-
-                                    <div className="mt-8">
-                                        <button className="bg-[#249742] hover:bg-[#1e7a37] text-white px-6 py-2 rounded-lg flex items-center gap-2">
-                                            <FaDownload />
-                                            ছবি ডাউনলোড করুন
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="text-white text-center mt-4">
-                                {filteredImages.findIndex(
-                                    (img) => img.id === selectedImage.id
-                                ) + 1}{" "}
-                                / {filteredImages.length}
-                            </div>
                         </div>
                     </div>
                 )}

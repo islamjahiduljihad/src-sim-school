@@ -233,6 +233,13 @@ const AdminPhotoManagement = () => {
                                     className="select select-bordered w-full"
                                     name="category"
                                     id=""
+                                    value={formData.category}
+                                    onChange={(e) =>
+                                        setFormData({
+                                            ...formData,
+                                            category: e.target.value,
+                                        })
+                                    }
                                 >
                                     <option value="">
                                         ক্যাটাগরি নির্বাচন করুন

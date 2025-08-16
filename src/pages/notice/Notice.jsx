@@ -8,78 +8,14 @@ import {
     FiExternalLink,
 } from "react-icons/fi";
 import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
 
 const Notice = () => {
     const [notices, setNotices] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
-    // Mock data for events and downloads (replace with API calls if needed)
-    const events = [
-        {
-            id: "1",
-            date: "২০২৩-১১-১০",
-            title: "বার্ষিক পুরস্কার বিতরণী",
-            desc: "বিদ্যালয়ের বার্ষিক পুরস্কার বিতরণী অনুষ্ঠান",
-        },
-        {
-            id: "2",
-            date: "২০২৩-১১-২০",
-            title: "মূল্যায়ন পরীক্ষা",
-            desc: "ষষ্ঠ থেকে নবম শ্রেণির মূল্যায়ন পরীক্ষা",
-        },
-        {
-            id: "3",
-            date: "২০২৩-১২-০৫",
-            title: "শীতকালীন ছুটি",
-            desc: "শীতকালীন ছুটি শুরু",
-        },
-        {
-            id: "4",
-            date: "২০২৩-১২-২৫",
-            title: "পুনরায় ক্লাস শুরু",
-            desc: "শীতকালীন ছুটির পর পুনরায় ক্লাস শুরু",
-        },
-        {
-            id: "5",
-            date: "২০২৪-০১-১০",
-            title: "বর্ষবরণ উৎসব",
-            desc: "নতুন বছরের শুভেচ্ছা বিনিময় অনুষ্ঠান",
-        },
-    ];
-
-    const downloads = [
-        {
-            id: "1",
-            title: "ভর্তি ফরম ২০২৪",
-            type: "PDF",
-            size: "1.2 MB",
-        },
-        {
-            id: "2",
-            title: "শিক্ষক নিয়োগ ফরম",
-            type: "DOC",
-            size: "0.8 MB",
-        },
-        {
-            id: "3",
-            title: "প্রবেশপত্র ফরম",
-            type: "PDF",
-            size: "0.5 MB",
-        },
-        {
-            id: "4",
-            title: "বার্ষিক পরীক্ষার রুটিন",
-            type: "PDF",
-            size: "0.9 MB",
-        },
-        {
-            id: "5",
-            title: "ছাত্রছাত্রীদের আচরণবিধি",
-            type: "PDF",
-            size: "0.7 MB",
-        },
-    ];
+    const [events, setEvents] = useState([]);
+    const [downloads, setDownloads] = useState([]);
 
     useEffect(() => {
         // Fetch notices from API
@@ -93,57 +29,21 @@ const Notice = () => {
                 }
 
                 const data = await response.json();
-                setNotices(data);
+                setNotices(
+                    data.filter((notice) => notice?.category === "notice")
+                );
+                setEvents(
+                    data.filter((notice) => notice?.category === "event")
+                );
+                setDownloads(
+                    data.filter((notice) => notice?.category === "download")
+                );
                 setError(null);
             } catch (err) {
                 console.error("Error fetching notices:", err);
                 setError(
                     "নোটিশ লোড করতে সমস্যা হয়েছে। দয়া করে পরে আবার চেষ্টা করুন"
                 );
-
-                // Fallback to mock data if API fails
-                setNotices([
-                    {
-                        id: "1",
-                        date: "২০২৩-১০-১৫",
-                        title: "মিড টার্ম পরীক্ষার রুটিন প্রকাশ",
-                        shortDesc:
-                            "নবম ও দশম শ্রেণির মিড টার্ম পরীক্ষার রুটিন প্রকাশ করা হলো। সকল শিক্ষার্থীদের অবগতির জন্য অনুরোধ করা হচ্ছে।",
-                        noticeLink: "#",
-                    },
-                    {
-                        id: "2",
-                        date: "২০২৩-১০-১০",
-                        title: "বার্ষিক ক্রীড়া প্রতিযোগিতা",
-                        shortDesc:
-                            "আগামী মাসে বার্ষিক ক্রীড়া প্রতিযোগিতা অনুষ্ঠিত হবে। আগ্রহী শিক্ষার্থীদের নাম নিবন্ধনের জন্য অনুরোধ করা হচ্ছে।",
-                        noticeLink: "#",
-                    },
-                    {
-                        id: "3",
-                        date: "২০২৩-১০-০৫",
-                        title: "শিক্ষক প্রশিক্ষণ কর্মশালা",
-                        shortDesc:
-                            "আগামী সপ্তাহে শিক্ষকদের জন্য একটি প্রশিক্ষণ কর্মশালার আয়োজন করা হবে। সকল শিক্ষকদের উপস্থিতি আবশ্যক।",
-                        noticeLink: "#",
-                    },
-                    {
-                        id: "4",
-                        date: "২০২৩-১০-০১",
-                        title: "ছুটির ঘোষণা",
-                        shortDesc:
-                            "আগামী সপ্তাহে প্রতিষ্ঠানের সকল শ্রেণির কার্যক্রম বন্ধ থাকবে। সকলকে অবগতির জন্য অনুরোধ করা হচ্ছে।",
-                        noticeLink: "#",
-                    },
-                    {
-                        id: "5",
-                        date: "২০২৩-০৯-২৮",
-                        title: "বৃত্তি পরীক্ষার ফলাফল",
-                        shortDesc:
-                            "বৃত্তি পরীক্ষার ফলাফল প্রকাশ করা হলো। ফলাফল অফিস থেকে সংগ্রহ করা যাবে।",
-                        noticeLink: "#",
-                    },
-                ]);
             } finally {
                 setLoading(false);
             }
@@ -259,12 +159,6 @@ const Notice = () => {
                                     </div>
                                 ))}
                             </div>
-                            <div className="text-center p-4 bg-gray-50">
-                                <button className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#249742] to-[#1c6e36] hover:from-[#1c6e36] hover:to-[#155a2b] text-white font-semibold px-6 py-2 rounded-full shadow-md transform hover:scale-105 active:scale-95 transition-all duration-300">
-                                    সকল নোটিশ দেখুন
-                                    <FiChevronRight className="text-xl" />
-                                </button>
-                            </div>
                         </div>
 
                         {/* Events Section */}
@@ -301,18 +195,18 @@ const Notice = () => {
                                                     {event.title}
                                                 </h4>
                                                 <p className="text-gray-600 text-sm">
-                                                    {event.desc}
+                                                    {event.shortDesc}
                                                 </p>
+                                                <a
+                                                    href={event.noticeLink}
+                                                    className="mt-2 text-[#8E1C20] hover:underline"
+                                                >
+                                                    বিস্তারিত পরুন
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                 ))}
-                            </div>
-                            <div className="text-center p-4 bg-gray-50">
-                                <button className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#8E1C20] to-[#6c1518] hover:from-[#6c1518] hover:to-[#4a0f10] text-white font-semibold px-6 py-2 rounded-full shadow-md transform hover:scale-105 active:scale-95 transition-all duration-300">
-                                    সকল ইভেন্ট দেখুন
-                                    <FiChevronRight className="text-xl" />
-                                </button>
                             </div>
                         </div>
 
@@ -345,27 +239,20 @@ const Notice = () => {
                                                 <h4 className="font-semibold text-gray-800 mb-1">
                                                     {file.title}
                                                 </h4>
-                                                <div className="flex text-sm text-gray-500">
-                                                    <span className="mr-3">
-                                                        {file.type}
-                                                    </span>
-                                                    <span>{file.size}</span>
-                                                </div>
+                                                <p>{file?.shortDesc}</p>
                                             </div>
                                             <div>
-                                                <button className="bg-[#249742] hover:bg-[#1e7a37] text-white p-2 rounded-lg transition-colors">
+                                                <Link
+                                                    target="_blank"
+                                                    to={file.noticeLink}
+                                                    className="btn bg-[#249742] hover:bg-[#1e7a37] text-white p-2 rounded-lg transition-colors"
+                                                >
                                                     <FiDownload className="text-lg" />
-                                                </button>
+                                                </Link>
                                             </div>
                                         </div>
                                     </div>
                                 ))}
-                            </div>
-                            <div className="text-center p-4 bg-gray-50">
-                                <button className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#249742] to-[#1c6e36] hover:from-[#1c6e36] hover:to-[#155a2b] text-white font-semibold px-6 py-2 rounded-full shadow-md transform hover:scale-105 active:scale-95 transition-all duration-300">
-                                    সকল ডাউনলোড দেখুন
-                                    <FiChevronRight className="text-xl" />
-                                </button>
                             </div>
                         </div>
                     </div>

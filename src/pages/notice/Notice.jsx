@@ -113,7 +113,7 @@ const Notice = () => {
                                     সকল গুরুত্বপূর্ণ ঘোষণা এক নজরে
                                 </p>
                             </div>
-                            <div className="divide-y divide-gray-100">
+                            <div className="divide-y divide-gray-100 h-[80vh] overflow-y-auto">
                                 {notices.map((notice, index) => (
                                     <div
                                         key={notice.id}
@@ -174,7 +174,7 @@ const Notice = () => {
                                     গুরুত্বপূর্ণ তারিখ ও ইভেন্টসমূহ
                                 </p>
                             </div>
-                            <div className="divide-y divide-gray-100">
+                            <div className="divide-y divide-gray-100 h-[80vh] overflow-y-auto">
                                 {events.map((event) => (
                                     <div
                                         key={event.id}
@@ -223,7 +223,7 @@ const Notice = () => {
                                     গুরুত্বপূর্ণ ফরম ও ফাইলসমূহ
                                 </p>
                             </div>
-                            <div className="divide-y divide-gray-100">
+                            <div className="divide-y divide-gray-100 h-[80vh] overflow-y-auto">
                                 {downloads.map((file) => (
                                     <div
                                         key={file.id}

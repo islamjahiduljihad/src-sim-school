@@ -16,7 +16,7 @@ const NoticeBoard = () => {
     useEffect(() => {
         // In production, use the actual API call:
 
-        fetch("http://localhost:3000/notices?limit=5")
+        fetch("http://localhost:3000/notices")
             .then((res) => res.json())
             .then((data) => {
                 setNotices(data.filter((item) => item.category === "notice"));
@@ -59,7 +59,7 @@ const NoticeBoard = () => {
                             </p>
                         </div>
                         <div className="p-1">
-                            {notices.slice(0, 4).map((notice, index) => (
+                            {notices.slice(0, 2).map((notice, index) => (
                                 <div
                                     key={notice?._id}
                                     className="p-4 border-b border-gray-100 last:border-b-0 hover:bg-[#f9fcfb] transition-colors duration-200"
@@ -111,7 +111,7 @@ const NoticeBoard = () => {
                             </p>
                         </div>
                         <div className="p-1">
-                            {events.map((event, index) => (
+                            {events.slice(0, 2).map((event, index) => (
                                 <div
                                     key={index}
                                     className="p-4 border-b border-gray-100 last:border-b-0 hover:bg-[#f9fcfb] transition-colors duration-200"
@@ -159,7 +159,7 @@ const NoticeBoard = () => {
                             </p>
                         </div>
                         <div className="p-1">
-                            {downloads.map((file, index) => (
+                            {downloads.slice(0, 2).map((file, index) => (
                                 <div
                                     key={index}
                                     className="p-4 border-b border-gray-100 last:border-b-0 hover:bg-[#f9fcfb] transition-colors duration-200"

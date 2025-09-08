@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import SectionHeader from "../../../components/sectionHeader/SectionHeader";
@@ -44,73 +44,72 @@ const CustomNavigation = ({
     </div>
 );
 
-const events = [
-    {
-        date: new Date(2025, 0, 1),
-        title: "শিক্ষাবর্ষের শুরু",
-        description: "নতুন শিক্ষাবর্ষের আনুষ্ঠানিক উদ্বোধনী অনুষ্ঠান",
-    },
-    {
-        date: new Date(2025, 0, 15),
-        title: "বার্ষিক ক্রীড়া প্রতিযোগিতা",
-        description: "বিদ্যালয় প্রাঙ্গণে বার্ষিক ক্রীড়া প্রতিযোগিতার উদ্বোধন",
-    },
-    {
-        date: new Date(2025, 1, 21),
-        title: "একুশে ফেব্রুয়ারি পালন",
-        description: "আন্তর্জাতিক মাতৃভাষা দিবসের অনুষ্ঠানমালা",
-    },
-    {
-        date: new Date(2025, 2, 17),
-        title: "স্বাধীনতা দিবস",
-        description: "স্বাধীনতা দিবস উদযাপন ও সাংস্কৃতিক অনুষ্ঠান",
-    },
-    {
-        date: new Date(2025, 2, 26),
-        title: "জাতীয় দিবস",
-        description: "জাতীয় দিবসের কুচকাওয়াজ ও সাংস্কৃতিক অনুষ্ঠান",
-    },
-    {
-        date: new Date(2025, 3, 14),
-        title: "পহেলা বৈশাখ",
-        description: "বাংলা নববর্ষ উদযাপন",
-    },
-    {
-        date: new Date(2025, 4, 1),
-        title: "মে দিবস",
-        description: "আন্তর্জাতিক শ্রম দিবস উদযাপন",
-    },
-    {
-        date: new Date(2025, 5, 15),
-        title: "মিড টার্ম পরীক্ষা",
-        description: "ষষ্ঠ থেকে দশম শ্রেণির মিড টার্ম পরীক্ষা শুরু",
-    },
-    {
-        date: new Date(2025, 8, 1),
-        title: "বার্ষিক পরীক্ষা",
-        description: "ষষ্ঠ থেকে দশম শ্রেণির বার্ষিক পরীক্ষা শুরু",
-    },
-    {
-        date: new Date(2025, 10, 10),
-        title: "প্রাক্তন শিক্ষার্থী সম্মিলন",
-        description: "বার্ষিক প্রাক্তন শিক্ষার্থী সম্মিলনী",
-    },
-    {
-        date: new Date(2025, 11, 16),
-        title: "বিজয় দিবস",
-        description: "বিজয় দিবস উদযাপন",
-    },
-    {
-        date: new Date(2025, 11, 25),
-        title: "বার্ষিক পুরস্কার বিতরণ",
-        description: "বার্ষিক পুরস্কার বিতরণী অনুষ্ঠান",
-    },
-];
-
 const AcademicCalendar = () => {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [activeView, setActiveView] = useState("month");
-
+    const [events, setEvents] = useState([
+        {
+            date: new Date(2025, 0, 1),
+            title: "শিক্ষাবর্ষের শুরু",
+            description: "নতুন শিক্ষাবর্ষের আনুষ্ঠানিক উদ্বোধনী অনুষ্ঠান",
+        },
+        {
+            date: new Date(2025, 0, 15),
+            title: "বার্ষিক ক্রীড়া প্রতিযোগিতা",
+            description:
+                "বিদ্যালয় প্রাঙ্গণে বার্ষিক ক্রীড়া প্রতিযোগিতার উদ্বোধন",
+        },
+        {
+            date: new Date(2025, 1, 21),
+            title: "একুশে ফেব্রুয়ারি পালন",
+            description: "আন্তর্জাতিক মাতৃভাষা দিবসের অনুষ্ঠানমালা",
+        },
+        {
+            date: new Date(2025, 2, 17),
+            title: "স্বাধীনতা দিবস",
+            description: "স্বাধীনতা দিবস উদযাপন ও সাংস্কৃতিক অনুষ্ঠান",
+        },
+        {
+            date: new Date(2025, 2, 26),
+            title: "জাতীয় দিবস",
+            description: "জাতীয় দিবসের কুচকাওয়াজ ও সাংস্কৃতিক অনুষ্ঠান",
+        },
+        {
+            date: new Date(2025, 3, 14),
+            title: "পহেলা বৈশাখ",
+            description: "বাংলা নববর্ষ উদযাপন",
+        },
+        {
+            date: new Date(2025, 4, 1),
+            title: "মে দিবস",
+            description: "আন্তর্জাতিক শ্রম দিবস উদযাপন",
+        },
+        {
+            date: new Date(2028, 5, 15),
+            title: "মিড টার্ম পরীক্ষা",
+            description: "ষষ্ঠ থেকে দশম শ্রেণির মিড টার্ম পরীক্ষা শুরু",
+        },
+        {
+            date: new Date(2028, 8, 1),
+            title: "বার্ষিক পরীক্ষা",
+            description: "ষষ্ঠ থেকে দশম শ্রেণির বার্ষিক পরীক্ষা শুরু",
+        },
+        {
+            date: new Date(2028, 10, 10),
+            title: "প্রাক্তন শিক্ষার্থী সম্মিলন",
+            description: "বার্ষিক প্রাক্তন শিক্ষার্থী সম্মিলনী",
+        },
+        {
+            date: new Date(2028, 11, 16),
+            title: "বিজয় দিবস",
+            description: "বিজয় দিবস উদযাপন",
+        },
+        {
+            date: new Date(2028, 11, 25),
+            title: "বার্ষিক পুরস্কার বিতরণ",
+            description: "বার্ষিক পুরস্কার বিতরণী অনুষ্ঠান",
+        },
+    ]);
     // Filter events for the selected date
     const filteredEvents = events.filter(
         (event) =>
